@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Login {
     public static void main(String[] args) {
-        EventQueue.invokeLater(() ->           {
+        EventQueue.invokeLater(() ->{
             LoginFrame loginFrame=new LoginFrame();
             loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             loginFrame.setResizable(false);
@@ -19,11 +19,7 @@ class LoginFrame extends JFrame{
     private static final int WIDTH = 300;
     private static final int HEIGHT = 200;
 
-    private JTextField accountText = new JTextField(14);
-    private JTextField passwordText = new JTextField(14);
-    private final JButton studentLoginBtn = new JButton("学生登录");
-    private final JButton teacherLoginBtn = new JButton("教师登录");
-    private final JButton registerBtn = new JButton("注册");
+
     public LoginFrame(){
         setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +33,12 @@ class LoginFrame extends JFrame{
         int x = (width - WIDTH) / 2;
         int y = (height - HEIGHT) / 2;
         setLocation(x,y);
+
+        JTextField accountText = new JTextField(14);
+        JTextField passwordText = new JTextField(14);
+        JButton studentLoginBtn = new JButton("学生登录");
+        JButton teacherLoginBtn = new JButton("教师登录");
+        JButton registerBtn = new JButton("注册");
 
         JLabel accountLabel = new JLabel("账号:");
         accountText.setMaximumSize(accountText.getPreferredSize());
