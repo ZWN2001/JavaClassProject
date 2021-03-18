@@ -45,13 +45,13 @@ class LoginFrame extends JFrame{
         JLabel passwordLabel = new JLabel("密码:");
         passwordText.setMaximumSize(passwordText.getPreferredSize());
 
-        add(accountLabel, new GBC(0, 0).setInsets(10,10,0,0));
-        add(accountText,new GBC(1,0,2,1).setWeight(2,1).setInsets(10,0,0,10));
-        add(passwordLabel, new GBC(0, 1).setInsets(10,10,10,0));
-        add(passwordText,new GBC(1,1,2,1).setWeight(2,1).setInsets(10,0,10,10));
-        add(studentLoginBtn,new GBC(0,3).setInsets(5,15,10,5));
-        add(teacherLoginBtn,new GBC(1,3).setInsets(5,5,10,5));
-        add(registerBtn,new GBC(2,3).setInsets(5,5,10,15));
+        add(accountLabel,new GBC(0, 0,1,1).setInsets(10,0,0,0));
+        add(accountText,new GBC(1,0,4,1).setInsets(10,0,0,10));
+        add(passwordLabel,new GBC(0, 1,1,1).setInsets(20,0,10,0));
+        add(passwordText,new GBC(1,1,4,1).setInsets(20,0,10,10));
+        add(studentLoginBtn,new GBC(0,3,1,1).setInsets(25,15,5,5));
+        add(teacherLoginBtn,new GBC(2,3,1,1).setInsets(25,5,5,5));
+        add(registerBtn,new GBC(4,3,1,1).setInsets(25,5,5,15));
     }
 }
 
