@@ -38,6 +38,13 @@ public class GBC extends GridBagConstraints
         this.gridheight = gridheight;
     }
 
+    public GBC(int gridx, int gridy, double weightx, double weighty)
+    {
+        this.gridx = gridx;
+        this.gridy = gridy;
+        this.weightx = weightx;
+        this.weighty = weighty;
+    }
     /**
      * Sets the anchor.
      * @param anchor the anchor value
@@ -69,6 +76,16 @@ public class GBC extends GridBagConstraints
     public GBC setWeight(double weightx, double weighty)
     {
         this.weightx = weightx;
+        this.weighty = weighty;
+        return this;
+    }
+    public GBC setWeightx(double weightx)
+    {
+        this.weightx = weightx;
+        return this;
+    }
+    public GBC setWeighty( double weighty)
+    {
         this.weighty = weighty;
         return this;
     }

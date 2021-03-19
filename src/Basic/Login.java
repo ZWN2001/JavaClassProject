@@ -7,6 +7,12 @@ import java.awt.*;
 
 public class Login {
     public static void main(String[] args) {
+        try {
+            //设置样式
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         EventQueue.invokeLater(() ->{
             LoginFrame loginFrame=new LoginFrame();
             loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,7 +24,6 @@ public class Login {
 class LoginFrame extends JFrame{
     private static final int WIDTH = 300;
     private static final int HEIGHT = 200;
-
 
     public LoginFrame(){
         setSize(WIDTH,HEIGHT);
@@ -34,8 +39,8 @@ class LoginFrame extends JFrame{
         int y = (height - HEIGHT) / 2;
         setLocation(x,y);
 
-        JTextField accountText = new JTextField(14);
-        JTextField passwordText = new JTextField(14);
+        JTextField accountText = new JTextField(25);
+        JTextField passwordText = new JTextField(25);
         JButton studentLoginBtn = new JButton("学生登录");
         JButton teacherLoginBtn = new JButton("教师登录");
         JButton registerBtn = new JButton("注册");
