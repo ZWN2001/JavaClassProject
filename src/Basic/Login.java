@@ -29,8 +29,6 @@ class LoginFrame extends JFrame{
         setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("欢迎登录");
-        //        setLayout(new GridBagLayout());
-
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -52,7 +50,7 @@ class LoginFrame extends JFrame{
         accountText.setMaximumSize(accountText.getPreferredSize());
         JLabel passwordLabel = new JLabel("密码: ");
         passwordText.setMaximumSize(passwordText.getPreferredSize());
-
+//
 //        add(accountLabel,new GBC(0, 0,1,1).setInsets(10,0,0,0));
 //        add(accountText,new GBC(1,0,4,1).setInsets(10,0,0,10));
 //        add(passwordLabel,new GBC(0, 1,1,1).setInsets(20,0,10,0));

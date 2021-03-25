@@ -89,6 +89,16 @@ public class GBC extends GridBagConstraints
         this.weighty = weighty;
         return this;
     }
+    public GBC setGridwidth(int gridwidth)
+    {
+        this.gridwidth = gridwidth;
+        return this;
+    }
+    public GBC setGridheigut(int gridheigut)
+    {
+        this.gridheight = gridheigut;
+        return this;
+    }
 
     /**
      * Sets the insets of this cell.
