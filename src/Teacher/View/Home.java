@@ -1,10 +1,11 @@
 package Teacher.View;
-import Teacher.Util.GBC;
-import Teacher.Util.Layout.VFlowLayout;
+import Teacher.Util.Adapter.GBC;
 import Teacher.Util.MyButton.BackgroundButton;
+import Teacher.Util.MyButton.PopButton;
 import Teacher.Util.MyButton.TransparentButton;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Home {
     public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class Home {
 class HomeFrame extends JFrame{
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 700;
+    JPanel contentPanel;
 
     public HomeFrame(){
         setSize(WIDTH,HEIGHT);
@@ -43,10 +45,11 @@ class HomeFrame extends JFrame{
         JPanel rootPanel = new JPanel(new GridBagLayout());
         setContentPane(rootPanel);
         DefaultContentPanel defaultContentPanel=new DefaultContentPanel();
-//        JPanel contentPanel=defaultContentPanel;
 
-        rootPanel.add(leftPanel(), new GBC(0,0,0.1,1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
-        rootPanel.add(defaultContentPanel,new GBC(1,0,0.9,1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
+        contentPanel=(JPanel)defaultContentPanel;
+
+        rootPanel.add(leftPanel(), new GBC(0,0,0.03,1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
+        rootPanel.add(contentPanel,new GBC(1,0,0.97,1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
 
     }
 
@@ -71,9 +74,14 @@ class HomeFrame extends JFrame{
 
         Font myFont=new Font("宋体",Font.PLAIN,16);
 
-        BackgroundButton maintainQuestionsBtn = new BackgroundButton("维护题库");
+        ArrayList<String> maintainQuestionSubTitle=new ArrayList<>();
+        maintainQuestionSubTitle.add("查看题库");
+        maintainQuestionSubTitle.add("出题");
+        PopButton maintainQuestionsBtn = new PopButton(2,"维护题库",maintainQuestionSubTitle);
+
+//        maintainQuestionsBtn.setChildButtonTitle(maintainQuestionSubTitle);
         BackgroundButton myPaperBtn = new BackgroundButton("我的试卷");
-        BackgroundButton addPaperBtn = new BackgroundButton("出题");
+        BackgroundButton addPaperBtn = new BackgroundButton("我的学生");
         BackgroundButton correctQuestionBtn = new BackgroundButton("批改");
         BackgroundButton paperMarkBtn = new BackgroundButton("查看成绩");
 

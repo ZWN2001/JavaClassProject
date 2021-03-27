@@ -1,6 +1,5 @@
 package Teacher.View;
 
-import Teacher.Util.GBC;
 import java.awt.Graphics;
 
 import javax.swing.*;
@@ -31,6 +30,7 @@ String imgPath="src/Teacher/Util/Images/welcome.png";
 //        g.drawImage(image, 0, 0,width,height, this);
 //    }
     public void paint(Graphics g) {
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null
+        );
     }
 }

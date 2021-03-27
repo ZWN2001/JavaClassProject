@@ -10,7 +10,43 @@ public class BackgroundButton extends JButton {
     Color unFocusedColor= new Color(240,240,240);
     Color clickedColor=Color.GRAY;
     Font myFont=new Font("宋体",Font.PLAIN,16);
+    String text=" ";
 
+    //文字按钮
+    public  BackgroundButton(){
+        setBorderPainted(false);//不打印边框
+//        setBorder(null);//除去边框
+        setFocusPainted(false);//除去焦点的框
+//        setContentAreaFilled(false);//除去默认的背景填充
+        setMargin(new Insets(5,15,5,15));
+        setText(text);
+        setFont(myFont);
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mouseClicked(e);
+                setBackground(clickedColor);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseClicked(e);
+                setBackground(focusedColor);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                setBackground(focusedColor);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                setBackground(unFocusedColor);
+            }
+        });
+    }
     //文字按钮
     public  BackgroundButton(String text){
         setBorderPainted(false);//不打印边框
@@ -28,6 +64,12 @@ public class BackgroundButton extends JButton {
             }
 
             @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseClicked(e);
+                setBackground(focusedColor);
+            }
+
+            @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 setBackground(focusedColor);
@@ -40,6 +82,7 @@ public class BackgroundButton extends JButton {
             }
         });
     }
+
 
     //icon+文字
     public BackgroundButton(Icon icon, String text) {
@@ -83,5 +126,8 @@ public class BackgroundButton extends JButton {
     }
     void setClickedColor(Color color){
         this.clickedColor=color;
+    }
+    void setMyText(String text){
+        this.text=text;
     }
 }
