@@ -1,0 +1,13 @@
+        MenuBar menuBar = new MenuBar();
+        Menu menu1 = new Menu("账号");
+        Menu menu2 = new Menu("设置");
+        Menu menu3 = new Menu("帮助");
+        MenuItem logOut = new MenuItem("注销");
+        MenuItem profile = new MenuItem("个人信息");
+        menu1.add(profile);
+        menu1.add(logOut);
+        menu1.insertSeparator(1);
+        menuBar.add(menu1);
+        menuBar.add(menu2);
+        menuBar.add(menu3);
+        setMenuBar(menuBar);
