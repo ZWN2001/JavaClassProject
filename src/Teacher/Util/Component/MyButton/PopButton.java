@@ -5,7 +5,7 @@
      childButtonPanel  子按钮面板
      childButtonTitle  子按钮标题
 */
-package Teacher.Util.MyButton;
+package Teacher.Util.Component.MyButton;
 import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 import java.awt.*;
@@ -18,36 +18,6 @@ public class PopButton extends JPanel {
     private final ArrayList<BackgroundButton> childButton = new ArrayList<>();
     private final Font myFont=new Font("宋体",Font.PLAIN,12);
     private final JPanel childButtonPanel= new JPanel();
-
-//    public PopButton(int n,ArrayList<String> childButtonTitle){
-//        setLayout(new VFlowLayout());
-//        childButtonPanel.setLayout(new VFlowLayout());
-//        childButtonPanel.setVisible(childButtonFlag);
-//
-//        BackgroundButton titleButton=new BackgroundButton(titleButtonText);
-//        add(titleButton);
-//
-//        for (i=0;i<n;i++){
-//            String title = childButtonTitle.get(i);
-//            childButton.add(new BackgroundButton(title));
-////            childButton.get(i).setVisible(childButtonFlag);
-//            childButton.get(i).setFont(myFont);
-//            childButtonPanel.add(childButton.get(i));
-//        }
-//        add(childButtonPanel);
-//
-//        titleButton.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-////                for (i=0;i<n;i++){
-////                    childButton.get(i).setVisible(!childButtonFlag);
-////                }
-//                childButtonPanel.setVisible(!childButtonFlag);
-//                repaint();
-//            }
-//        });
-//    }
 
     public PopButton(int n,String titleButtonText,ArrayList<String> childButtonTitle ){
         setLayout(new VFlowLayout());
@@ -79,4 +49,33 @@ public class PopButton extends JPanel {
             }
         });
     }
+    //    public PopButton(int n,ArrayList<String> childButtonTitle){
+//        setLayout(new VFlowLayout());
+//        childButtonPanel.setLayout(new VFlowLayout());
+//        childButtonPanel.setVisible(childButtonFlag);
+//
+//        BackgroundButton titleButton=new BackgroundButton(titleButtonText);
+//        add(titleButton);
+//
+//        for (i=0;i<n;i++){
+//            String title = childButtonTitle.get(i);
+//            childButton.add(new BackgroundButton(title));
+////            childButton.get(i).setVisible(childButtonFlag);
+//            childButton.get(i).setFont(myFont);
+//            childButtonPanel.add(childButton.get(i));
+//        }
+//        add(childButtonPanel);
+//
+//        titleButton.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+////                for (i=0;i<n;i++){
+////                    childButton.get(i).setVisible(!childButtonFlag);
+////                }
+//                childButtonPanel.setVisible(!childButtonFlag);
+//                repaint();
+//            }
+//        });
+//    }
 }

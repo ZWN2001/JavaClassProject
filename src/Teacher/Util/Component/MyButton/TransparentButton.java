@@ -1,4 +1,4 @@
-package Teacher.Util.MyButton;
+package Teacher.Util.Component.MyButton;
 
 import javax.swing.*;
 import java.awt.*;

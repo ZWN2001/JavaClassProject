@@ -1,4 +1,4 @@
-package Teacher.Util.MyButton;
+package Teacher.Util.Component.MyButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -115,8 +115,12 @@ public class BackgroundButton extends JButton {
                 super.mouseClicked(e);
                 setBackground(clickedColor);
             }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseClicked(e);
+                setBackground(focusedColor);
+            }
         });
-
     }
     void setFocusedColor(Color color){
         this.focusedColor=color;

@@ -7,7 +7,7 @@ import java.awt.*;
 
 class DefaultContentPanel extends JPanel {
 
-String imgPath="src/Teacher/Util/Images/welcome.png";
+String imgPath="src/Teacher/Util/Images/HomeImage/welcome.png";
     final ImageIcon bgImageIcon = new ImageIcon(imgPath);
     final Image image = bgImageIcon.getImage();
     public DefaultContentPanel(){
