@@ -1,6 +1,8 @@
 package Teacher.View;
 
 
+import Teacher.Util.t3;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,6 +20,13 @@ public class Home {
            // homeFrame.setResizable(false);
             homeFrame.setVisible(true);
         });
+
+        t3 test = new t3();
+        try {
+            test.Tray();
+        }catch(AWTException e) {
+            e.printStackTrace();
+        }
     }
 }
 

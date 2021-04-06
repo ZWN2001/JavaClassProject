@@ -15,9 +15,7 @@ public class QuestionCardPanel extends JPanel {
      String optionD="";
 
     public QuestionCardPanel () {
-//        setOpaque(true);
-       // setSize(245, 172);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(300,300));
         TransparentButton change=new TransparentButton("change");

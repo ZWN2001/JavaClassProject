@@ -29,9 +29,8 @@ public class HomeFrame extends JFrame {
 
         JPanel rootPanel = new JPanel(new GridBagLayout());
         setContentPane(rootPanel);
-        DefaultContentPanel defaultContentPanel = new DefaultContentPanel();
 
-        contentPanel = defaultContentPanel;
+        contentPanel = new DefaultContentPanel();
         CheckMyQuestionBank bank = new CheckMyQuestionBank();
         rootPanel.add(showUnVisibleBtn,new GBC(0,1).setWeighty(0).setFill(GridBagConstraints.VERTICAL));
         rootPanel.add(leftPanel, new GBC(0, 1, 0.03, 1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));

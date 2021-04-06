@@ -31,13 +31,11 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 LeftPanelVisible.setLeftPanelVisible(HomeFrame.leftPanel,HomeFrame.showUnVisibleBtn);
-                repaint();
+//                repaint();
             }
         });
     }
-private void setVisible(){
 
-}
     private static JPanel  buttonsPanel(){
         JPanel  buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridBagLayout());
