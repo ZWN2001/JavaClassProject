@@ -1,6 +1,6 @@
 package Student.Panel;
 
-import Teacher.Util.GBC;
+
 
 import javax.swing.*;
 import java.awt.*;

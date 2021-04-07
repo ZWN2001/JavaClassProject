@@ -12,7 +12,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
+/**
+ * @ClassName:
+ * @Description: 能够弹出子按钮的panel
+ * @author 赵炜宁
+ * @date
+ *
+ */
 public class PopButton extends JPanel {
     private boolean childButtonFlag=false;
     private final ArrayList<BackgroundButton> childButton = new ArrayList<>();

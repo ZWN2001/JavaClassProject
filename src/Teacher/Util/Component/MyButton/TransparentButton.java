@@ -1,5 +1,11 @@
 package Teacher.Util.Component.MyButton;
-
+/**
+ * @ClassName:
+ * @Description: 透明背景button
+ * @author 赵炜宁
+ * @date
+ *
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

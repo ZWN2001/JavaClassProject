@@ -1,5 +1,11 @@
 package Teacher.Util.Component.MyButton;
-
+/**
+ * @ClassName:
+ * @Description: 背景会因鼠标事件而相应的button
+ * @author 赵炜宁
+ * @date
+ *
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -122,16 +128,16 @@ public class BackgroundButton extends JButton {
             }
         });
     }
-    void setFocusedColor(Color color){
+    public void setFocusedColor(Color color){
         this.focusedColor=color;
     }
-    void setUnFocusedColor(Color color){
+    public void setUnFocusedColor(Color color){
         this.unFocusedColor=color;
     }
-    void setClickedColor(Color color){
+    public void setClickedColor(Color color){
         this.clickedColor=color;
     }
-    void setMyText(String text){
+    public void setMyText(String text){
         this.text=text;
     }
 }
