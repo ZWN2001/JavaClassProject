@@ -20,10 +20,10 @@ import java.util.ArrayList;
  *
  */
 public class PopButton extends JPanel {
-    private boolean childButtonFlag=false;
-    private final ArrayList<BackgroundButton> childButton = new ArrayList<>();
+    public boolean childButtonFlag=false;
+    public final ArrayList<BackgroundButton> childButton = new ArrayList<>();
     private final Font myFont=new Font("宋体",Font.PLAIN,12);
-    private final JPanel childButtonPanel= new JPanel();
+    public final JPanel childButtonPanel= new JPanel();
 
     public PopButton(int n,String titleButtonText,ArrayList<String> childButtonTitle ){
         setLayout(new VFlowLayout());
@@ -42,7 +42,7 @@ public class PopButton extends JPanel {
                 childButtonPanel.add(childButton.get(i));
             }
             add(childButtonPanel);
-        }catch (ArrayIndexOutOfBoundsException e){
+        }catch (IndexOutOfBoundsException e){
             e.printStackTrace();
         }
 
@@ -52,36 +52,8 @@ public class PopButton extends JPanel {
                 super.mouseClicked(e);
                 childButtonFlag=!childButtonFlag;
                 childButtonPanel.setVisible(childButtonFlag);
+                repaint();
             }
         });
     }
-    //    public PopButton(int n,ArrayList<String> childButtonTitle){
-//        setLayout(new VFlowLayout());
-//        childButtonPanel.setLayout(new VFlowLayout());
-//        childButtonPanel.setVisible(childButtonFlag);
-//
-//        BackgroundButton titleButton=new BackgroundButton(titleButtonText);
-//        add(titleButton);
-//
-//        for (i=0;i<n;i++){
-//            String title = childButtonTitle.get(i);
-//            childButton.add(new BackgroundButton(title));
-////            childButton.get(i).setVisible(childButtonFlag);
-//            childButton.get(i).setFont(myFont);
-//            childButtonPanel.add(childButton.get(i));
-//        }
-//        add(childButtonPanel);
-//
-//        titleButton.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-////                for (i=0;i<n;i++){
-////                    childButton.get(i).setVisible(!childButtonFlag);
-////                }
-//                childButtonPanel.setVisible(!childButtonFlag);
-//                repaint();
-//            }
-//        });
-//    }
 }

@@ -1,7 +1,7 @@
 package Teacher.Fuction.LeftPanelFuction;
 
 import Teacher.Util.Component.MyButton.ShowUnVisibleBtn;
-import Teacher.View.LeftPanel;
+import Teacher.View.HomePanels.LeftPanel;
 /**
  * @ClassName:LeftPanelVisible
  * @Description: 设置左侧任务栏是否可见

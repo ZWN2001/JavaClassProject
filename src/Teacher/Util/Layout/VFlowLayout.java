@@ -14,9 +14,7 @@ package Teacher.Util.Layout;
 
 import java.awt.*;
 
-/**
- * ��ȡ��ֱ�����֣�����������
- */
+
 public class VFlowLayout extends FlowLayout
 {
     private static final long serialVersionUID = 1L;

@@ -1,11 +1,13 @@
-package Teacher.View;
+package Teacher.View.HomePanels;
 
 import Teacher.Fuction.LeftPanelFuction.LeftPanelVisible;
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyButton.PopButton;
 import Teacher.Util.Component.MyButton.TransparentButton;
-import Teacher.Util.Component.MyPanel.HeadImagePanel;
+import Teacher.Util.Component.MyPanel.HeadImagePanel ;
+import Teacher.View.MyPapers.CheckMyPaperPanel;
+import Teacher.View.MyQuestions.CheckMyQuestionBank;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,24 +33,54 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 LeftPanelVisible.setLeftPanelVisible(HomeFrame.leftPanel,HomeFrame.showUnVisibleBtn);
-//                repaint();
+                HomeFrame.content.revalidate();
             }
         });
     }
 
-    private static JPanel  buttonsPanel(){
-        JPanel  buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new GridBagLayout());
+    private JPanel  buttonsPanel(){
+        JPanel  buttonsPanel = new JPanel(new GridBagLayout());
+        JPanel checkMyQuestionPanel=new JPanel(new BorderLayout());
+        CheckMyQuestionBank bank = new CheckMyQuestionBank();
+        checkMyQuestionPanel.add(new JLabel("aaaaa"));
 
         Font myFont=new Font("宋体",Font.PLAIN,16);
 
         ArrayList<String> maintainQuestionSubTitle=new ArrayList<>();
         maintainQuestionSubTitle.add("查看题库");
         maintainQuestionSubTitle.add("出题");
-        PopButton maintainQuestionsBtn = new PopButton(2,"维护题库",maintainQuestionSubTitle);
+        maintainQuestionSubTitle.add("题库数据");
+        PopButton maintainQuestionsBtn = new PopButton(3,"维护题库",maintainQuestionSubTitle);
+        maintainQuestionsBtn.childButton.get(0).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                HomeFrame.content.removeAll();
+                 CheckMyQuestionBank checkMyQuestionBank=new CheckMyQuestionBank();
+                HomeFrame.content.add(checkMyQuestionBank);
+                HomeFrame.content.repaint();
+                maintainQuestionsBtn.childButtonFlag=!maintainQuestionsBtn.childButtonFlag;
+                maintainQuestionsBtn.childButtonPanel.setVisible(maintainQuestionsBtn.childButtonFlag);
+            }
+        });
 
-//        maintainQuestionsBtn.setChildButtonTitle(maintainQuestionSubTitle);
-        BackgroundButton myPaperBtn = new BackgroundButton("我的试卷");
+        ArrayList<String> maintainPapersSubTitle=new ArrayList<>();
+        maintainPapersSubTitle.add("查看试卷");
+        maintainPapersSubTitle.add("出卷");
+        PopButton myPaperBtn = new PopButton(2,"我的试卷",maintainPapersSubTitle);
+        myPaperBtn.childButton.get(0).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                HomeFrame.content.removeAll();
+                CheckMyPaperPanel checkMyPaperPanel=new CheckMyPaperPanel();
+                HomeFrame.content.add(checkMyPaperPanel);
+                HomeFrame.content.repaint();
+                myPaperBtn.childButtonFlag=!myPaperBtn.childButtonFlag;
+                myPaperBtn.childButtonPanel.setVisible(myPaperBtn.childButtonFlag);
+            }
+        });
+
         BackgroundButton addPaperBtn = new BackgroundButton("我的学生");
         BackgroundButton correctQuestionBtn = new BackgroundButton("批改");
         BackgroundButton paperMarkBtn = new BackgroundButton("查看成绩");

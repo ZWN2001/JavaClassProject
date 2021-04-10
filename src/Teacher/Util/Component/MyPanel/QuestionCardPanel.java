@@ -3,7 +3,6 @@ package Teacher.Util.Component.MyPanel;
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Layout.VFlowLayout;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,7 +12,8 @@ public class QuestionCardPanel extends JPanel {
              "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000" +
              "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000" +
              "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000" +
-             "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000" ;
+             "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111100000" +
+             "stem11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111" ;
      String optionA="";
      String optionB="";
      String optionC="";
@@ -23,7 +23,6 @@ public class QuestionCardPanel extends JPanel {
     public QuestionCardPanel () {
         setBackground(Color.WHITE);
         setLayout(new VFlowLayout());
-        setPreferredSize(new Dimension(900,240));
 
         JPanel titlePanel =new JPanel(new GridBagLayout());
 
@@ -44,18 +43,15 @@ public class QuestionCardPanel extends JPanel {
         titlePanel.add(delete,new GBC(4,0));
         titlePanel.setBackground(Color.WHITE);
 
-
         JTextArea stem=new JTextArea(stemText);
         JScrollPane stemScrollPane = new JScrollPane(stem);
         stem.setEnabled(false);
         stem.setLineWrap(true);
         stem.setWrapStyleWord(true);
-//        add(mark,new GBC(0,0).setFill(GridBagConstraints.BOTH));
-//        add(difficulty,new GBC(1,0).setFill(GridBagConstraints.BOTH));
-//        add(change,new GBC(7,0).setFill(GridBagConstraints.BOTH));
-//        add(delete,new GBC(8,0).setFill(GridBagConstraints.BOTH));
+
         add(titlePanel);
         add(stemScrollPane);
+//        setAutoscrolls(true);
     }
 
 }

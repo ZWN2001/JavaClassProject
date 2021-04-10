@@ -22,7 +22,7 @@ public class t3 extends JFrame{
             });
             pop.add(menu);
             TrayIcon tray = new TrayIcon(icon.getImage(),"考试平台",pop);
-
+            tray.setImageAutoSize(true);
             // 获得系统托盘对象
             SystemTray systemTray = SystemTray.getSystemTray();
             systemTray.add(tray);// 将托盘图片添加到系统托盘中
