@@ -12,6 +12,7 @@ public class RightPanel extends JPanel {
         intiJLabel.setFont(btnFont);
         intiJLabel.setBounds(400,400,600,50);
         this.add(intiJLabel);
+        setBackground(new Color(240,240,240));
         setVisible(true);
     }
 }

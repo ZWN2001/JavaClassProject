@@ -33,7 +33,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
             //把绘制区的x，y点坐标定义为坐标系的原点
             g.translate(thumbBounds.x, thumbBounds.y);
             g.setColor(new Color(100,170,210));
-             g.drawRoundRect(0, 0, 16, thumbBounds.height - 1, 5, 5);
+             g.drawRoundRect(0, 0, 15, thumbBounds.height - 1, 5, 5);
             Graphics2D g2 = (Graphics2D) g;
             //半透明
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
@@ -43,7 +43,6 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 
 
         @Override
-
         protected JButton createIncreaseButton(int orientation) {
             JButton button = new JButton();
             button.setBorderPainted(false);
@@ -53,7 +52,6 @@ public class MyScrollBarUI extends BasicScrollBarUI {
         }
 
         @Override
-
         protected JButton createDecreaseButton(int orientation) {
             JButton button = new JButton();
             button.setBorderPainted(false);

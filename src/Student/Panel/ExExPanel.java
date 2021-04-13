@@ -1,11 +1,13 @@
 package Student.Panel;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class ExExPanel extends JPanel implements ActionListener {
+public class ExExPanel extends JPanel implements MouseListener {
     Image exExImage;
+    JButton exStart;
+    ImageIcon exStartU = new ImageIcon("src/Student/Resource/exStartU.png");
+    ImageIcon exStartD = new ImageIcon("src/Student/Resource/exStartD.png");
     public ExExPanel() {
         Dimension size = new Dimension(1000, 270);
         setPreferredSize(size);
@@ -15,19 +17,19 @@ public class ExExPanel extends JPanel implements ActionListener {
 
         JLabel exTitle = new JLabel("这是一次考试的标题");
         JLabel exTime = new JLabel("这里是考试的时间");
-        JButton exStart = new JButton("开始考试");
+        exStart = new JButton();
+        exStart.setIcon(exStartU);
+        exStart.addMouseListener(this);
         Font exFont = new Font("微软雅黑", Font.BOLD, 30);
-        Font exStFont = new Font("宋体", Font.BOLD, 25);
+        //exTitle.setForeground(Color.WHITE);
+        //exTime.setForeground(Color.WHITE);
 
         exTitle.setFont(exFont);
         exTitle.setBounds(20, 20, 600, 100);
         exTime.setFont(exFont);
         exTime.setBounds(200, 130, 600, 100);
-        exStart.addActionListener(this);
         exStart.setFocusPainted(false);
-        exStart.setPreferredSize(new Dimension(60, 60));
         exStart.setBounds(1100, 160, 200, 75);
-        exStart.setFont(exStFont);
         add(exTitle);
         add(exTime);
         add(exStart);
@@ -35,13 +37,31 @@ public class ExExPanel extends JPanel implements ActionListener {
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(exExImage, 0, 0, this.getWidth(), this.getHeight(), this);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        exStart.setIcon(exStartD);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        exStart.setIcon(exStartU);
     }
 }
 
