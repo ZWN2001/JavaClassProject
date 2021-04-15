@@ -1,8 +1,7 @@
 package Teacher.View.MyQuestions;
 
-import Teacher.Util.Component.MyPanel.QuestionCardPanel;
+import Teacher.Util.Component.MyPanel.QuestionCads.QuestionCardPanel;
 import Teacher.Util.Layout.VFlowLayout;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;

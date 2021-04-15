@@ -1,0 +1,100 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
+			"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
+			"$hGap": 5
+			"$vGap": 5
+			"$alignLeft": true
+			"$alignTop": true
+		} ) {
+			name: "addQuestionPanel"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "setStem"
+				"text": "设置题干"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "setMark"
+				"text": "分值"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 3
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 4
+				"gridwidth": 2
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "setDifficulty"
+				"text": "难度"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 6
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "difficultyBox"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 7
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "setKind"
+				"text": "题型"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 8
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "kindBox"
+				"toolTipText": "1"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 9
+				"insets": new java.awt.Insets( 5, 0, 0, 0 )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"gridy": 1
+				"gridwidth": 9
+				"gridheight": 4
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0"
+				"$rowSpecs": "0, 0, 0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "optionsPanel"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"gridy": 5
+				"gridwidth": 9
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "submitButton"
+				"text": "确定"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 9
+				"gridy": 7
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 105 )
+			"size": new java.awt.Dimension( 445, 295 )
+		} )
+	}
+}

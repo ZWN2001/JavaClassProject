@@ -1,4 +1,4 @@
-package Teacher.Fuction.LeftPanelFuction;
+package Teacher.Function.LeftPanelFuction;
 
 import Teacher.Util.Component.MyButton.ShowUnVisibleBtn;
 import Teacher.View.HomePanels.LeftPanel;

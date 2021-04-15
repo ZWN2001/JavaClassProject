@@ -2,18 +2,12 @@ package Teacher.View.HomePanels;
 
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.ShowUnVisibleBtn;
-import Teacher.Util.Layout.VFlowLayout;
-import Teacher.View.MyQuestions.AddQuestion;
-import Teacher.View.MyQuestions.CheckMyQuestionBank;
-import Teacher.View.MyPapers.CheckMyPaperPanel;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class HomeFrame extends JFrame {
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 700;
-//    public  static JPanel contentPanel =new JPanel(new FlowLayout());
     public static Container content=new Container();
     public static LeftPanel leftPanel=new LeftPanel();
     public static ShowUnVisibleBtn showUnVisibleBtn=new ShowUnVisibleBtn();
@@ -35,15 +29,11 @@ public class HomeFrame extends JFrame {
         JPanel rootPanel = new JPanel(new GridBagLayout());
         setContentPane(rootPanel);
 
-//        contentPanel.add(new DefaultContentPanel());
-        content.setLayout(new VFlowLayout(true,true));
+        content.setLayout(new BorderLayout());
         DefaultContentPanel defaultContentPanel=new DefaultContentPanel();
         content.add(defaultContentPanel);
-        CheckMyQuestionBank bank = new CheckMyQuestionBank();
-        AddQuestion addQuestionPanel=new AddQuestion();
-        CheckMyPaperPanel checkMyPaperPanel =new CheckMyPaperPanel();
         rootPanel.add(showUnVisibleBtn,new GBC(0,1).setWeighty(0).setFill(GridBagConstraints.VERTICAL));
-        rootPanel.add(leftPanel, new GBC(0, 1, 0.02, 1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
-        rootPanel.add(content, new GBC(1, 1, 0.98, 1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
+        rootPanel.add(leftPanel, new GBC(0, 1, 0.01, 1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
+        rootPanel.add(content, new GBC(1, 1, 0.99, 1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
     }
 }

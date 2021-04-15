@@ -10,7 +10,16 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/mysql-connector-java-8.0.16.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mysql-connector-java-8.0.16.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/beautyeye_lnf.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

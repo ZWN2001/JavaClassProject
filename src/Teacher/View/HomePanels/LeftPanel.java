@@ -1,14 +1,15 @@
 package Teacher.View.HomePanels;
 
-import Teacher.Fuction.LeftPanelFuction.LeftPanelVisible;
+import Teacher.Function.LeftPanelFuction.LeftPanelIntent;
+import Teacher.Function.LeftPanelFuction.LeftPanelVisible;
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyButton.PopButton;
 import Teacher.Util.Component.MyButton.TransparentButton;
 import Teacher.Util.Component.MyPanel.HeadImagePanel ;
-import Teacher.View.MyPapers.CheckMyPaperPanel;
+import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
+import Teacher.View.MyQuestions.AddQuestionPanel;
 import Teacher.View.MyQuestions.CheckMyQuestionBank;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -41,7 +42,6 @@ public class LeftPanel extends JPanel {
     private JPanel  buttonsPanel(){
         JPanel  buttonsPanel = new JPanel(new GridBagLayout());
         JPanel checkMyQuestionPanel=new JPanel(new BorderLayout());
-        CheckMyQuestionBank bank = new CheckMyQuestionBank();
         checkMyQuestionPanel.add(new JLabel("aaaaa"));
 
         Font myFont=new Font("宋体",Font.PLAIN,16);
@@ -55,12 +55,16 @@ public class LeftPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                HomeFrame.content.removeAll();
                  CheckMyQuestionBank checkMyQuestionBank=new CheckMyQuestionBank();
-                HomeFrame.content.add(checkMyQuestionBank);
-                HomeFrame.content.repaint();
-                maintainQuestionsBtn.childButtonFlag=!maintainQuestionsBtn.childButtonFlag;
-                maintainQuestionsBtn.childButtonPanel.setVisible(maintainQuestionsBtn.childButtonFlag);
+                LeftPanelIntent.intent(checkMyQuestionBank,maintainQuestionsBtn);
+            }
+        });
+        maintainQuestionsBtn.childButton.get(1).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                AddQuestionPanel addQuestionPanel=new AddQuestionPanel();
+                LeftPanelIntent.intent(addQuestionPanel,maintainQuestionsBtn);
             }
         });
 
@@ -72,12 +76,8 @@ public class LeftPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                HomeFrame.content.removeAll();
-                CheckMyPaperPanel checkMyPaperPanel=new CheckMyPaperPanel();
-                HomeFrame.content.add(checkMyPaperPanel);
-                HomeFrame.content.repaint();
-                myPaperBtn.childButtonFlag=!myPaperBtn.childButtonFlag;
-                myPaperBtn.childButtonPanel.setVisible(myPaperBtn.childButtonFlag);
+                CheckAllPaperPanel checkMyPaperPanel=new CheckAllPaperPanel();
+                LeftPanelIntent.intent(checkMyPaperPanel,myPaperBtn);
             }
         });
 
@@ -93,10 +93,9 @@ public class LeftPanel extends JPanel {
 
         buttonsPanel.add(maintainQuestionsBtn,new GBC(0,0).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
         buttonsPanel.add(myPaperBtn,new GBC(0,1).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
-
-        buttonsPanel.add(addPaperBtn,new GBC(0,2).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
-        buttonsPanel.add(correctQuestionBtn,new GBC(0,3).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
-        buttonsPanel.add(paperMarkBtn,new GBC(0,4).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
+        buttonsPanel.add(addPaperBtn,new GBC(0,2).setWeightx(1).setInsets(0,5,0,5).setFill(GridBagConstraints.HORIZONTAL));
+        buttonsPanel.add(correctQuestionBtn,new GBC(0,3).setWeightx(1).setInsets(0,5,0,5).setFill(GridBagConstraints.HORIZONTAL));
+        buttonsPanel.add(paperMarkBtn,new GBC(0,4).setWeightx(1).setInsets(0,5,0,5).setFill(GridBagConstraints.HORIZONTAL));
 
         return buttonsPanel;
     }

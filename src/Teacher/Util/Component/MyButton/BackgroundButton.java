@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 
 public class BackgroundButton extends JButton {
     Color focusedColor=Color.LIGHT_GRAY;
-    Color unFocusedColor= new Color(240,240,240);
+    Color unFocusedColor= new Color(238,238,238);
     Color clickedColor=Color.GRAY;
     Font myFont=new Font("宋体",Font.PLAIN,16);
     String text=" ";

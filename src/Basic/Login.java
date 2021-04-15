@@ -13,8 +13,6 @@ public class Login {
         }
         EventQueue.invokeLater(() ->{
             LoginFrame loginFrame=new LoginFrame();
-            loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            loginFrame.setResizable(false);
             loginFrame.setVisible(true);
         });
     }
@@ -24,9 +22,12 @@ class LoginFrame extends JFrame{
     private static final int HEIGHT = 200;
 
     public LoginFrame(){
+        Font myFont=new Font("宋体",Font.PLAIN,16);
         setSize(WIDTH,HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setTitle("欢迎登录");
+        setVisible(true);
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -41,13 +42,17 @@ class LoginFrame extends JFrame{
         JTextField accountText = new JTextField(25);
         JTextField passwordText = new JTextField(25);
         JButton studentLoginBtn = new JButton("学生登录");
+        studentLoginBtn.setFont(myFont);
         JButton teacherLoginBtn = new JButton("教师登录");
+        teacherLoginBtn.setFont(myFont);
         JButton registerBtn = new JButton("注册");
-
+        registerBtn.setFont(myFont);
         JLabel accountLabel = new JLabel("账号: ");
-        accountText.setMaximumSize(accountText.getPreferredSize());
+        accountLabel.setFont(myFont);
+        accountText.setPreferredSize(new Dimension(30,25));
         JLabel passwordLabel = new JLabel("密码: ");
-        passwordText.setMaximumSize(passwordText.getPreferredSize());
+        passwordLabel.setFont(myFont);
+        passwordText.setPreferredSize(new Dimension(30,25));
 //
 //        add(accountLabel,new GBC(0, 0,1,1).setInsets(10,0,0,0));
 //        add(accountText,new GBC(1,0,4,1).setInsets(10,0,0,10));
