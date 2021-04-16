@@ -26,13 +26,13 @@ public class CheckMyQuestionBank extends JScrollPane {
         panel.add(panel1);
         }
         getViewport().add(panel);
-
-        setLayout(new BorderLayout());
-        JTabbedPane tabbedPane=new JTabbedPane();
-        tabbedPane.addTab("1",new JPanel());
-        tabbedPane.addTab("1",new JPanel());
-        tabbedPane.addTab("1",new JPanel());
-        getViewport().add(tabbedPane);
+//
+//        setLayout(new BorderLayout());
+//        JTabbedPane tabbedPane=new JTabbedPane();
+//        tabbedPane.addTab("1",new JPanel());
+//        tabbedPane.addTab("1",new JPanel());
+//        tabbedPane.addTab("1",new JPanel());
+//        getViewport().add(tabbedPane);
     }
 
 }

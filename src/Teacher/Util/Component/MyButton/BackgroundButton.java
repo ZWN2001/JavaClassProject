@@ -3,131 +3,45 @@ package Teacher.Util.Component.MyButton;
  * @ClassName:
  * @Description: 背景会因鼠标事件而相应的button
  * @author 赵炜宁
- * @date
- *
+ * @date 2021.3 init
+ *       2021.4.16 精简化
  */
+import Teacher.Util.MyColor;
+import Teacher.Util.MyFont;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class BackgroundButton extends JButton {
-    Color focusedColor=Color.LIGHT_GRAY;
-    Color unFocusedColor= new Color(238,238,238);
-    Color clickedColor=Color.GRAY;
-    Font myFont=new Font("宋体",Font.PLAIN,16);
+public class BackgroundButton extends JButton implements MouseListener {
+    Color focusedColor=MyColor.focusedColor;
+    Color unFocusedColor= MyColor.unFocusedColor;
+    Color clickedColor=MyColor.clickedColor;
+    Font myFont= MyFont.titleFont;
     String text=" ";
 
     //文字按钮
-    public  BackgroundButton(){
-        setBorderPainted(false);//不打印边框
-//        setBorder(null);//除去边框
-        setFocusPainted(false);//除去焦点的框
-//        setContentAreaFilled(false);//除去默认的背景填充
-        setMargin(new Insets(5,15,5,15));
-        setText(text);
-        setFont(myFont);
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(clickedColor);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(focusedColor);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                setBackground(focusedColor);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                setBackground(unFocusedColor);
-            }
-        });
-    }
-    //文字按钮
     public  BackgroundButton(String text){
-        setBorderPainted(false);//不打印边框
-//        setBorder(null);//除去边框
-        setFocusPainted(false);//除去焦点的框
-//        setContentAreaFilled(false);//除去默认的背景填充
-        setMargin(new Insets(5,15,5,15));
-        setText(text);
-        setFont(myFont);
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(clickedColor);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(focusedColor);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                setBackground(focusedColor);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                setBackground(unFocusedColor);
-            }
-        });
+        init(text);
     }
-
 
     //icon+文字
     public BackgroundButton(Icon icon, String text) {
-        setBorderPainted(false);//不打印边框
-//        setBorder(null);//除去边框
-        setFocusPainted(false);//除去焦点的框
-//        setContentAreaFilled(false);//除去默认的背景填充
-        setMargin(new Insets(5,4,5,0));
         setHorizontalAlignment(SwingConstants.LEFT);
         setIcon(icon);
-        setText(text);
-        setFont(myFont);
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                setBackground(focusedColor);
-                repaint();
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                setBackground(unFocusedColor);
-                repaint();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(clickedColor);
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseClicked(e);
-                setBackground(focusedColor);
-            }
-        });
+        init(text);
     }
+
+    private void init(String text) {
+        this.setBorderPainted(false);//不打印边框
+        this.setFocusPainted(false);//除去焦点的框
+        this.setFont(myFont);
+        this.setText(text);
+        this.setMargin(new Insets(5,5,5,5));
+        this.addMouseListener(this);
+    }
+
     public void setFocusedColor(Color color){
         this.focusedColor=color;
     }
@@ -140,4 +54,27 @@ public class BackgroundButton extends JButton {
     public void setMyText(String text){
         this.text=text;
     }
+    @Override
+    public void mouseClicked(MouseEvent e) { }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        setBackground(clickedColor);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        setBackground(focusedColor);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setBackground(focusedColor);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        setBackground(unFocusedColor);
+    }
+
 }

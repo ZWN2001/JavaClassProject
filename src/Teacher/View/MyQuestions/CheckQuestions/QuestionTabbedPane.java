@@ -12,6 +12,5 @@ public class QuestionTabbedPane extends JPanel {
         pane.addTab("判断题",new JPanel());
         pane.addTab("主观题",new JPanel());
         add(pane);
-
     }
 }

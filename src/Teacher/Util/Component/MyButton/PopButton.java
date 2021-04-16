@@ -7,6 +7,8 @@
 */
 package Teacher.Util.Component.MyButton;
 import Teacher.Util.Layout.VFlowLayout;
+import Teacher.Util.MyFont;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 public class PopButton extends JPanel {
     public boolean childButtonFlag=false;
     public final ArrayList<BackgroundButton> childButton = new ArrayList<>();
-    private final Font myFont=new Font("宋体",Font.PLAIN,12);
+    private final Font myFont= MyFont.subTitleFont;
     public final JPanel childButtonPanel= new JPanel();
 
     public PopButton(int n,String titleButtonText,ArrayList<String> childButtonTitle ){

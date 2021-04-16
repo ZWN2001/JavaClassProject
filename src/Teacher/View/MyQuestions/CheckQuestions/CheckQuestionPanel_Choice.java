@@ -1,4 +1,9 @@
 package Teacher.View.MyQuestions.CheckQuestions;
 
-public class CheckQuestionPanel_Choice {
+import javax.swing.*;
+
+public class CheckQuestionPanel_Choice extends JPanel {
+    public CheckQuestionPanel_Choice(){
+
+    }
 }

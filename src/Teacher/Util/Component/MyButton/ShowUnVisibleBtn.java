@@ -7,6 +7,7 @@ package Teacher.Util.Component.MyButton;
  *
  */
 import Teacher.Function.LeftPanelFuction.LeftPanelVisible;
+import Teacher.Util.MyColor;
 import Teacher.View.HomePanels.HomeFrame;
 
 import javax.swing.*;
@@ -16,9 +17,9 @@ import java.awt.event.MouseEvent;
 
 public class ShowUnVisibleBtn extends JButton {
     public  boolean ShowUnVisibleBtnFlag=false;
-    Color focusedColor=Color.lightGray;
-    Color clickedColor=Color.GRAY;
-    Color unFocusedColor= new Color(238,238,238);
+    Color focusedColor=MyColor.focusedColor;
+    Color clickedColor=MyColor.clickedColor;
+    Color unFocusedColor= MyColor.unFocusedColor;
     Icon icon=new ImageIcon("src/Teacher/Util/Images/HomeImage/showLeftPanel.png");
     public ShowUnVisibleBtn(){
         setBorderPainted(false);//不打印边框
