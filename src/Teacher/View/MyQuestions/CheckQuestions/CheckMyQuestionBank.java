@@ -1,6 +1,6 @@
-package Teacher.View.MyQuestions;
+package Teacher.View.MyQuestions.CheckQuestions;
 
-import Teacher.Util.Component.MyPanel.QuestionCads.QuestionCardPanel;
+import Teacher.Util.Component.MyPanel.QuestionCads.Card_Check.QCard_Choice_Check;
 import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -22,10 +22,17 @@ public class CheckMyQuestionBank extends JScrollPane {
 
         panel.add(title,VFlowLayout.TOP);
         for (int i=0;i<20;i++){
-            QuestionCardPanel panel1=new QuestionCardPanel();
+            QCard_Choice_Check panel1=new QCard_Choice_Check();
         panel.add(panel1);
         }
         getViewport().add(panel);
+
+        setLayout(new BorderLayout());
+        JTabbedPane tabbedPane=new JTabbedPane();
+        tabbedPane.addTab("1",new JPanel());
+        tabbedPane.addTab("1",new JPanel());
+        tabbedPane.addTab("1",new JPanel());
+        getViewport().add(tabbedPane);
     }
 
 }

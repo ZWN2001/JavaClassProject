@@ -1,4 +1,4 @@
-package Teacher.Util.Component.MyPanel.QuestionCardUtils;
+package Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles;
 
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
@@ -10,6 +10,8 @@ public class QuestionCard_CheckTitle extends JPanel {
     public QuestionCard_CheckTitle(){
         setLayout(new GridBagLayout());
 
+        JLabel qid=new JLabel("第i题");
+        qid.setFont(myFont.titleFont);
         JLabel mark=new JLabel("分值：");
         mark.setFont(myFont.titleFont);
         JLabel difficulty=new JLabel("难度系数:");
@@ -23,11 +25,12 @@ public class QuestionCard_CheckTitle extends JPanel {
         delete.setUnFocusedColor(Color.WHITE);
         delete.setBackground(Color.WHITE);
 
-        add(mark,new GBC(0,0).setInsets(0,0,0,20));
-        add(answer,new GBC(0,0).setInsets(0,0,0,20));
-        add(difficulty,new GBC(1,0).setInsets(0,0,0,300));
-        add(change,new GBC(3,0).setInsets(0,0,0,20));
-        add(delete,new GBC(4,0));
+        add(qid,new GBC(0,0).setInsets(0,0,0,80));
+        add(mark,new GBC(1,0).setInsets(0,0,0,20));
+        add(answer,new GBC(2,0).setInsets(0,0,0,20));
+        add(difficulty,new GBC(3,0).setInsets(0,0,0,300));
+        add(change,new GBC(4,0).setInsets(0,0,0,20));
+        add(delete,new GBC(5,0));
         setBackground(Color.WHITE);
     }
 }

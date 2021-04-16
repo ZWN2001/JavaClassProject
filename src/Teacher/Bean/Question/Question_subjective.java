@@ -1,16 +1,18 @@
 package Teacher.Bean.Question;
 
-public class Question_subjective extends Question {
+public class Question_subjective  {
     int qid = 0;
     String stem;
     int kind = 2;
     int mark = 0;
-
+    int difficulty=0;
     String myAnswer = " ";
 
-    public Question_subjective(String stem, int mark) {
+    public Question_subjective(String stem, int mark,int difficulty,String myAnswer) {
         this.stem = stem;
         this.mark = mark;
+        this.difficulty=difficulty;
+        this.myAnswer=myAnswer;
     }
 
     public void setMark(int mark) {
@@ -25,22 +27,23 @@ public class Question_subjective extends Question {
         return mark;
     }
 
-    @Override
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public String getStem() {
         return stem;
     }
-
-    @Override
     public String getQuestion() {
         return stem;
     }
-
-    @Override
     public int getQid() {
         return qid;
     }
-
-    @Override
     public int getKind() {
         return kind;
     }

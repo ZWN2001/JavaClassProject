@@ -1,7 +1,6 @@
-package Teacher.Util.Component.MyPanel.QuestionCardUtils;
+package Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles;
 
 import Teacher.Util.Adapter.GBC;
-import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.myFont;
 
 import javax.swing.*;
@@ -11,7 +10,7 @@ public class QuestionCard_ExamTitle extends JPanel {
     int qid=0;
     int mark=0;
     int difficulty=0;
-    public  QuestionCard_ExamTitle( int qid, int mark, int difficulty){
+    public  QuestionCard_ExamTitle( ){
         setLayout(new GridBagLayout());
         JLabel qidLabel=new JLabel("题号：");
         qidLabel.setFont(myFont.titleFont);

@@ -1,7 +1,5 @@
 package Teacher.View.MyQuestions.CheckQuestions;
 
-import Teacher.View.MyQuestions.CheckMyQuestionBank;
-
 import javax.swing.*;
 import java.awt.*;
 

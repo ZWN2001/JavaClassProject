@@ -9,7 +9,7 @@ import Teacher.Util.Component.MyButton.TransparentButton;
 import Teacher.Util.Component.MyPanel.HeadImagePanel ;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
 import Teacher.View.MyQuestions.AddQuestionPanel;
-import Teacher.View.MyQuestions.CheckMyQuestionBank;
+import Teacher.View.MyQuestions.CheckQuestions.CheckMyQuestionBank;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

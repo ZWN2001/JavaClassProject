@@ -1,17 +1,17 @@
 package Teacher.Bean.Question;
 
-public class Question_judge extends Question {
-
-    int qid = 0;
-    String stem;
+public class Question_judge {
     int kind = 1;
+    int qid = 0;
+    String stem="null";
     int mark = 0;
-
     int myJudge = 2;
-
-    public Question_judge(String stem, int mark) {
+    int difficulty=0;
+    public Question_judge(String stem, int mark,int difficulty,int myJudge) {
         this.stem = stem;
         this.mark = mark;
+        this.difficulty=difficulty;
+        this.myJudge=myJudge;
     }
 
     public void setStem(String stem) {
@@ -34,23 +34,31 @@ public class Question_judge extends Question {
         return myJudge;
     }
 
-    @Override
+
     public String getStem() {
         return stem;
     }
 
-    @Override
-    public String getQuestion() {
+
+    public String toString() {
         return stem;
     }
 
-    @Override
+
     public int getQid() {
         return qid;
     }
 
-    @Override
+
     public int getKind() {
         return kind;
     }
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
 }
