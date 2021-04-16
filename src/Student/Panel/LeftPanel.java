@@ -7,23 +7,29 @@ import java.awt.event.ActionListener;
 
 public class LeftPanel extends JPanel implements ActionListener {
     private final RightPanel rightPanel;
-    private final GradePanel gradePanel;
+    private final GradeJSP gradeJSP;
     private final ExamJSP examJSP;
     private final SettingPanel settingPanel;
     private final JButton examBtn = new JButton("在线考试");
     private final JButton gradeBtn = new JButton("成绩查询");
     private final JButton settingBtn = new JButton("账号设置");
 
-    public LeftPanel(RightPanel rightPanel,ExamJSP examJSP,GradePanel gradePanel,SettingPanel settingPanel){
+    public LeftPanel(RightPanel rightPanel,ExamJSP examJSP,GradeJSP gradeJSP,SettingPanel settingPanel){
         this.rightPanel = rightPanel;
-        this.gradePanel = gradePanel;
+        this.gradeJSP = gradeJSP;
         this.examJSP = examJSP;
         this.settingPanel = settingPanel;
         setBounds(0,250,250,650);
         setLayout(new GridLayout(8, 1, 10, 10));
-        setBackground(new Color(240,250,255));
+        setBackground(new Color(245,245,246));
         setVisible(true);
 
+        ImageIcon test = new ImageIcon("src/Student/Resource/test.png");
+        ImageIcon grade = new ImageIcon("src/Student/Resource/grade.png");
+        ImageIcon setting = new ImageIcon("src/Student/Resource/setting.png");
+        examBtn.setIcon(test);
+        gradeBtn.setIcon(grade);
+        settingBtn.setIcon(setting);
         settingBtn.setFocusPainted(false);
         examBtn.setFocusPainted(false);
         gradeBtn.setFocusPainted(false);
@@ -49,7 +55,7 @@ public class LeftPanel extends JPanel implements ActionListener {
                 gradeBtn.setContentAreaFilled(true);
                 settingBtn.setContentAreaFilled(true);
                 rightPanel.setVisible(false);
-                gradePanel.setVisible(false);
+                gradeJSP.setVisible(false);
                 settingPanel.setVisible(false);
                 examJSP.setVisible(true);
                 break;
@@ -60,7 +66,7 @@ public class LeftPanel extends JPanel implements ActionListener {
                 rightPanel.setVisible(false);
                 settingPanel.setVisible(false);
                 examJSP.setVisible(false);
-                gradePanel.setVisible(true);
+                gradeJSP.setVisible(true);
                 break;
             case "账号设置":
                 examBtn.setContentAreaFilled(true);
@@ -68,7 +74,7 @@ public class LeftPanel extends JPanel implements ActionListener {
                 settingBtn.setContentAreaFilled(false);
                 rightPanel.setVisible(false);
                 examJSP.setVisible(false);
-                gradePanel.setVisible(false);
+                gradeJSP.setVisible(false);
                 settingPanel.setVisible(true);
                 break;
 
