@@ -1,14 +1,14 @@
 package Teacher.View.HomePanels;
 
-import Teacher.Function.LeftPanelFuction.LeftPanelIntent;
 import Teacher.Function.LeftPanelFuction.LeftPanelVisible;
+import Teacher.Function.LeftPanelFuction.PanelIntent;
 import Teacher.Util.Adapter.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyButton.PopButton;
 import Teacher.Util.Component.MyButton.TransparentButton;
 import Teacher.Util.Component.MyPanel.HeadImagePanel ;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
-import Teacher.View.MyQuestions.AddQuestionPanel;
+import Teacher.View.MyQuestions.AddQuestion.AddQuestionPane;
 import Teacher.View.MyQuestions.CheckQuestions.CheckMyQuestionBank;
 import javax.swing.*;
 import java.awt.*;
@@ -56,15 +56,15 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                  CheckMyQuestionBank checkMyQuestionBank=new CheckMyQuestionBank();
-                LeftPanelIntent.intent(checkMyQuestionBank,maintainQuestionsBtn);
+                PanelIntent.intent(checkMyQuestionBank,maintainQuestionsBtn);
             }
         });
         maintainQuestionsBtn.childButton.get(1).addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                AddQuestionPanel addQuestionPanel=new AddQuestionPanel();
-                LeftPanelIntent.intent(addQuestionPanel,maintainQuestionsBtn);
+                AddQuestionPane addQuestionPane=new AddQuestionPane();
+                PanelIntent.intent(addQuestionPane,maintainQuestionsBtn);
             }
         });
 
@@ -77,7 +77,7 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 CheckAllPaperPanel checkMyPaperPanel=new CheckAllPaperPanel();
-                LeftPanelIntent.intent(checkMyPaperPanel,myPaperBtn);
+                PanelIntent.intent(checkMyPaperPanel,myPaperBtn);
             }
         });
 

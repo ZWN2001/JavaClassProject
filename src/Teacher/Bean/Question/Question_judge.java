@@ -6,12 +6,14 @@ public class Question_judge {
     String stem="null";
     int mark = 0;
     int myJudge = 2;
+    int answer=0;
     int difficulty=0;
-    public Question_judge(String stem, int mark,int difficulty,int myJudge) {
+    public Question_judge(String stem, int mark,int difficulty,int myJudge,int answer) {
         this.stem = stem;
         this.mark = mark;
         this.difficulty=difficulty;
         this.myJudge=myJudge;
+        this.answer=answer;
     }
 
     public void setStem(String stem) {

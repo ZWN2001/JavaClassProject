@@ -9,10 +9,11 @@ public class Question_choice  {
     String optionB="null";
     String optionC="null";
     String optionD="null";
-    int myOption=0;
+    int myOption=4;
+    int answer=0;
     int difficulty=0;
 
-    public Question_choice(String stem,int mark,int difficulty,String optionA,String optionB,String optionC,String optionD,int myOption){
+    public Question_choice(String stem,int mark,int difficulty,String optionA,String optionB,String optionC,String optionD,int myOption,int answer){
         this.stem=stem;
         this.mark=mark;
         this.difficulty=difficulty;
@@ -21,6 +22,7 @@ public class Question_choice  {
         this.optionC=optionC;
         this.optionD=optionD;
         this.myOption=myOption;
+        this.answer=answer;
 
     }
 
@@ -43,9 +45,14 @@ public class Question_choice  {
         this.myOption = myOption;
     }
     public void setMark(int mark) { this.mark = mark; }
-    public int getDifficulty() { return difficulty; }
-
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
     public void setDifficulty(int difficulty) { this.difficulty = difficulty; }
+    public int getDifficulty() { return difficulty; }
+    public int getAnswer() {
+        return answer;
+    }
     public int getMark() {
         return mark;
     }

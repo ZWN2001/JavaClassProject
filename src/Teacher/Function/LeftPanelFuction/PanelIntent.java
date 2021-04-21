@@ -11,7 +11,7 @@ import Teacher.Util.Component.MyButton.PopButton;
 import Teacher.View.HomePanels.HomeFrame;
 import java.awt.*;
 
-public class LeftPanelIntent {
+public class PanelIntent {
     public static void intent(Component addedPanel, PopButton mainPopButton){
         HomeFrame.content.removeAll();
         HomeFrame.content.add(addedPanel);

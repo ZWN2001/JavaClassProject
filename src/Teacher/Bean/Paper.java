@@ -1,5 +1,12 @@
 package Teacher.Bean;
-
+/**
+ * @ClassName: paper
+ * @Description: 实体化试卷类
+ * @parms: questions 存放题目的id
+ * @author 赵炜宁
+ * @date 2021.4.13
+ *
+ */
 public class Paper {
     String title;
     int mark;
