@@ -1,5 +1,7 @@
 package Student.Function;
 
+import Student.Panel.PaperPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.TimerTask;
@@ -7,6 +9,7 @@ import java.util.TimerTask;
 public class TestTimerLabel extends JLabel {
     private int hour,min,sec;
     private String outTime="";
+    private final PaperPanel paperPanel;
     private final TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
@@ -18,16 +21,21 @@ public class TestTimerLabel extends JLabel {
                     min=59;
                     hour--;
                     if(hour < 0){
+                        JOptionPane.showMessageDialog(null,"考试结束，已自动提交");
+                        paperPanel.getMainFrame().examEnd(paperPanel);
+                        cancel();
                     }
                 }
             }
-            outTime=String.format("%02d", hour)+":"+String.format("%02d", min)+":"+String.format("%02d", sec);
+            String time = "%02d:%02d:%02d";
+            outTime=String.format(time,hour,min,sec);
             setText(outTime);
         }
     };
 
-    public TestTimerLabel(int hour, int min, int sec){
+    public TestTimerLabel(PaperPanel paperPanel,int hour, int min, int sec){
         super();
+        this.paperPanel=paperPanel;
         this.hour=hour;
         this.min=min;
         this.sec=sec;

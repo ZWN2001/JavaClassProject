@@ -1,22 +1,28 @@
 package Student.Panel;
+
+import Student.Frame.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class ExExPanel extends JPanel implements MouseListener {
-    Image exExImage;
-    JButton exStart;
-    ImageIcon exStartU = new ImageIcon("src/Student/Resource/exStartU.png");
-    ImageIcon exStartD = new ImageIcon("src/Student/Resource/exStartD.png");
-    public ExExPanel() {
+    private final Image exExImage;
+    private final JButton exStart;
+    private final MainFrame mainFrame;
+    private static final ImageIcon exStartU = new ImageIcon("src/Student/Resource/exStartU.png");
+    private static final ImageIcon exStartD = new ImageIcon("src/Student/Resource/exStartD.png");
+    private static final ImageIcon exExIcon = new ImageIcon("src/Student/Resource/ExExPanel.png");
+
+    public ExExPanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         Dimension size = new Dimension(1000, 270);
         setPreferredSize(size);
         setLayout(null);
-        ImageIcon exExIcon = new ImageIcon("src/Student/Resource/ExExPanel.png");
         exExImage = exExIcon.getImage();
 
-        JLabel exTitle = new JLabel("这是一次考试的标题");
-        JLabel exTime = new JLabel("这里是考试的时间");
+        JLabel exTitle = new JLabel("考试标题");
+        JLabel exTime = new JLabel("考试时间");
         exStart = new JButton();
         exStart.setIcon(exStartU);
         exStart.addMouseListener(this);
@@ -25,7 +31,7 @@ public class ExExPanel extends JPanel implements MouseListener {
         //exTime.setForeground(Color.WHITE);
 
         exTitle.setFont(exFont);
-        exTitle.setBounds(20, 20, 600, 100);
+        exTitle.setBounds(40, 20, 600, 100);
         exTime.setFont(exFont);
         exTime.setBounds(200, 130, 600, 100);
         exStart.setFocusPainted(false);
@@ -44,6 +50,7 @@ public class ExExPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        new PaperPanel(mainFrame);
     }
 
     @Override

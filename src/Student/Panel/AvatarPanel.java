@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AvatarPanel extends JPanel {
-    public AvatarPanel(){
-        setBounds(0,0,250,250);
+    public AvatarPanel() {
+        setBounds(0, 0, 250, 250);
         setBackground(Color.WHITE);
         setLayout(null);
         setVisible(true);
@@ -16,6 +16,7 @@ public class AvatarPanel extends JPanel {
         add("South",userId);
         */
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);

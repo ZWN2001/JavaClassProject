@@ -5,11 +5,19 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class MyScrollBarUI extends BasicScrollBarUI {
+    Dimension barDimension = new Dimension(27,0);
+    public MyScrollBarUI(int width){
+        super();
+        barDimension.setSize(width,0);
+    }
+    public MyScrollBarUI(){
+        super();
+    }
 
         @Override
         public Dimension getPreferredSize(JComponent c) {
             // TODO Auto-generated method stub
-            c.setPreferredSize(new Dimension(17, 0));
+            c.setPreferredSize(barDimension);
             return super.getPreferredSize(c);
         }
 

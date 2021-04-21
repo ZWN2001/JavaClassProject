@@ -1,18 +1,24 @@
 package Student.Panel;
 
 
+import Student.Frame.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ExamPanel extends JPanel {
-    public ExamPanel(){
+    private final MainFrame mainFrame;
+
+    public ExamPanel(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         setBackground(Color.WHITE);
-        setLayout(new GridLayout(0,1,10,10));
-        ExExPanel exTest = new ExExPanel();
-        ExExPanel exTest1 = new ExExPanel();        ExExPanel exTest2 = new ExExPanel();        ExExPanel exTest3 = new ExExPanel();         ExExPanel exTest4 = new ExExPanel();        ExExPanel exTest5 = new ExExPanel();
-        add(exTest);
-        add(exTest1);add(exTest2);add(exTest3);add(exTest4);add(exTest5);
+        setLayout(new GridLayout(0, 1, 10, 10));
         setVisible(false);
     }
+
+    public void loadExPanel() {
+        for (int i = 0; i <= 6; i++)
+            add(new ExExPanel(mainFrame));
+    }
 }
+
