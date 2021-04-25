@@ -1,6 +1,10 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
+import Teacher.Bean.Question.Question_Judge;
+import Teacher.Bean.Question.Question_Subjective;
+import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
+import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Colorful;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
@@ -8,8 +12,11 @@ import Teacher.Util.MyFont;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddQuestion_Subjective extends JPanel {
+    private Question_Subjective question_subjective;
     public AddQuestion_Subjective(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
@@ -40,6 +47,26 @@ public class AddQuestion_Subjective extends JPanel {
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
         add(submitBtn,new GBC(4,9,2,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
 
-
+        submitBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (stem.getText().isEmpty()||setMark.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "信息不完整！");
+                }else if (!IsNumber.isNumber(setMark.getText())){
+                    JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "分值不合法，请重新输入");
+                }   else{
+                    question_subjective=new Question_Subjective(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,setAnswer.getText() );
+                    try {
+                        SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_subjective,"SUBMIT_QUESTION_SUBJECTIVE");
+                        if (submitQuestion_c.getResultCode()==1) {
+                            JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加成功！");
+                        } else JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

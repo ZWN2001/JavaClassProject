@@ -1,13 +1,12 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
 import Teacher.Bean.Question.Question_Choice;
-import Teacher.Function.SubmitQuestion.SubmitQuestion_Choice_C;
+import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.MyFont;
-import Teacher.View.HomePanels.HomeFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -84,8 +83,8 @@ public class AddQuestion_Choice extends JPanel {
                     question_choice=new Question_Choice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
                             ,optB.getText(),optC.getText(),optD.getText(),(String) setAnswerComboBox.getSelectedItem());
                     try {
-                        SubmitQuestion_Choice_C submitQuestion_choice_c=new SubmitQuestion_Choice_C(question_choice);
-                        if (submitQuestion_choice_c.getResultCode()==1) {
+                        SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_choice,"SUBMIT_QUESTION_CHOICE");
+                        if (submitQuestion_c.getResultCode()==1) {
                             JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加成功！");
                         } else JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
                     }catch (Exception exception){

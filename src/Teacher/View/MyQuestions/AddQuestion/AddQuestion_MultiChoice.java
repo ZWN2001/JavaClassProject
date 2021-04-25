@@ -1,6 +1,10 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
+import Teacher.Bean.Question.Question_Choice;
+import Teacher.Bean.Question.Question_MultiChoice;
+import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
+import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.MyFont;
@@ -8,9 +12,16 @@ import Teacher.Util.MyFont;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AddQuestion_MultiChoice extends JPanel {
-
+private Question_MultiChoice question_multiChoice;
+ String answer[]={" ",";","",";","",";",""};
     public AddQuestion_MultiChoice(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
@@ -78,5 +89,55 @@ public class AddQuestion_MultiChoice extends JPanel {
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
         add(submitBtn,new GBC(4,10,1,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
 
+        optA_Box.addActionListener(e -> {
+            if (optA_Box.isSelected()){
+                answer[0]="A";
+            }else {
+                answer[0]="";
+            }
+        });
+        optB_Box.addActionListener(e -> {
+            if (optB_Box.isSelected()){
+                answer[2]="B";
+            }else {
+                answer[2]="";
+            }
+        });
+        optC_Box.addActionListener(e -> {
+            if (optC_Box.isSelected()){
+                answer[4]="C";
+            }else {
+                answer[4]="";
+            }
+        });
+        optD_Box.addActionListener(e -> {
+            if (optD_Box.isSelected()){
+                answer[6]="D";
+            }else {
+                answer[6]="";
+            }
+        });
+        submitBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "信息不完整！");
+                }else if (!IsNumber.isNumber(setMark.getText())){
+                    JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "分值不合法，请重新输入");
+                }   else{
+                    question_multiChoice=new Question_MultiChoice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
+                            ,optB.getText(),optC.getText(),optD.getText(), Arrays.toString(answer));
+                    try {
+                        SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_multiChoice,"SUBMIT_QUESTION_MULTICHOICE");
+                        if (submitQuestion_c.getResultCode()==1) {
+                            JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加成功！");
+                        } else JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

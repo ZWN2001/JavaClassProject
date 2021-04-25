@@ -17,7 +17,6 @@ public class DB {
     Connection connection;
 
     public DB() throws IOException, SQLException { //连接数据库，直接提供操作方法
-
         try {//加载驱动
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -40,8 +39,7 @@ public class DB {
                 statement.executeUpdate("DROP TABLE IF EXISTS choice;");
                 statement.executeUpdate("CREATE TABLE choice\n" +
                         "(\n" +
-                        "    id         int auto_increment\n" +
-                        "        primary key,\n" +
+                        "    id         int auto_increment\n primary key,\n" +
                         "    stem       char(255) not null,\n" +
                         "    optA       char(255) not null,\n" +
                         "    optB       char(255) not null,\n" +
@@ -51,10 +49,35 @@ public class DB {
                         "    difficulty int       not null,\n" +
                         "    answer     char(1)      not null\n" +
                         ");");
-//                statement.executeUpdate("CREATE TABLE test(id int);");
-//                statement.executeUpdate( "alter table choice\n" +
-//                                "\tadd constraint choice_pk\n" +
-//                                "\t\tprimary key (id);");
+                statement.executeUpdate("CREATE TABLE judge\n" +
+                        "(\n" +
+                        "\t id int auto_increment,\n" +
+                        "\t stem char(255) not null,\n" +
+                        "\t mark int not null,\n" +
+                        "\t difficulty int not null,\n" +
+                        "\t answer int not null,\n" +
+                        "\t constraint table_name_pk\n" +
+                        "\t primary key (id));");
+                statement.executeUpdate("CREATE TABLE multiChoice\n" +
+                        "(\n" +
+                        "    id         int auto_increment\n primary key,\n" +
+                        "    stem       char(255) not null,\n" +
+                        "    optA       char(255) not null,\n" +
+                        "    optB       char(255) not null,\n" +
+                        "    optC       char(255) not null,\n" +
+                        "    optD       char(255) not null,\n" +
+                        "    mark       int       not null,\n" +
+                        "    difficulty int       not null,\n" +
+                        "    answer     char(10)  not null \n );");
+                statement.executeUpdate("CREATE TABLE subjective\n" +
+                        "(\n" +
+                        "\t id int auto_increment,\n" +
+                        "\t stem char(255) not null,\n" +
+                        "\t mark int not null,\n" +
+                        "\t difficulty int not null,\n" +
+                        "\t answer char(255) not null,\n" +
+                        "\t constraint table_name_pk\n" +
+                        "\t primary key (id));");
                 hasInited=true;
                 System.out.println("初始化数据库成功");
             }catch (Exception e){

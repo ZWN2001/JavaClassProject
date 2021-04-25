@@ -2,6 +2,9 @@ package Teacher.Server;
 
 
 import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_Choice_S;
+import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_Judge_S;
+import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_MultiChoice_S;
+import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_Subjective_S;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -28,6 +31,15 @@ public class ThreadHandle_Teacher extends Thread {
                     break;
                 case "SUBMIT_QUESTION_CHOICE":
                     new SubmitQuestion_Choice_S(socket);
+                    break;
+                case "SUBMIT_QUESTION_JUDGE":
+                    new SubmitQuestion_Judge_S(socket);
+                    break;
+                case "SUBMIT_QUESTION_MULTICHOICE":
+                    new SubmitQuestion_MultiChoice_S(socket);
+                    break;
+                case "SUBMIT_QUESTION_SUBJECTIVE":
+                    new SubmitQuestion_Subjective_S(socket);
                     break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");

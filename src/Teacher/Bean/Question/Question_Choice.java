@@ -1,6 +1,6 @@
 package Teacher.Bean.Question;
 
-public class Question_Choice {
+public class Question_Choice extends Question{
     int kind=0;
     int qid=0;
     String stem=" ";
