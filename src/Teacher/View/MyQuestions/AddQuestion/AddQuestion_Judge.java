@@ -54,16 +54,18 @@ public class AddQuestion_Judge extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (stem.getText().isEmpty()||setMark.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(AddQuestion_Judge.this, "信息不完整！");
+                 //   JOptionPane.showMessageDialog(AddQuestion_Judge.this, "信息不完整！");
                 }else if (!IsNumber.isNumber(setMark.getText())){
-                    JOptionPane.showMessageDialog(AddQuestion_Judge.this, "分值不合法，请重新输入");
+                   // JOptionPane.showMessageDialog(AddQuestion_Judge.this, "分值不合法，请重新输入");
                 }   else{
                     question_judge=new Question_Judge(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1, setAnswerComboBox.getSelectedIndex());
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_judge,"SUBMIT_QUESTION_JUDGE");
-                        if (submitQuestion_c.getResultCode()==1) {
-                            JOptionPane.showMessageDialog(AddQuestion_Judge.this, "添加成功！");
-                        } else JOptionPane.showMessageDialog(AddQuestion_Judge.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//                        if (submitQuestion_c.getResultCode()==1) {
+//                            JOptionPane.showMessageDialog(AddQuestion_Judge.this, "添加成功！");
+//                        }
+                        //else
+                            //JOptionPane.showMessageDialog(AddQuestion_Judge.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }

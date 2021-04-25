@@ -52,16 +52,17 @@ public class AddQuestion_Subjective extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (stem.getText().isEmpty()||setMark.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "信息不完整！");
+                   // JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "信息不完整！");
                 }else if (!IsNumber.isNumber(setMark.getText())){
-                    JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "分值不合法，请重新输入");
+                   // JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "分值不合法，请重新输入");
                 }   else{
                     question_subjective=new Question_Subjective(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,setAnswer.getText() );
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_subjective,"SUBMIT_QUESTION_SUBJECTIVE");
-                        if (submitQuestion_c.getResultCode()==1) {
-                            JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加成功！");
-                        } else JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//                        if (submitQuestion_c.getResultCode()==1) {
+//                            JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加成功！");
+//                        } else JOptionPane.showMessageDialog(AddQuestion_Subjective.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }

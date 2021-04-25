@@ -76,17 +76,18 @@ public class AddQuestion_Choice extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(AddQuestion_Choice.this, "信息不完整！");
+                   // JOptionPane.showMessageDialog(AddQuestion_Choice.this, "信息不完整！");
                 }else if (!IsNumber.isNumber(setMark.getText())){
-                    JOptionPane.showMessageDialog(AddQuestion_Choice.this, "分值不合法，请重新输入");
+                  //  JOptionPane.showMessageDialog(AddQuestion_Choice.this, "分值不合法，请重新输入");
                 }   else{
                     question_choice=new Question_Choice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
                             ,optB.getText(),optC.getText(),optD.getText(),(String) setAnswerComboBox.getSelectedItem());
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_choice,"SUBMIT_QUESTION_CHOICE");
-                        if (submitQuestion_c.getResultCode()==1) {
-                            JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加成功！");
-                        } else JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//                        if (submitQuestion_c.getResultCode()==1) {
+//                            JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加成功！");
+//                        } else JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }

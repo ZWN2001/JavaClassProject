@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class AddQuestion_MultiChoice extends JPanel {
 private Question_MultiChoice question_multiChoice;
- String answer[]={" ",";","",";","",";",""};
+ String answer[]={" "," "," ",""};
     public AddQuestion_MultiChoice(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
@@ -98,23 +98,23 @@ private Question_MultiChoice question_multiChoice;
         });
         optB_Box.addActionListener(e -> {
             if (optB_Box.isSelected()){
-                answer[2]="B";
+                answer[1]="B";
             }else {
-                answer[2]="";
+                answer[1]="";
             }
         });
         optC_Box.addActionListener(e -> {
             if (optC_Box.isSelected()){
-                answer[4]="C";
+                answer[2]="C";
             }else {
-                answer[4]="";
+                answer[2]="";
             }
         });
         optD_Box.addActionListener(e -> {
             if (optD_Box.isSelected()){
-                answer[6]="D";
+                answer[3]="D";
             }else {
-                answer[6]="";
+                answer[3]="";
             }
         });
         submitBtn.addMouseListener(new MouseAdapter() {
@@ -122,17 +122,18 @@ private Question_MultiChoice question_multiChoice;
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "信息不完整！");
+                  //  JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "信息不完整！");
                 }else if (!IsNumber.isNumber(setMark.getText())){
-                    JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "分值不合法，请重新输入");
+                  //  JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "分值不合法，请重新输入");
                 }   else{
                     question_multiChoice=new Question_MultiChoice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
                             ,optB.getText(),optC.getText(),optD.getText(), Arrays.toString(answer));
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_multiChoice,"SUBMIT_QUESTION_MULTICHOICE");
-                        if (submitQuestion_c.getResultCode()==1) {
-                            JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加成功！");
-                        } else JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//                        if (submitQuestion_c.getResultCode()==1) {
+//                            JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加成功！");
+//                        } else JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+//
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }

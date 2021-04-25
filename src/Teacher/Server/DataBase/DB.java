@@ -37,9 +37,13 @@ public class DB {
                 statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "questions" + " default charset utf8 COLLATE utf8_general_ci;");
                 statement.executeUpdate("USE questions;");
                 statement.executeUpdate("DROP TABLE IF EXISTS choice;");
+                statement.executeUpdate("DROP TABLE IF EXISTS judge;");
+                statement.executeUpdate("DROP TABLE IF EXISTS multiChoice;");
+                statement.executeUpdate("DROP TABLE IF EXISTS subjective;");
+
                 statement.executeUpdate("CREATE TABLE choice\n" +
                         "(\n" +
-                        "    id         int auto_increment\n primary key,\n" +
+                        "    id         int not null,\n " +
                         "    stem       char(255) not null,\n" +
                         "    optA       char(255) not null,\n" +
                         "    optB       char(255) not null,\n" +
@@ -51,7 +55,7 @@ public class DB {
                         ");");
                 statement.executeUpdate("CREATE TABLE judge\n" +
                         "(\n" +
-                        "\t id int auto_increment,\n" +
+                        "\t id int not null,\n" +
                         "\t stem char(255) not null,\n" +
                         "\t mark int not null,\n" +
                         "\t difficulty int not null,\n" +
@@ -60,7 +64,7 @@ public class DB {
                         "\t primary key (id));");
                 statement.executeUpdate("CREATE TABLE multiChoice\n" +
                         "(\n" +
-                        "    id         int auto_increment\n primary key,\n" +
+                        "    id         int not null,\n " +
                         "    stem       char(255) not null,\n" +
                         "    optA       char(255) not null,\n" +
                         "    optB       char(255) not null,\n" +
@@ -68,10 +72,10 @@ public class DB {
                         "    optD       char(255) not null,\n" +
                         "    mark       int       not null,\n" +
                         "    difficulty int       not null,\n" +
-                        "    answer     char(10)  not null \n );");
+                        "    answer     char(50)  not null \n );");
                 statement.executeUpdate("CREATE TABLE subjective\n" +
                         "(\n" +
-                        "\t id int auto_increment,\n" +
+                        "\t id int not null,\n" +
                         "\t stem char(255) not null,\n" +
                         "\t mark int not null,\n" +
                         "\t difficulty int not null,\n" +
