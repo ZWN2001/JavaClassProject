@@ -5,20 +5,25 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class HeadImagePanel extends JPanel {
-
-    ImageIcon imageIcon = new ImageIcon("src/Teacher/Util/Images/HomeImage/a.png");
-//    final Image image = imageIcon.getImage();
+    String testHead="src/Teacher/Test/1.png";
+    String defaultImage="src/Teacher/Util/Images/HomeImage/a.png";
+    ImageIcon imageIcon = new ImageIcon(testHead);
     public void setImageIcon(ImageIcon imageIcon) {
         this.imageIcon = imageIcon;
     }
 
     private JLabel imageLabel;
     public HeadImagePanel () {
+        setLayout(new BorderLayout());
         setOpaque(true);
-        setPreferredSize(new Dimension(120,120));
+//        setPreferredSize(new Dimension(120,120));
+        Image img = imageIcon.getImage();
+        img = img.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        imageIcon.setImage(img);
         imageLabel = new JLabel(imageIcon);
-      //  add(imageLabel);
-        setBackground(Color.CYAN);
+        imageLabel.setSize(100,100);
+        add(imageLabel);
+//        setBackground(Color.CYAN);
         setVisible(true);
     }
 

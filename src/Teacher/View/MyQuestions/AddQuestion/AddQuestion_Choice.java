@@ -1,25 +1,29 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
-import Teacher.Util.Adapter.GBC;
+import Teacher.Bean.Question.Question_Choice;
+import Teacher.Function.SubmitQuestion.SubmitQuestion_Choice_C;
+import Teacher.Util.AdapterAndHelper.GBC;
+import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
+import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.MyFont;
+import Teacher.View.HomePanels.HomeFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddQuestion_Choice extends JPanel {
+    Question_Choice question_choice;
     public AddQuestion_Choice(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
         addStemLabel.setFont(MyFont.subTitleFont);
-
-        JTextArea stem=new JTextArea();
-        stem.setLineWrap(true);
-        stem.setWrapStyleWord(true);
-        stem.setRows(6);
+        int width=this.getWidth();
+        MyTextArea_Normal stem=new MyTextArea_Normal(6,width);
         stem.setFont(MyFont.subTitleFont);
-        stem.setColumns(this.getWidth());
-        add(addStemLabel,new GBC(0,0,1,1).setInsets(5,40,0,0).setAnchor(GridBagConstraints.WEST));
+        add(addStemLabel,new GBC(0,0,1,1).setInsets(15,40,0,0).setAnchor(GridBagConstraints.WEST));
         add(stem,new GBC(0,1,5,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
         JLabel addOptions=new JLabel("添加选项：");
@@ -29,14 +33,11 @@ public class AddQuestion_Choice extends JPanel {
         JLabel optC_Label=new JLabel("C:");
         JLabel optD_Label=new JLabel("D:");
         JLabel setAnswer=new JLabel("设置答案:");
-        JTextArea optA =new JTextArea(1,90);
-        optA.setLineWrap(true);
-        JTextArea optB =new JTextArea( 1,90);
-        optB.setLineWrap(true);
-        JTextArea optC =new JTextArea(1,90);
-        optC.setLineWrap(true);
-        JTextArea optD =new JTextArea( 1,90);
-        optD.setLineWrap(true);
+        MyTextArea_Normal optA =new MyTextArea_Normal(1,90);
+        MyTextArea_Normal optB =new MyTextArea_Normal( 1,90);
+        MyTextArea_Normal optC =new MyTextArea_Normal(1,90);
+        MyTextArea_Normal optD =new MyTextArea_Normal( 1,90);
+
         JComboBox<String> setAnswerComboBox=new JComboBox<>();
         setAnswerComboBox.addItem("A");
         setAnswerComboBox.addItem("B");
@@ -62,7 +63,7 @@ public class AddQuestion_Choice extends JPanel {
          setDifficultyComboBox.addItem(4);
          setDifficultyComboBox.addItem(5);
          JLabel setMark_Label=new JLabel("设置分值：      ");
-         JTextArea setMark=new JTextArea(1,5);
+        MyTextArea_Normal setMark=new MyTextArea_Normal(1,5);
         BackgroundButton submitBtn=new BackgroundButton("  确定  ");
         submitBtn.setFont(MyFont.subTitleFont);
         add(setDifficulty_Label,new GBC(0,9).setInsets(25,100,0,10));
@@ -71,6 +72,27 @@ public class AddQuestion_Choice extends JPanel {
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
         add(submitBtn,new GBC(4,10,2,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
 
-
+        submitBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(AddQuestion_Choice.this, "信息不完整！");
+                }else if (!IsNumber.isNumber(setMark.getText())){
+                    JOptionPane.showMessageDialog(AddQuestion_Choice.this, "分值不合法，请重新输入");
+                }   else{
+                    question_choice=new Question_Choice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
+                            ,optB.getText(),optC.getText(),optD.getText(),(String) setAnswerComboBox.getSelectedItem());
+                    try {
+                        SubmitQuestion_Choice_C submitQuestion_choice_c=new SubmitQuestion_Choice_C(question_choice);
+                        if (submitQuestion_choice_c.getResultCode()==1) {
+                            JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加成功！");
+                        } else JOptionPane.showMessageDialog(AddQuestion_Choice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

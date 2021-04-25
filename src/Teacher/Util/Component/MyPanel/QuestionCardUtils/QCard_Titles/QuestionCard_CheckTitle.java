@@ -1,6 +1,6 @@
 package Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles;
 
-import Teacher.Util.Adapter.GBC;
+import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.MyFont;
 import javax.swing.*;

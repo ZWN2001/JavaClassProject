@@ -15,7 +15,7 @@ public class LeftPanelVisible {
         showUnVisibleBtn.ShowUnVisibleBtnFlag=!showUnVisibleBtn.ShowUnVisibleBtnFlag;
         leftPanel.setVisible(!leftPanel.LeftPanelFlag);
         showUnVisibleBtn.setVisible(!showUnVisibleBtn.ShowUnVisibleBtnFlag);
-        System.out.println("LeftPanelVisibleChanged");
+        System.out.println("LeftPanelVisibleChanged,leftPanel.LeftPanelFlag:"+leftPanel.LeftPanelFlag);
         if (leftPanel.LeftPanelFlag) {
             leftPanel.repaint();
         }else {

@@ -1,6 +1,6 @@
 package Teacher.View.HomePanels;
 
-import Teacher.Util.Adapter.GBC;
+import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.ShowUnVisibleBtn;
 import javax.swing.*;
 import java.awt.*;

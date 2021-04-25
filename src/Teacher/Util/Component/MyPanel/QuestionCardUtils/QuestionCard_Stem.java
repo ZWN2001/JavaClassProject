@@ -5,11 +5,19 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QuestionCard_Stem extends JPanel{
-    String stemText="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" ;
+    String stemText=" ";
+    JTextArea stem=new JTextArea();
     public QuestionCard_Stem(){
+     init();
+    }
+    public QuestionCard_Stem(String stemText){
+        this.stemText=stemText;
+        stem.setText(stemText);
+      init();
+    }
+
+    public void init(){
         setLayout(new VFlowLayout(true,true));
-        JTextArea stem=new JTextArea(stemText);
         JScrollPane pane=new JScrollPane();
         stem.setEnabled(false);
         stem.setLineWrap(true);
@@ -19,6 +27,7 @@ public class QuestionCard_Stem extends JPanel{
     }
 
     public void setStemText(String stemText) {
-        this.stemText = stemText;
+        this.stemText=stemText;
+      stem.setText(stemText);
     }
 }

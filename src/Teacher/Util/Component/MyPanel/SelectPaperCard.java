@@ -1,8 +1,7 @@
 package Teacher.Util.Component.MyPanel;
 
-import Teacher.Util.Adapter.GBC;
+import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
-import Teacher.Util.Layout.VFlowLayout;
 
 import javax.swing.*;
 import java.awt.*;
