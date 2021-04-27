@@ -6,7 +6,9 @@ import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
+import Teacher.Util.Component.MyTextArea.MyTextArea_Colorful;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
+import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.MyFont;
 
 import javax.swing.*;
@@ -21,7 +23,8 @@ import java.util.Arrays;
 
 public class AddQuestion_MultiChoice extends JPanel {
 private Question_MultiChoice question_multiChoice;
- String answer[]={" "," "," ",""};
+    Container warningArea=new Container();
+ String[] answer ={"","","",""};
     public AddQuestion_MultiChoice(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
@@ -89,6 +92,9 @@ private Question_MultiChoice question_multiChoice;
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
         add(submitBtn,new GBC(4,10,1,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
 
+        warningArea.setLayout(new BorderLayout());
+        add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
+
         optA_Box.addActionListener(e -> {
             if (optA_Box.isSelected()){
                 answer[0]="A";
@@ -121,19 +127,48 @@ private Question_MultiChoice question_multiChoice;
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()){
-                  //  JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "信息不完整！");
+                boolean answerSet=false;
+                if (optA_Box.isSelected()||optB_Box.isSelected()||optC_Box.isSelected()||optD_Box.isSelected()){
+                    answerSet=true;
+                }
+                if (stem.getText().isEmpty()||optA.getText().isEmpty()||optB.getText().isEmpty()||optC.getText().isEmpty()||optD.getText().isEmpty()||setMark.getText().isEmpty()||!answerSet){
+                    MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"警告","题目信息不完善");
+                    warningArea.removeAll();
+                    warningArea.add(warning);
+                    updateUI();
                 }else if (!IsNumber.isNumber(setMark.getText())){
-                  //  JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "分值不合法，请重新输入");
+                    MyTextArea_Warning warning=new MyTextArea_Warning(1,22,"警告","分值不合法，请检查输入");
+                    warningArea.removeAll();
+                    warningArea.add(warning);
+                    updateUI();
                 }   else{
                     question_multiChoice=new Question_MultiChoice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
                             ,optB.getText(),optC.getText(),optD.getText(), Arrays.toString(answer));
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_multiChoice,"SUBMIT_QUESTION_MULTICHOICE");
-//                        if (submitQuestion_c.getResultCode()==1) {
-//                            JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加成功！");
-//                        } else JOptionPane.showMessageDialog(AddQuestion_MultiChoice.this, "添加失败","错误",JOptionPane.ERROR_MESSAGE);
-//
+                           if (submitQuestion_c.getResultCode()==1) {
+                            MyTextArea_Colorful log=new MyTextArea_Colorful(1,4,"成功","添加成功");
+                            warningArea.removeAll();
+                            warningArea.add(log);
+                            updateUI();
+                            stem.setText("");
+                            setMark.setText("");
+                            setDifficultyComboBox.setSelectedIndex(0);
+                            answer= new String[]{" ", " ", " ", ""};
+                            optA.setText("");
+                            optA_Box.setSelected(false);
+                            optB.setText("");
+                            optB_Box.setSelected(false);
+                            optC.setText("");
+                            optC_Box.setSelected(false);
+                            optD.setText("");
+                            optD_Box.setSelected(false);
+                       } else {
+                            MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","添加失败");
+                            warningArea.removeAll();
+                            warningArea.add(warning);
+                            updateUI();
+                        }
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }

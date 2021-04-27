@@ -13,4 +13,9 @@ public QCard_AnswerArea_Subjective(String answerText){
     MyTextArea_Normal answer=new MyTextArea_Normal(4,getWidth(),"答案样例：",answerText);
     add(answer);
 }
+    public QCard_AnswerArea_Subjective(){
+        setLayout(new VFlowLayout(true,true));
+        MyTextArea_Normal answerArea=new MyTextArea_Normal(4,getWidth(),"作答：");
+        add(answerArea);
+    }
 }

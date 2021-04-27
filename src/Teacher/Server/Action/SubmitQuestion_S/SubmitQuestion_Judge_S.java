@@ -19,7 +19,7 @@ public class SubmitQuestion_Judge_S {
     private static int id=0;
     String stem;
     int mark;
-    int answer;
+    String answer;
     int difficulty;
     public SubmitQuestion_Judge_S(Socket socket) throws Exception{
         this.socket=socket;

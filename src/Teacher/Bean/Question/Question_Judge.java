@@ -6,9 +6,9 @@ public class Question_Judge extends Question{
     String stem="null";
     int mark = 0;
 //    int myJudge = 2;
-    int answer=0;
+    String answer;
     int difficulty=0;
-    public Question_Judge(String stem, int mark, int difficulty, int answer) {
+    public Question_Judge(String stem, int mark, int difficulty, String answer) {
         this.stem = stem;
         this.mark = mark;
         this.difficulty=difficulty;
@@ -43,7 +43,7 @@ public class Question_Judge extends Question{
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
-    public int getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 }

@@ -6,13 +6,11 @@ import javax.swing.*;
 
 public class QuestionCard_Stem extends JPanel{
     String stemText=" ";
-    JTextArea stem=new JTextArea();
-    public QuestionCard_Stem(){
-     init();
-    }
+    JTextArea stem;
+
     public QuestionCard_Stem(String stemText){
         this.stemText=stemText;
-        stem.setText(stemText);
+        stem=new JTextArea(stemText);
       init();
     }
 

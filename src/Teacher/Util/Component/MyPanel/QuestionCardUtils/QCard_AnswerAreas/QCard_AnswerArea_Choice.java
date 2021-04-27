@@ -5,11 +5,15 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_AnswerArea_Choice extends JPanel {
-    private String optionA="A";
-    private String optionB="B";
-    private String optionC="C";
-    private String optionD="D";
-    public QCard_AnswerArea_Choice(){
+     String optionA;
+     String optionB;
+     String optionC;
+     String optionD;
+    public QCard_AnswerArea_Choice(String optionA,String optionB,String optionC,String optionD){
+        this.optionA=optionA;
+        this.optionB=optionB;
+        this.optionC=optionC;
+        this.optionD=optionD;
         setLayout(new VFlowLayout());
         ButtonGroup optionsGroup=new ButtonGroup();
         JRadioButton optA=new JRadioButton("A:"+optionA);

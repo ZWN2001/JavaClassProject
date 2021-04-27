@@ -25,7 +25,7 @@ public class SubmitQuestion_C {
 
         String json = JSON.toJSONString(question);//使用JSON序列化对象传输过去
         out.println(json);
-        resultCode = dis.read();
+        resultCode = Integer.parseInt(dis.readUTF());
         socket.close();
     }
     public  int getResultCode() {

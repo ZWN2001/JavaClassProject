@@ -8,19 +8,33 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_Judge_Check extends JPanel {
-    QuestionCard_CheckTitle checkTitle=new QuestionCard_CheckTitle();
-    QuestionCard_Stem stemArea=new QuestionCard_Stem();
-    QCard_AnswerArea_Judge answerArea=new QCard_AnswerArea_Judge();
+    QuestionCard_CheckTitle checkTitle;
+    QuestionCard_Stem stemArea;
+    QCard_AnswerArea_Judge answerArea;
 
-    String stem=" ... ";
+    int id;
+    int qid;
+    String stem;
+    int mark;
+    int difficulty;
+    String answer;
 
-    public QCard_Judge_Check(String stem){
+    public QCard_Judge_Check(int id,int qid,String stem,int mark,int difficulty,String answer){
+        this.id=id;
+        this.qid=qid;
         this.stem=stem;
+        this.mark=mark;
+        this.difficulty=difficulty;
+        this.answer=answer;
         setLayout(new VFlowLayout());
-        stemArea.setStemText(stem);
+        checkTitle=new QuestionCard_CheckTitle(qid,mark,difficulty,answer);
+        stemArea=new QuestionCard_Stem(stem);
+        answerArea=new QCard_AnswerArea_Judge();
         add(checkTitle);
         add(stemArea);
         add(answerArea);
-
+    }
+    public int getId(){
+        return id;
     }
 }

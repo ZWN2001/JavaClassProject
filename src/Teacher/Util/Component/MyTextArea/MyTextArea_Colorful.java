@@ -14,6 +14,16 @@ public class MyTextArea_Colorful extends JPanel {
         this.row=row;
         this.col=col;
         this.title=title;
+    init(row, col, title);
+    }
+    public  MyTextArea_Colorful(int row,int col,String title,String text){
+        this.row=row;
+        this.col=col;
+        this.title=title;
+        init(row, col, title);
+        textArea.setText(text);
+    }
+    public void init(int row,int col,String title){
         setLayout(new VFlowLayout(true,true));
 
         textArea=new JTextArea(row,col);
@@ -27,5 +37,8 @@ public class MyTextArea_Colorful extends JPanel {
     }
     public String getText(){
         return textArea.getText();
+    }
+    public void setText(String text){
+        textArea.setText(text);
     }
 }

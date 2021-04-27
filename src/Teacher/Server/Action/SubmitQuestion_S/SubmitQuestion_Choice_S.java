@@ -5,6 +5,7 @@ import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
+import java.sql.ResultSet;
 
 /**
  * @Description: 向数据库添加选择题
@@ -50,6 +51,7 @@ public class SubmitQuestion_Choice_S {
             database.update("INSERT INTO questions.choice VALUES ('" + id + "','" + stem + "','" + optionA + "','" +
                     optionB+ "','" + optionC+ "','" + optionD + "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
         id++;
+
        // socket.close();
         }catch (Exception e){
             dos.writeUTF("-1");

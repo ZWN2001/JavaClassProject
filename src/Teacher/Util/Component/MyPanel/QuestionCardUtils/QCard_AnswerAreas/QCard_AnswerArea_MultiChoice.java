@@ -5,16 +5,20 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_AnswerArea_MultiChoice extends JPanel {
-    private String optionA="A";
-    private String optionB="B";
-    private String optionC="C";
-    private String optionD="D";
-public QCard_AnswerArea_MultiChoice(){
+    String optionA;
+    String optionB;
+    String optionC;
+    String optionD;
+public QCard_AnswerArea_MultiChoice(String optionA,String optionB,String optionC,String optionD){
+    this.optionA=optionA;
+    this.optionB=optionB;
+    this.optionC=optionC;
+    this.optionD=optionD;
         setLayout(new VFlowLayout());
-    JCheckBox optA = new JCheckBox("A");
-    JCheckBox optB = new JCheckBox("B");
-    JCheckBox optC = new JCheckBox("C");
-    JCheckBox optD = new JCheckBox("D");
+    JCheckBox optA = new JCheckBox("A: "+optionA);
+    JCheckBox optB = new JCheckBox("B: "+optionB);
+    JCheckBox optC = new JCheckBox("C: "+optionC);
+    JCheckBox optD = new JCheckBox("D: "+optionD);
         add(optA);
         add(optB);
         add(optC);
