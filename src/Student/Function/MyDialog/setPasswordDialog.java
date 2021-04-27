@@ -80,7 +80,7 @@ public class setPasswordDialog extends JDialog implements MouseListener {
                 JOptionPane.showMessageDialog(null, "新密码前后输入不一致！", "修改失败", JOptionPane.ERROR_MESSAGE);
         }
         if (e.getSource().equals(no))
-            this.dispose();
+            dispose();
     }
 
     @Override

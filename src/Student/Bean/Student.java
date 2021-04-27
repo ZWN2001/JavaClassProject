@@ -12,6 +12,10 @@ public class Student implements Serializable {
         this.password = password;
         this.name = name;
     }
+    public Student(String account,String password){
+        this.account=account;
+        this.password=password;
+    }
 
     public String getName() {
         return name;
