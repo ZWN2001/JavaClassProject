@@ -1,16 +1,24 @@
 package Student.Function.MyDialog;
 
+import Basic.Command;
+import Basic.Login;
+import Student.Bean.Student;
+import com.alibaba.fastjson.JSON;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.*;
+import java.net.Socket;
 import java.util.Arrays;
 
-public class setPasswordDialog extends JDialog implements MouseListener {
+public class SetPasswordDialog extends JDialog implements MouseListener {
     private final JButton yes, no;
     private final JPasswordField prePs, newPs, confirmPs;
+    private final Student student;
 
-    public setPasswordDialog() {
+    public SetPasswordDialog(Student student) {
         super();
         setLayout(null);
         setTitle("修改密码");
@@ -18,6 +26,9 @@ public class setPasswordDialog extends JDialog implements MouseListener {
         setModal(true);
         setResizable(false);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        this.student = student;
 
 
         Font setPsFont = new Font("微软雅黑", Font.PLAIN, 20);
@@ -28,9 +39,9 @@ public class setPasswordDialog extends JDialog implements MouseListener {
         preLabel.setFont(setPsFont);
         newLabel.setFont(setPsFont);
         confirmLabel.setFont(setPsFont);
-        preLabel.setBounds(20, -70, 200, 200);
-        newLabel.setBounds(20, 40, 200, 200);
-        confirmLabel.setBounds(20, 160, 200, 200);
+        preLabel.setBounds(20, 20, 200, 20);
+        newLabel.setBounds(20, 140, 200, 20);
+        confirmLabel.setBounds(20, 260, 200, 20);
 
 
         newPs = new JPasswordField(25);
@@ -40,8 +51,8 @@ public class setPasswordDialog extends JDialog implements MouseListener {
         confirmPs.setFont(setPsFont);
         prePs.setFont(setPsFont);
         prePs.setBounds(20, 60, 350, 35);
-        newPs.setBounds(20, 170, 350, 35);
-        confirmPs.setBounds(20, 290, 350, 35);
+        newPs.setBounds(20, 180, 350, 35);
+        confirmPs.setBounds(20, 300, 350, 35);
         newPs.addMouseListener(this);
         confirmPs.addMouseListener(this);
         prePs.addMouseListener(this);
@@ -78,6 +89,26 @@ public class setPasswordDialog extends JDialog implements MouseListener {
                 JOptionPane.showMessageDialog(null, "输入不能为空！", "修改失败", JOptionPane.ERROR_MESSAGE);
             else if (!Arrays.equals(newPs.getPassword(), confirmPs.getPassword()))
                 JOptionPane.showMessageDialog(null, "新密码前后输入不一致！", "修改失败", JOptionPane.ERROR_MESSAGE);
+            else {
+                try {
+                    NetPassword netPassword = new NetPassword(student, String.valueOf(prePs.getPassword()), String.valueOf(newPs.getPassword()));
+                    switch (netPassword.getResultCode()) {
+                        case "1":
+                            JOptionPane.showMessageDialog(null, "修改成功！");
+                            student.setPassword(String.valueOf(prePs.getPassword()));
+                            this.dispose();
+                            break;
+                        case "0":
+                            JOptionPane.showMessageDialog(null, "密码错误", "修改失败", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        case "-1":
+                            JOptionPane.showMessageDialog(null, "新密码与原密码相同", "修改失败", JOptionPane.ERROR_MESSAGE);
+                            break;
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
         }
         if (e.getSource().equals(no))
             dispose();
@@ -102,5 +133,29 @@ public class setPasswordDialog extends JDialog implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    private static class NetPassword {
+        private final String resultCode;
+
+        public NetPassword(Student student, String pPassword, String newPassword) throws IOException {
+            Socket socket = new Socket(Login.HOST, Login.PORT);
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            dos.writeUTF(Command.S_SET_PASSWORD);
+            dos.flush();
+            dos.writeUTF(pPassword);
+            dos.flush();
+            dos.writeUTF(newPassword);
+            dos.flush();
+            opw.println(JSON.toJSONString(student));
+            resultCode = dis.readUTF();
+            socket.close();
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
     }
 }

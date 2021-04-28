@@ -10,15 +10,13 @@ import java.net.Socket;
 import java.sql.ResultSet;
 
 public class Login {
-    Socket socket;
-    public Login(Socket s) throws Exception{
-        this.socket=s;
+    DataOutputStream dos;
+    public Login(Socket socket) throws Exception{
         //返回值：0为账号不存在，-1为密码错误，1为登录成功
             System.out.println("开始尝试登录");
-            //ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
             BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             System.out.println("输入流建立完毕");
-            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             System.out.println("输出流建立完毕");
             Student student = JSON.parseObject(obr.readLine(), Student.class);//json->Student
             System.out.println("学生对象读取完毕");
@@ -30,12 +28,38 @@ public class Login {
             if (resultSet.next()) {
                 if (resultSet.getString("password").equals(password)) {
                     dos.writeUTF("1");
+                    dos.flush();
+                    dos.writeUTF(resultSet.getString("name"));
+                    dos.flush();
+
+                    sendFile(resultSet.getString("image"));
                 } else {
                     dos.writeUTF("-1");
+                    dos.flush();
                 }
             } else {
                 dos.writeUTF("0");
+                dos.flush();
             }
+    }
+
+    private void sendFile(String path) throws Exception {//传图方法，直接用就行
+        FileInputStream fis;
+        File file = new File(path);
+        if (file.exists()) {
+            fis = new FileInputStream(file);
+            // 文件名
+            dos.writeUTF(file.getName());
             dos.flush();
+            // 开始传输文件
+            System.out.println("======== 开始传输文件 ========");
+            byte[] bytes = new byte[1024];
+            int length;
+            while ((length = fis.read(bytes, 0, bytes.length)) != -1) {
+                dos.write(bytes, 0, length);
+                dos.flush();
+            }
+            System.out.println("======== 文件传输成功 ========");
+        } else System.out.println("文件不存在");
     }
 }

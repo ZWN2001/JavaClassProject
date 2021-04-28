@@ -1,7 +1,6 @@
 package Basic;
 
 import Student.Bean.Student;
-import Student.Server.Server;
 import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
@@ -12,10 +11,8 @@ import java.net.Socket;
 import java.util.Arrays;
 
 public class TempRegister extends JFrame {
-    private final JFrame parentFrame;
 
     public TempRegister(JFrame parentFrame) {
-        this.parentFrame = parentFrame;
         parentFrame.setVisible(false);
         setSize(600, 400);
         setResizable(false);
@@ -65,9 +62,7 @@ public class TempRegister extends JFrame {
                 }
             }
         });
-        cancel.addActionListener(e ->
-
-        {
+        cancel.addActionListener(e -> {
             dispose();
             parentFrame.setVisible(true);
         });
@@ -90,19 +85,14 @@ public class TempRegister extends JFrame {
         private final String resultCode;
 
         public NetRegister(Student student) throws Exception {
-            Socket socket = new Socket("LAPTOP-V7DQD3F1", Server.PORT);
+            Socket socket = new Socket(Login.HOST, Login.PORT);
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-            System.out.println("进入构造方法");
             dos.writeUTF(Command.S_REGISTER);
-            System.out.println("写入指令");
             dos.flush();
-            String json = JSON.toJSONString(student);
-            opw.println(json);
-            System.out.println("写入对象,等待服务端响应"+student.getAccount());
+            opw.println(JSON.toJSONString(student));
             resultCode = dis.readUTF();
-            System.out.println("接收到返回值" + resultCode);
             socket.close();
         }
 

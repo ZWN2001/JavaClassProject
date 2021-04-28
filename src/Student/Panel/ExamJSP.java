@@ -18,6 +18,10 @@ public class ExamJSP extends JScrollPane {
         setVisible(false);
     }
 
+    public void refresh(){
+
+    }
+
     public void setVisible(boolean visible) {
         super.setVisible(visible);
         examPanel.setVisible(visible);

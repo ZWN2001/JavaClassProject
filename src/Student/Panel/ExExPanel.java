@@ -25,6 +25,7 @@ public class ExExPanel extends JPanel implements MouseListener {
         JLabel exTime = new JLabel("考试时间");
         exStart = new JButton();
         exStart.setIcon(exStartU);
+        exStart.setContentAreaFilled(false);
         exStart.addMouseListener(this);
         Font exFont = new Font("微软雅黑", Font.BOLD, 30);
         //exTitle.setForeground(Color.WHITE);

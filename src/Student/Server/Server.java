@@ -9,14 +9,15 @@ import java.sql.SQLException;
 
 public class Server {
     public static int PORT = 2021;
-    public static final String PATH = "D:/ExamAvatar";
+    public static final String PATH = "D:/ExamAvatar/server";
     static ServerSocket serverSocket;
     static Socket socket;
     private static DbConnection database;
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException {
         File directory = new File(PATH);
         if (!directory.exists()) directory.mkdir();
+
         serverSocket = new ServerSocket(PORT);
         System.out.println("服务端启动，端口:" + PORT);
         database = new DbConnection();

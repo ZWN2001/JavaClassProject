@@ -19,6 +19,10 @@ public class GradeJSP extends JScrollPane {
         setVisible(false);
     }
 
+    public void refresh(){
+
+    }
+
     public void setVisible(boolean visible) {
         super.setVisible(visible);
         gradePanel.setVisible(visible);
