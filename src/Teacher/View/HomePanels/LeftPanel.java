@@ -11,8 +11,8 @@ import Teacher.Util.MyColor;
 import Teacher.Util.MyFont;
 import Teacher.View.MyPapers.AddPaperPanels.MyTabbedPane_AddPaper;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
-import Teacher.View.MyQuestions.AddQuestion.AddQuestionPane;
 import Teacher.View.MyQuestions.CheckQuestions.MyTabbedPane_Question;
+import Teacher.View.MyQuestions.AddQuestion.AddQuestionPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,7 +46,9 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 LeftPanelVisible.setLeftPanelVisible(HomeFrame.leftPanel,HomeFrame.showUnVisibleBtn);
-                HomeFrame.content.revalidate();
+                HomeFrame.content.validate();
+                Home.homeFrame.repaint();
+                HomeFrame.content.updateUI();
             }
         });
     }
@@ -133,11 +135,11 @@ public class LeftPanel extends JPanel {
         paperMarkBtn.setClickedColor(MyColor.LIGHT_BLUE_400);
         paperMarkBtn.setBackground(MyColor.LIGHT_BLUE_100);
 
-        maintainQuestionsBtn.setFont(MyFont.titleFont);
-        myPaperBtn.setFont(MyFont.titleFont);
-        addPaperBtn.setFont(MyFont.titleFont);
-        correctQuestionBtn.setFont(MyFont.titleFont);
-        paperMarkBtn.setFont(MyFont.titleFont);
+        maintainQuestionsBtn.setFont(MyFont.Font_16);
+        myPaperBtn.setFont(MyFont.Font_16);
+        addPaperBtn.setFont(MyFont.Font_16);
+        correctQuestionBtn.setFont(MyFont.Font_16);
+        paperMarkBtn.setFont(MyFont.Font_16);
 
         buttonsPanel.add(maintainQuestionsBtn,new GBC(0,0).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
         buttonsPanel.add(myPaperBtn,new GBC(0,1).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));

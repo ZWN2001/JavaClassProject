@@ -13,7 +13,6 @@ import java.io.IOException;
 public class CheckQuestionPanel_Subjective extends JScrollPane {
     public CheckQuestionPanel_Subjective(){
         JPanel panel=new JPanel(new VFlowLayout());
-
         try {
             GetQuestionBank_Subjective_C getQuestionBank_subjective_c=new GetQuestionBank_Subjective_C();
             int[] idList = getQuestionBank_subjective_c.getIdList();
@@ -30,7 +29,6 @@ public class CheckQuestionPanel_Subjective extends JScrollPane {
                 panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
             }
         }catch (IOException ex){
-            JOptionPane.showMessageDialog(this, "服务器不见了！", "Oops", JOptionPane.ERROR_MESSAGE);
             panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));
             ex.printStackTrace();
         }

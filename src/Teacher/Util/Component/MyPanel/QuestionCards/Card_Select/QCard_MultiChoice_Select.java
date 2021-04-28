@@ -1,5 +1,6 @@
 package Teacher.Util.Component.MyPanel.QuestionCards.Card_Select;
 
+import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_AnswerAreas.QCard_AnswerArea_MultiChoice;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles.QuestionCard_ExamTitle;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QuestionCard_Stem;
@@ -9,8 +10,8 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_MultiChoice_Select extends JPanel {
-    JCheckBox isSelected=new JCheckBox("选入试卷");
-QCard_MultiChoice_Check qCard_multiChoice_check;
+    public JCheckBox isSelected=new JCheckBox("选入试卷");
+    QCard_MultiChoice_Check qCard_multiChoice_check;
     int id;
     int qid;
     String stem;
@@ -36,8 +37,10 @@ QCard_MultiChoice_Check qCard_multiChoice_check;
         setLayout(new VFlowLayout());
 
         add(isSelected);
-    qCard_multiChoice_check=new QCard_MultiChoice_Check(id, qid, stem, optionA, optionB, optionC, optionD, mark, difficulty, answer);
-    add(qCard_multiChoice_check);
+        qCard_multiChoice_check=new QCard_MultiChoice_Check(id, qid, stem, optionA, optionB, optionC, optionD, mark, difficulty, answer);
+        qCard_multiChoice_check.removeBtn();
+        qCard_multiChoice_check.checkTitle.add(isSelected,new GBC(5,0));
+        add(qCard_multiChoice_check);
 
     }
     public boolean isSelected(){

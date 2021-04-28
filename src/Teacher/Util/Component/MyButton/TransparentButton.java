@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
 
 public class TransparentButton extends JButton implements MouseListener {
 
-    Font myFont= MyFont.titleFont;
+    Font myFont= MyFont.Font_16;
     private final Icon smallIcon;
     private final Icon largeIcon;
     //IconButton,大小会发生变化

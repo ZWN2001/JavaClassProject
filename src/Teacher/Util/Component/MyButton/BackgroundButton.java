@@ -18,7 +18,7 @@ public class BackgroundButton extends JButton implements MouseListener {
     Color focusedColor=MyColor.focusedColor;
     Color unFocusedColor= MyColor.unFocusedColor;
     Color clickedColor=MyColor.clickedColor;
-    Font myFont= MyFont.titleFont;
+    Font myFont= MyFont.Font_16;
     String text=" ";
 
     //文字按钮

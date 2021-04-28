@@ -11,6 +11,7 @@ public class MyTabbedPane_Question extends JPanel {
         pane.addTab("多选题",new CheckQuestionPanel_MultiChoice());
         pane.addTab("判断题",new CheckQuestionPanel_Judge());
         pane.addTab("主观题",new CheckQuestionPanel_Subjective());
+
         add(pane);
     }
 }

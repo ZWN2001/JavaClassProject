@@ -22,10 +22,10 @@ public class AddQuestion_Subjective extends JPanel {
     public AddQuestion_Subjective(){
         setLayout(new GridBagLayout());
         JLabel addStemLabel=new JLabel("编写题干：");
-        addStemLabel.setFont(MyFont.subTitleFont);
+        addStemLabel.setFont(MyFont.Font_14);
         int width=this.getWidth();
         MyTextArea_Normal stem=new MyTextArea_Normal(6,width);
-        stem.setFont(MyFont.subTitleFont);
+        stem.setFont(MyFont.Font_14);
         add(addStemLabel,new GBC(0,0,1,1).setInsets(5,40,0,20).setAnchor(GridBagConstraints.WEST));
         add(stem,new GBC(0,1,5,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
@@ -42,7 +42,7 @@ public class AddQuestion_Subjective extends JPanel {
         JLabel setMark_Label=new JLabel("设置分值：      ");
         MyTextArea_Normal setMark=new MyTextArea_Normal(1,5);
         BackgroundButton submitBtn=new BackgroundButton("  确定  ");
-        submitBtn.setFont(MyFont.subTitleFont);
+        submitBtn.setFont(MyFont.Font_14);
         add(setDifficulty_Label,new GBC(0,9).setInsets(25,100,0,10));
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));

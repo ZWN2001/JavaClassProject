@@ -1,5 +1,6 @@
 package Teacher.Util.Component.MyPanel.QuestionCards.Card_Check;
 
+import Teacher.Util.AdapterAndHelper.MultiAnswerUtil;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_AnswerAreas.QCard_AnswerArea_Choice;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_AnswerAreas.QCard_AnswerArea_MultiChoice;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles.QuestionCard_CheckTitle;
@@ -9,7 +10,7 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_MultiChoice_Check extends JPanel {
-    QuestionCard_CheckTitle checkTitle;
+    public QuestionCard_CheckTitle checkTitle;
     QuestionCard_Stem stemArea;
     QCard_AnswerArea_MultiChoice answerArea;
 
@@ -35,7 +36,8 @@ public class QCard_MultiChoice_Check extends JPanel {
         this.mark=mark;
         this.difficulty=difficulty;
         this.answer=answer;
-        checkTitle=new QuestionCard_CheckTitle(qid,mark,difficulty,answer);
+        String answer1= MultiAnswerUtil.getAnswerFromString(answer);
+        checkTitle=new QuestionCard_CheckTitle(qid,mark,difficulty,answer1);
         stemArea=new QuestionCard_Stem(stem);
         answerArea=new QCard_AnswerArea_MultiChoice(optionA,optionB,optionC,optionD);
         this.stem=stem;
@@ -46,5 +48,9 @@ public class QCard_MultiChoice_Check extends JPanel {
     }
     public int getId(){
         return id;
+    }
+    public void removeBtn(){
+        QCard_MultiChoice_Check.this.checkTitle.remove(checkTitle.change);
+        QCard_MultiChoice_Check.this.checkTitle.remove(checkTitle.delete);
     }
 }

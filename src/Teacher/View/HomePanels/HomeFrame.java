@@ -8,7 +8,7 @@ import java.awt.*;
 public class HomeFrame extends JFrame {
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 700;
-    public static Container content=new Container();
+    public static JPanel content=new JPanel();//TODO
     public static LeftPanel leftPanel=new LeftPanel();
     public static ShowUnVisibleBtn showUnVisibleBtn=new ShowUnVisibleBtn();
 

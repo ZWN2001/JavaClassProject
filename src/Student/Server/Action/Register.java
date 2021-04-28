@@ -26,7 +26,7 @@ public class Register {
         if (!resultSet.next()) {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO exam.student VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/defaultHeadImage.png ')");
+            database.update("INSERT INTO exam.student VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/welcome.png ')");
             System.out.println("账号写入数据库");
         } else {
             dos.writeUTF("0");

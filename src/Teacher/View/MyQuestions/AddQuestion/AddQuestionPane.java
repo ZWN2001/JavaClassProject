@@ -13,10 +13,10 @@ public class AddQuestionPane extends JPanel {
         addQuestionContainer.setLayout(new VFlowLayout(true,true));
         JPanel chooseKind=new JPanel(new GridBagLayout());
         JLabel title=new JLabel("添加题目");
-        title.setFont(MyFont.mainTitleFont);
+        title.setFont(MyFont.Font_24);
 
         JLabel choose_label=new JLabel("选择题型：");
-        choose_label.setFont(MyFont.subTitleFont);
+        choose_label.setFont(MyFont.Font_20);
         JComboBox<String> choose=new JComboBox<>();
         choose.addItem("单选题");
         choose.addItem("判断题");

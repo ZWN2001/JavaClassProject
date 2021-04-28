@@ -22,6 +22,7 @@ public class GetQuestionBank_Choice_S {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         resultSet = database.query("SELECT id,stem,optA,optB,optC,optD,mark,difficulty,answer FROM questions.choice ORDER BY id");
+        resultSet.last();
         int n = resultSet.getRow();
 
         int[] idList = new int[n];
@@ -36,7 +37,7 @@ public class GetQuestionBank_Choice_S {
 
         resultSet.beforeFirst();
      if (n>0) {
-         for (int i = 0; i < n; i++) {
+         for (int i = 0; resultSet.next(); i++) {
              idList[i] = resultSet.getInt("id");
                 stemList[i]=resultSet.getString("stem");
                 optionA_List[i]=resultSet.getString("optA");

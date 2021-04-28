@@ -1,6 +1,7 @@
 package Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles;
 
 import Teacher.Util.AdapterAndHelper.GBC;
+import Teacher.Util.AdapterAndHelper.MultiAnswerUtil;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.MyFont;
 import javax.swing.*;
@@ -11,24 +12,27 @@ public class QuestionCard_CheckTitle extends JPanel {
     int mark;
     int difficulty;
     String answer;
+    public BackgroundButton change;
+    public BackgroundButton delete;
     public QuestionCard_CheckTitle(int qid,int mark,int difficulty,String answer){
         setLayout(new GridBagLayout());
         this.qid=qid;
         this.mark=mark;
         this.difficulty=difficulty;
         this.answer=answer;
+
         JLabel qid_Label=new JLabel("第"+qid+"题");
-        qid_Label.setFont(MyFont.titleFont);
+        qid_Label.setFont(MyFont.Font_16);
         JLabel mark_Label=new JLabel("分值："+mark);
-        mark_Label.setFont(MyFont.titleFont);
-        JLabel difficulty_Label=new JLabel("难度系数:");
-        difficulty_Label.setFont(MyFont.titleFont);
-        JLabel answer_Label=new JLabel("答案:");
-        answer_Label.setFont(MyFont.titleFont);
-        BackgroundButton change=new BackgroundButton("修改");
+        mark_Label.setFont(MyFont.Font_16);
+        JLabel difficulty_Label=new JLabel("  难度系数: "+difficulty);
+        difficulty_Label.setFont(MyFont.Font_16);
+        JLabel answer_Label=new JLabel("  答案: "+answer);
+        answer_Label.setFont(MyFont.Font_16);
+         change=new BackgroundButton("修改");
         change.setUnFocusedColor(Color.WHITE);
         change.setBackground(Color.WHITE);
-        BackgroundButton delete= new BackgroundButton("删除");
+         delete= new BackgroundButton("删除");
         delete.setUnFocusedColor(Color.WHITE);
         delete.setBackground(Color.WHITE);
 
@@ -40,4 +44,5 @@ public class QuestionCard_CheckTitle extends JPanel {
         add(delete,new GBC(5,0));
         setBackground(Color.WHITE);
     }
+
 }

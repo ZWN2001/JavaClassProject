@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class PopButton extends JPanel {
     public boolean childButtonFlag = false;
     public final ArrayList<BackgroundButton> childButton = new ArrayList<>();
-    private final Font myFont = MyFont.subTitleFont;
+    private final Font myFont = MyFont.Font_14;
     public final JPanel childButtonPanel = new JPanel();
     BackgroundButton titleButton;
     int n;//子button个数

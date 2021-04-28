@@ -8,7 +8,7 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 
 public class QCard_Judge_Check extends JPanel {
-    QuestionCard_CheckTitle checkTitle;
+    public QuestionCard_CheckTitle checkTitle;
     QuestionCard_Stem stemArea;
     QCard_AnswerArea_Judge answerArea;
 
@@ -36,5 +36,9 @@ public class QCard_Judge_Check extends JPanel {
     }
     public int getId(){
         return id;
+    }
+    public void removeBtn(){
+        QCard_Judge_Check.this.checkTitle.remove(checkTitle.change);
+        QCard_Judge_Check.this.checkTitle.remove(checkTitle.delete);
     }
 }

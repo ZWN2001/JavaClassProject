@@ -14,9 +14,9 @@ public class QuestionCard_ExamTitle extends JPanel {
         this.mark=mark;
         setLayout(new GridBagLayout());
         JLabel qidLabel=new JLabel("第"+qid+"题");
-        qidLabel.setFont(MyFont.titleFont);
+        qidLabel.setFont(MyFont.Font_16);
         JLabel markLabel=new JLabel("分值:"+mark);
-        markLabel.setFont(MyFont.titleFont);
+        markLabel.setFont(MyFont.Font_16);
 
         add(qidLabel,new GBC(0,0).setInsets(0,0,0,20));
         add(markLabel,new GBC(1,0).setInsets(0,0,0,20));

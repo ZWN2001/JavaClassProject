@@ -30,7 +30,6 @@ public class CheckQuestionPanel_Judge extends JScrollPane {
                 panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
             }
         }catch (IOException ex){
-            JOptionPane.showMessageDialog(this, "服务器不见了！", "Oops", JOptionPane.ERROR_MESSAGE);
             panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));
             ex.printStackTrace();
         }

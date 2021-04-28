@@ -56,6 +56,8 @@ public class ShowUnVisibleBtn extends JButton {
                 super.mouseClicked(e);
                 LeftPanelVisible.setLeftPanelVisible(HomeFrame.leftPanel,HomeFrame.showUnVisibleBtn);
                 HomeFrame.content.revalidate();
+                HomeFrame.content.repaint();
+                HomeFrame.content.updateUI();
             }
         });
     }
