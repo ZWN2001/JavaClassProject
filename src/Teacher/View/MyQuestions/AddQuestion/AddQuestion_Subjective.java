@@ -1,8 +1,7 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
-import Teacher.Bean.Question.Question_Judge;
 import Teacher.Bean.Question.Question_Subjective;
-import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
+import Teacher.Function.ClientFuction.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;

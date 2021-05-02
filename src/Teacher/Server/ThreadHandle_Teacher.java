@@ -1,7 +1,6 @@
 package Teacher.Server;
 
 
-import Teacher.Function.GetQuestionBank.GetQuestionBank_Subjective_C;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Choice_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Judge_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_MultiChoice_S;

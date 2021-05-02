@@ -30,4 +30,14 @@ public class MultiAnswerUtil {
         }
 return answerStr.toString();
     }
+    
+    public static String getChoseQuestionFromString(String str){
+        StringBuilder answerStr=new StringBuilder();
+        String str1=str.substring(1,str.length()-1);
+        String[] result=str1.split(",");
+        for (String s:result) {
+            answerStr.append(s).append(" ");
+        }
+        return answerStr.toString();
+    }
 }

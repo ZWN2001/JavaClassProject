@@ -1,19 +1,29 @@
 package Teacher.View.MyQuestions.SelectQuestion;
 
-import Teacher.Function.GetQuestionBank.GetQuestionBank_MultiChoice_C;
-import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_MultiChoice_Check;
+import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_MultiChoice_C;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Select.QCard_MultiChoice_Select;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaper_Self;
-import Teacher.View.MyPapers.AddPaperPanels.MyTabbedPane_AddPaper;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaper_Self_CheckQuestion;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.StatisticianPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class SelectQuestionPanel_MultiChoice extends JScrollPane {
     public SelectQuestionPanel_MultiChoice(){
+     init();
+    }
+    public SelectQuestionPanel_MultiChoice(int location){
+        init();
+        getVerticalScrollBar().setValue(location);
+    }
+
+    public void init(){
         JPanel panel=new JPanel(new VFlowLayout());
+        panel.setPreferredSize(new Dimension(950,700));
         try {
             GetQuestionBank_MultiChoice_C getQuestionBank_multiChoice_c=new GetQuestionBank_MultiChoice_C();
             int[] idList = getQuestionBank_multiChoice_c.getIdList();
@@ -25,20 +35,38 @@ public class SelectQuestionPanel_MultiChoice extends JScrollPane {
             int[] markList = getQuestionBank_multiChoice_c.getMarkList();
             int[] difficulty = getQuestionBank_multiChoice_c.getDifficulty();
             String[] answerList = getQuestionBank_multiChoice_c.getAnswerList();
+            panel.setPreferredSize(new Dimension(950,idList.length*250));
             if (idList.length>0) {
                 for (int i = 0; i < idList.length; i++) {
                     QCard_MultiChoice_Select panel1 = new QCard_MultiChoice_Select(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
                     panel.add(panel1);
+                    if (!AddPaperSelfPanel.statistician.getMyMultiChoice().isEmpty()){
+                        if (AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)(idList[i]))){
+                            panel1.isSelected.setSelected(true);
+                        }
+                    }
+                    int finalI = i;
                     panel1.isSelected.addItemListener(e -> {
                         if (panel1.isSelected.isSelected()) {
-                            System.out.println("multiChoice"+ MyTabbedPane_AddPaper.statistician.getMyMultiChoice());
-                            MyTabbedPane_AddPaper.statistician.addMyMultiChoice(panel1.getId());
-                            MyTabbedPane_AddPaper.statisticianPanel.updateUI();
+                            if (!AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getId())) {
+                                AddPaperSelfPanel.statistician.addMyMultiChoice(panel1.getId());
+                                AddPaperSelfPanel.statistician.addChoseNum();
+                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
+                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel(AddPaperSelfPanel.statistician);
+                                AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
+                                AddPaperSelfPanel.statisticianPanel.repaint();
+                                AddPaperSelfPanel.statisticianPanel.updateUI();
+                            }
                         } else {
-                            if (MyTabbedPane_AddPaper.statistician.getMyMultiChoice().contains((Integer)panel1.getId())) {
-                                MyTabbedPane_AddPaper.statistician.removeMultiChoice((Integer) panel1.getId());
-                                System.out.println("choice"+MyTabbedPane_AddPaper.statistician.getMyMultiChoice());
-                                MyTabbedPane_AddPaper.statisticianPanel.updateUI();
+                            if (AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getId())) {
+                                AddPaperSelfPanel.statistician.removeMultiChoice((Integer) panel1.getId());
+                                AddPaperSelfPanel.statistician.removeChoseNum();
+                                AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
+                                AddPaperSelfPanel.container2.removeAll();
+                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel(AddPaperSelfPanel.statistician);
+                                AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
+                                AddPaperSelfPanel.statisticianPanel.repaint();
+                                AddPaperSelfPanel.statisticianPanel.updateUI();
                             }
                         }
                     });
@@ -51,5 +79,8 @@ public class SelectQuestionPanel_MultiChoice extends JScrollPane {
             ex.printStackTrace();
         }
         getViewport().add(panel);
+        getVerticalScrollBar().addVetoableChangeListener(evt -> {
+            AddPaper_Self_CheckQuestion.listener.setScrollBarLocation(getVerticalScrollBar().getValue());
+        });
     }
 }

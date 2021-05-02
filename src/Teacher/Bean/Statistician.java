@@ -19,8 +19,11 @@ public class Statistician {
     private  ArrayList<Integer>myJudge=new ArrayList<>();
     private  ArrayList<Integer>mySubjective=new ArrayList<>();
 
-    public int addChoseNum() {
-        return this.choseNum++;
+    public void addChoseNum() {
+        this.choseNum++;
+    }
+    public void removeChoseNum(){
+        this.choseNum--;
     }
     public int getChoseNum() {
         return choseNum;
@@ -80,5 +83,17 @@ public class Statistician {
         if (this.myChoice.contains(id)){
             this.myChoice.remove(id);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Statistician{" +
+                "choseNum=" + choseNum +
+                ", allMark=" + allMark +
+                ", myChoice=" + myChoice +
+                ", myMultiChoice=" + myMultiChoice +
+                ", myJudge=" + myJudge +
+                ", mySubjective=" + mySubjective +
+                '}';
     }
 }

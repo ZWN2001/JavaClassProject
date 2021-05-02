@@ -37,9 +37,6 @@ public class QCard_Choice_Select extends JPanel {
     qCard_choice_check.checkTitle.add(isSelected,new GBC(5,0));
     add(qCard_choice_check);
     }
-    public boolean isSelected(){
-        return isSelected.isSelected();
-    }
     public int getId(){
         return qCard_choice_check.getId();
     }

@@ -1,8 +1,7 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
-import Teacher.Bean.Question.Question_Choice;
 import Teacher.Bean.Question.Question_MultiChoice;
-import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
+import Teacher.Function.ClientFuction.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
@@ -14,11 +13,8 @@ import Teacher.Util.MyFont;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AddQuestion_MultiChoice extends JPanel {

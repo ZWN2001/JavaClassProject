@@ -1,8 +1,7 @@
 package Teacher.View.MyQuestions.AddQuestion;
 
 import Teacher.Bean.Question.Question_Choice;
-import Teacher.Function.SubmitQuestion.SubmitQuestion_C;
-import Teacher.Util.AdapterAndHelper.CountDownUtils;
+import Teacher.Function.ClientFuction.SubmitQuestion.SubmitQuestion_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.AdapterAndHelper.IsNumber;
 import Teacher.Util.Component.MyButton.BackgroundButton;
@@ -10,7 +9,6 @@ import Teacher.Util.Component.MyTextArea.MyTextArea_Colorful;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.MyFont;
-import Teacher.View.HomePanels.Home;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,14 +1,12 @@
 package Teacher.View.MyQuestions.CheckQuestions;
 
-import Teacher.Function.GetQuestionBank.GetQuestionBank_Choice_C;
-import Teacher.Function.GetQuestionBank.GetQuestionBank_MultiChoice_C;
-import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_Choice_Check;
+import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_MultiChoice_C;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_MultiChoice_Check;
-import Teacher.Util.Component.MyPanel.QuestionCards.Card_Normal.QCard_MultiChoice_Normal;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class CheckQuestionPanel_MultiChoice extends JScrollPane {
@@ -25,6 +23,7 @@ public class CheckQuestionPanel_MultiChoice extends JScrollPane {
             int[] markList = getQuestionBank_multiChoice_c.getMarkList();
             int[] difficulty = getQuestionBank_multiChoice_c.getDifficulty();
             String[] answerList = getQuestionBank_multiChoice_c.getAnswerList();
+            panel.setPreferredSize(new Dimension(950,350*idList.length));
             if (idList.length>0) {
                 for (int i = 0; i < idList.length; i++) {
                     QCard_MultiChoice_Check panel1 = new QCard_MultiChoice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);

@@ -1,7 +1,6 @@
-package Teacher.Function.SubmitQuestion;
+package Teacher.Function.ClientFuction.SubmitQuestion;
 
 import Teacher.Bean.Question.Question;
-import Teacher.Bean.Question.Question_Choice;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;

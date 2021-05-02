@@ -1,34 +1,46 @@
 package Teacher.View.MyPapers.AddPaperPanels;
 
-import Teacher.Bean.Statistician;
 import Teacher.Util.AdapterAndHelper.GBC;
-import Teacher.Util.Layout.VFlowLayout;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaper_Self;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.StatisticianPanel;
+
+import Teacher.Util.MyFont;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MyTabbedPane_AddPaper extends JPanel {
-    public static Statistician statistician=new Statistician();
-    public static StatisticianPanel statisticianPanel;
+    public  static Container addPaperContainer=new Container();
+//    public static AddPaperSelfPanel addPaperSelfPanel;
+    JComboBox<String> choose=new JComboBox<>();
     public MyTabbedPane_AddPaper(){
-        setLayout(new BorderLayout());
-        JTabbedPane pane=new JTabbedPane();
 
-        Container AddPaperContainer=new Container();
-        Container container=new Container();
-        container.setLayout(new BorderLayout());
-        container.add(new AddPaper_Self());
-        AddPaperContainer.setLayout(new GridBagLayout());
+            setLayout(new GridBagLayout());
+            JLabel choose_label=new JLabel("选择出卷方式：");
+            choose_label.setFont(MyFont.Font_20);
 
-        AddPaperContainer.add(container,new GBC(0,0).setFill(GridBagConstraints.BOTH).setWeight(1,1));
-         statisticianPanel=new StatisticianPanel(statistician);
-        AddPaperContainer.add(statisticianPanel,new GBC(0,1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH).setWeight(1,0));
+            choose.addItem("手动组卷");
+            choose.addItem("按试卷难度自动组卷");
+            choose.addItem("按题型数量自动组卷");
 
-        pane.addTab("手动组卷",AddPaperContainer);
-        pane.addTab("按试卷难度自动组卷",new AddPaper_Difficulty());
-        pane.addTab("按题型数量自动组卷",new AddPaper_QuestionNum());
-        add(pane);
-    }
+            addPaperContainer.setLayout(new BorderLayout());
+            addPaperContainer.add(new AddPaperSelfPanel());
+            add(choose_label,new GBC(0,0).setFill(GridBagConstraints.HORIZONTAL).setAnchor(GridBagConstraints.EAST).setInsets(10,500,0,0));
+            add(choose,new GBC(1,0).setInsets(10,0,0,100));
+            add(addPaperContainer,new GBC(0,1,2,1).setFill(GridBagConstraints.BOTH).setWeight(1,1));
+
+            choose.setSelectedIndex(0);
+
+        choose.addItemListener(event -> {
+            if (choose.getSelectedIndex()==0) {
+              addPaperContainer.removeAll();
+              addPaperContainer.add(new AddPaperSelfPanel());
+            }else if (choose.getSelectedIndex()==1) {
+                addPaperContainer.removeAll();
+                updateUI();
+            }else if (choose.getSelectedIndex()==2) {
+                addPaperContainer.removeAll();
+                updateUI();
+            }
+        });
+        }
 }

@@ -1,4 +1,4 @@
-package Teacher.Function.GetQuestionBank;
+package Teacher.Function.ClientFuction.GetQuestionBank;
 
 import com.alibaba.fastjson.JSON;
 
@@ -8,14 +8,14 @@ import java.net.Socket;
 import static Teacher.Server.ServerMain.Address;
 import static Teacher.Server.ServerMain.PORT;
 
-public class GetQuestionBank_MultiChoice_C {
-    String command="GET_QUESTION_MULTICHOICE";
+public class GetQuestionBank_Choice_C {
+    String command="GET_QUESTION_CHOICE";
     private Socket socket;
     private DataInputStream dis;//输入
     private DataOutputStream dos;//输出
     private BufferedReader in;
     private PrintWriter out;
-    //    private String Path;
+//    private String Path;
 //    private String json;
     private int[] idList ;
     private String[] stemList;
@@ -27,7 +27,7 @@ public class GetQuestionBank_MultiChoice_C {
     private int[]difficultyList;
     private String[] answerList;
 
-    public GetQuestionBank_MultiChoice_C() throws IOException {
+    public GetQuestionBank_Choice_C() throws IOException {
         this.socket = new Socket(Address, PORT);
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         dos = new DataOutputStream(new DataOutputStream(socket.getOutputStream()));
@@ -38,8 +38,6 @@ public class GetQuestionBank_MultiChoice_C {
             /*
             注意：上面能不改就不改，因为Command只能用writeUTF发送；下面的对象传输只能用out.println()来传输JSON序列化的对象
              */
-//        json = JSON.toJSONString(itemListFilter);//使用JSON序列化对象传输过去
-//        out.println(json);
 
         idList = JSON.parseObject(in.readLine(), int[].class);
         stemList=JSON.parseObject(in.readLine(), String[].class);

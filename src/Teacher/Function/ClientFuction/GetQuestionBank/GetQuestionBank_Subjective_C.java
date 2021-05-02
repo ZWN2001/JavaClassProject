@@ -1,4 +1,4 @@
-package Teacher.Function.GetQuestionBank;
+package Teacher.Function.ClientFuction.GetQuestionBank;
 
 import com.alibaba.fastjson.JSON;
 
@@ -8,8 +8,8 @@ import java.net.Socket;
 import static Teacher.Server.ServerMain.Address;
 import static Teacher.Server.ServerMain.PORT;
 
-public class GetQuestionBank_Judge_C {
-    String command="GET_QUESTION_JUDGE";
+public class GetQuestionBank_Subjective_C {
+    String command="GET_QUESTION_SUBJECTIVE";
     private Socket socket;
     private DataInputStream dis;//输入
     private DataOutputStream dos;//输出
@@ -21,7 +21,7 @@ public class GetQuestionBank_Judge_C {
     private int[]difficultyList;
     private String[] answerList;
 
-    public GetQuestionBank_Judge_C() throws IOException {
+    public GetQuestionBank_Subjective_C() throws IOException {
         this.socket = new Socket(Address, PORT);
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         dos = new DataOutputStream(new DataOutputStream(socket.getOutputStream()));

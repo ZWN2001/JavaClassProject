@@ -5,7 +5,6 @@ import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
-import java.sql.ResultSet;
 
 /**
  * @Description: 向数据库添加选择题

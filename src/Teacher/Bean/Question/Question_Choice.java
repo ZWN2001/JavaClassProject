@@ -21,9 +21,7 @@ public class Question_Choice extends Question{
         this.optionB=optionB;
         this.optionC=optionC;
         this.optionD=optionD;
-//        this.myOption=myOption;
         this.answer=answer;
-
     }
 
     public void setStem(String stem) {
@@ -41,9 +39,6 @@ public class Question_Choice extends Question{
     public void setOptionD(String optionD) {
         this.optionD = optionD;
     }
-//    public void setMyOption(String myOption) {
-//        this.myOption = myOption;
-//    }
     public void setMark(int mark) { this.mark = mark; }
     public void setAnswer(String answer) {
         this.answer = answer;
@@ -58,7 +53,6 @@ public class Question_Choice extends Question{
     }
     public int getQid() { return qid; }
     public int getKind() { return kind; }
-
     public String getOptionA() {
         return optionA;
     }
@@ -71,10 +65,6 @@ public class Question_Choice extends Question{
     public String getOptionD() {
         return optionD;
     }
-
-    //    public String getMyOption() {
-//        return myOption;
-//    }
     public String getStem() {
         return stem;
     }
