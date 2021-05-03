@@ -15,6 +15,7 @@ public class SettingPanel extends JPanel implements MouseListener {
     private final MainFrame mainFrame;
     private final Student student;
     private ImageIcon imageIcon;
+    private final JLabel netName;
     ImageIcon setPwu = new ImageIcon("src/Student/Resource/setPwu.png");
     ImageIcon setPwd = new ImageIcon("src/Student/Resource/setPwd.png");
     ImageIcon setProU = new ImageIcon("src/Student/Resource/setProU.png");
@@ -77,7 +78,7 @@ public class SettingPanel extends JPanel implements MouseListener {
         add(beClass);
 
         JLabel netAccount = new JLabel(student.getAccount());
-        JLabel netName = new JLabel(student.getName());
+        netName = new JLabel(student.getName());
         netAccount.setFont(profileFont);
         netName.setFont(profileFont);
         netAccount.setBounds(220, 150, 200, 40);
@@ -88,7 +89,7 @@ public class SettingPanel extends JPanel implements MouseListener {
 
 
     public void refresh(){
-
+        netName.setText(student.getName());
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -132,5 +133,9 @@ public class SettingPanel extends JPanel implements MouseListener {
             setProfile.setIcon(setProU);
         if (e.getSource().equals(logOut))
             logOut.setIcon(logOutU);
+    }
+
+    public void setImageIcon(ImageIcon imageIcon) {
+        this.imageIcon = imageIcon;
     }
 }

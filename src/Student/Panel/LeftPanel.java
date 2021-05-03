@@ -141,6 +141,11 @@ public class LeftPanel extends JPanel implements MouseListener {
             settingPanel.setVisible(false);
             visiblePart="rightPanel";
         } else if (e.getSource().equals(refreshBtn)) {
+            try {
+                avatarPanel.refresh();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
             switch (visiblePart){
                 case "examJSP":
                     examJSP.refresh();

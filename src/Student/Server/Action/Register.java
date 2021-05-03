@@ -13,11 +13,8 @@ import java.sql.SQLException;
 public class Register {
     public Register(Socket socket) throws IOException, SQLException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-        System.out.println("输出流建立完毕");
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        System.out.println("输入流建立完毕");
         Student student = JSON.parseObject(obr.readLine(),Student.class);
-        System.out.println("学生对象读取完毕");
         String name = student.getName();
         String account = student.getAccount();
         String password = student.getPassword();
@@ -26,7 +23,7 @@ public class Register {
         if (!resultSet.next()) {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO exam.student VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/welcome.png ')");
+            database.update("INSERT INTO exam.student VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/defaultHeadImage.png ')");
             System.out.println("账号写入数据库");
         } else {
             dos.writeUTF("0");

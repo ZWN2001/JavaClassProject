@@ -89,6 +89,8 @@ public class SetPasswordDialog extends JDialog implements MouseListener {
                 JOptionPane.showMessageDialog(null, "输入不能为空！", "修改失败", JOptionPane.ERROR_MESSAGE);
             else if (!Arrays.equals(newPs.getPassword(), confirmPs.getPassword()))
                 JOptionPane.showMessageDialog(null, "新密码前后输入不一致！", "修改失败", JOptionPane.ERROR_MESSAGE);
+            else if(newPs.getPassword().length>25)
+                JOptionPane.showMessageDialog(null, "新密码过长！", "修改失败", JOptionPane.ERROR_MESSAGE);
             else {
                 try {
                     NetPassword netPassword = new NetPassword(student, String.valueOf(prePs.getPassword()), String.valueOf(newPs.getPassword()));
