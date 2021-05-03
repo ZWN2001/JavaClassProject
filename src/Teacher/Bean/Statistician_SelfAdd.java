@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @date
  *
  */
-public class Statistician {
+public class Statistician_SelfAdd {
 
     private   int choseNum=0;
     private  int allMark=0;

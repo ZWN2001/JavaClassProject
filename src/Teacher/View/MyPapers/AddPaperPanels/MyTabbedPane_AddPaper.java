@@ -3,6 +3,7 @@ package Teacher.View.MyPapers.AddPaperPanels;
 import Teacher.Util.AdapterAndHelper.GBC;
 
 import Teacher.Util.MyFont;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Auto.AddPaperAutoPanel;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
 
 import javax.swing.*;
@@ -19,8 +20,7 @@ public class MyTabbedPane_AddPaper extends JPanel {
             choose_label.setFont(MyFont.Font_20);
 
             choose.addItem("手动组卷");
-            choose.addItem("按试卷难度自动组卷");
-            choose.addItem("按题型数量自动组卷");
+            choose.addItem("智能组卷");
 
             addPaperContainer.setLayout(new BorderLayout());
             addPaperContainer.add(new AddPaperSelfPanel());
@@ -34,11 +34,10 @@ public class MyTabbedPane_AddPaper extends JPanel {
             if (choose.getSelectedIndex()==0) {
               addPaperContainer.removeAll();
               addPaperContainer.add(new AddPaperSelfPanel());
+                updateUI();
             }else if (choose.getSelectedIndex()==1) {
                 addPaperContainer.removeAll();
-                updateUI();
-            }else if (choose.getSelectedIndex()==2) {
-                addPaperContainer.removeAll();
+                addPaperContainer.add(new AddPaperAutoPanel());
                 updateUI();
             }
         });

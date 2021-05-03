@@ -1,6 +1,7 @@
 package Teacher.Server;
 
 
+import Teacher.Server.Action.GetQuestionBankSituation_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Choice_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Judge_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_MultiChoice_S;
@@ -56,6 +57,9 @@ public class ThreadHandle_Teacher extends Thread {
                     break;
                 case "GET_QUESTION_SUBJECTIVE":
                     new GetQuestionBank_Subjective_S(socket);
+                    break;
+                case "GET_QUESTION_BANK_SITUATION":
+                    new GetQuestionBankSituation_S(socket);
                     break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");

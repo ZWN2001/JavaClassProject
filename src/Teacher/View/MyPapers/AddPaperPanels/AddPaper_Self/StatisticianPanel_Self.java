@@ -1,6 +1,6 @@
 package Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self;
 
-import Teacher.Bean.Statistician;
+import Teacher.Bean.Statistician_SelfAdd;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
@@ -14,8 +14,8 @@ import java.awt.event.MouseEvent;
 import static Teacher.Util.AdapterAndHelper.MultiAnswerUtil.getChoseQuestionFromString;
 
 
-public class StatisticianPanel extends JPanel {
-    public StatisticianPanel(Statistician statistician){
+public class StatisticianPanel_Self extends JPanel {
+    public StatisticianPanel_Self(Statistician_SelfAdd statistician){
         setLayout(new GridBagLayout());
         JLabel titleLabel2= new JLabel("已选"+statistician.getChoseNum()+"题，共计"+statistician.getAllMark()+"分，其中:");
         titleLabel2.setFont(MyFont.Font_14);

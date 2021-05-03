@@ -13,7 +13,6 @@ public class CheckQuestionPanel_Choice extends JScrollPane {
 
     public CheckQuestionPanel_Choice(){
             JPanel panel=new JPanel(new VFlowLayout(true,true));
-
             try {
                 GetQuestionBank_Choice_C getQuestionBank_choice_c=new GetQuestionBank_Choice_C();
                 int[] idList = getQuestionBank_choice_c.getIdList();

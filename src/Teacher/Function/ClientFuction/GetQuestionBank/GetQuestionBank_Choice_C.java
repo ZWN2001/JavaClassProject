@@ -15,8 +15,7 @@ public class GetQuestionBank_Choice_C {
     private DataOutputStream dos;//输出
     private BufferedReader in;
     private PrintWriter out;
-//    private String Path;
-//    private String json;
+
     private int[] idList ;
     private String[] stemList;
     private String[] optionA_List;

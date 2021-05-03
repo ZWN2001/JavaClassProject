@@ -6,7 +6,7 @@ import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaper_Self_CheckQuestion;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.StatisticianPanel;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.StatisticianPanel_Self;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +52,7 @@ public class SelectQuestionPanel_MultiChoice extends JScrollPane {
                                 AddPaperSelfPanel.statistician.addMyMultiChoice(panel1.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
                                 AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
-                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel(AddPaperSelfPanel.statistician);
+                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
                                 AddPaperSelfPanel.statisticianPanel.repaint();
                                 AddPaperSelfPanel.statisticianPanel.updateUI();
@@ -63,7 +63,7 @@ public class SelectQuestionPanel_MultiChoice extends JScrollPane {
                                 AddPaperSelfPanel.statistician.removeChoseNum();
                                 AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
                                 AddPaperSelfPanel.container2.removeAll();
-                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel(AddPaperSelfPanel.statistician);
+                                AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
                                 AddPaperSelfPanel.statisticianPanel.repaint();
                                 AddPaperSelfPanel.statisticianPanel.updateUI();

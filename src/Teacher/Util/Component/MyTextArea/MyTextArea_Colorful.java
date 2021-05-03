@@ -41,4 +41,7 @@ public class MyTextArea_Colorful extends JPanel {
     public void setText(String text){
         textArea.setText(text);
     }
+    public void setAble(boolean able){
+        textArea.setEnabled(able);
+    }
 }
