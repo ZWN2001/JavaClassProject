@@ -15,8 +15,9 @@ public class SubjectivePanel extends QuestionPanel{
 
         JTextArea answerArea = new JTextArea("",0,50);
         JScrollPane answerPane = new JScrollPane(answerArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        /*设置UI
         JScrollBar bar = answerPane.getVerticalScrollBar();
-        bar.setUI(new MyScrollBarUI(16));
+        bar.setUI(new MyScrollBarUI(16));*/
         answerPane.setPreferredSize(new Dimension(1200,200));
         answerArea.setFont(new Font("宋体",Font.BOLD,20));
         answerArea.setLineWrap(true);

@@ -13,13 +13,9 @@ public class Login {
     DataOutputStream dos;
     public Login(Socket socket) throws Exception{
         //返回值：0为账号不存在，-1为密码错误，1为登录成功
-            System.out.println("开始尝试登录");
             BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            System.out.println("输入流建立完毕");
             dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            System.out.println("输出流建立完毕");
             Student student = JSON.parseObject(obr.readLine(), Student.class);//json->Student
-            System.out.println("学生对象读取完毕");
 
             String account = student.getAccount();
             String password = student.getPassword();

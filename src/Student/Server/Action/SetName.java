@@ -14,7 +14,7 @@ public class SetName {
      DataInputStream dis;
     DataOutputStream dos;
     public SetName(Socket socket) throws IOException, SQLException {
-        dis = new DataInputStream((socket.getInputStream()));
+        dis = new DataInputStream(socket.getInputStream());
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String newName = dis.readUTF();

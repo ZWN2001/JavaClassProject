@@ -16,6 +16,7 @@ public abstract class QuestionPanel extends JPanel {
         JTextArea stemArea = new JTextArea(question.getStem(),0,50);
         stemArea.setLineWrap(true);
         stemArea.setEditable(false);
+        stemArea.setFocusable(false);
         stemArea.setBackground(this.getBackground());
         stemArea.setFont(font);
         add(numLabel,new GBC(0,0,1,1).setAnchor(GridBagConstraints.WEST));

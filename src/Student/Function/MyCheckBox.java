@@ -13,6 +13,7 @@ public class MyCheckBox extends JPanel {
         textArea = new JTextArea(text, 0, 50);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
+        textArea.setFocusable(false);
         textArea.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

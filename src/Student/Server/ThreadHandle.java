@@ -27,8 +27,14 @@ public class ThreadHandle extends Thread {
                 case CLOSER_SERVER:
                     Server.closeServer();
                     break;
+                case S_GET_CLASS:
+                    new GetClass(socket);
+                    break;
                 case S_LOGIN:
                     new Login(socket);
+                    break;
+                case S_QUIT_CLASS:
+                    new QuitClass(socket);
                     break;
                 case S_REFRESH_AVATAR:
                     new RefreshAvatar(socket);
@@ -38,6 +44,9 @@ public class ThreadHandle extends Thread {
                     break;
                 case S_SET_AVATAR:
                     new SetAvatar(socket);
+                    break;
+                case S_SET_CLASS:
+                    new SetClass(socket);
                     break;
                 case S_SET_NAME:
                     new SetName(socket);

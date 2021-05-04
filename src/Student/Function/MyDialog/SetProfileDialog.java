@@ -3,29 +3,31 @@ package Student.Function.MyDialog;
 import Basic.Command;
 import Student.Bean.Student;
 import Student.Function.PictureFileFilter;
+import Teacher.Bean.Teacher;
 import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 import java.util.Locale;
+import java.util.Vector;
 
 import static Basic.Login.HOST;
 import static Basic.Login.PORT;
 
 public class SetProfileDialog extends JDialog implements ActionListener {
-    JButton uploadBtn, confirmAvatarBtn, confirmNameBtn;
+    JButton uploadBtn, confirmAvatarBtn, confirmNameBtn, confirmClassBtn, confirmQuitBtn;
 
     JFileChooser jfc;
     File newAvatar;
     ImageIcon imageIcon;
     JLabel avatar;
-    JTextField setNameField;
+    JTextField setNameField, setClassField;
+    JList<Teacher> classList;
 
     Student student;
 
@@ -36,8 +38,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         setLayout(null);
         setTitle("修改个人资料");
         setModal(true);
-        setSize(600, 700);
-        setLocationRelativeTo(null);
+        setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         this.imageIcon = imageIcon;
@@ -98,13 +99,60 @@ public class SetProfileDialog extends JDialog implements ActionListener {
 
 
         JLabel setClassLabel = new JLabel("加入班级");
-        JLabel quitClassLabel = new JLabel("退出班级");
         setClassLabel.setFont(setProFont);
-        quitClassLabel.setFont(setProFont);
         setClassLabel.setBounds(30, 340, 200, 20);
-        quitClassLabel.setBounds(30, 500, 200, 20);
         add(setClassLabel);
+        JLabel classHintLabel = new JLabel("输入班级的序号以加入班级");
+        classHintLabel.setFont(new Font("微软雅黑", Font.BOLD, 12));
+        classHintLabel.setBounds(30, 375, 200, 20);
+        add(classHintLabel);
+        setClassField = new JTextField(20);
+        setClassField.setFont(setProFont);
+        setClassField.setBounds(50, 400, 300, 40);
+        add(setClassField);
+        confirmClassBtn = new JButton("确定加入");
+        confirmClassBtn.setFont(setAvatarFont);
+        confirmClassBtn.setFocusable(false);
+        confirmClassBtn.setFocusPainted(false);
+        confirmClassBtn.setBounds(400, 400, 110, 65);
+        confirmClassBtn.addActionListener(this);
+        add(confirmClassBtn);
+
+        JLabel quitClassLabel = new JLabel("退出班级");
+        quitClassLabel.setFont(setProFont);
+        quitClassLabel.setBounds(30, 500, 200, 20);
         add(quitClassLabel);
+
+
+        Vector<Teacher> classVector = new Vector<>();
+        try {
+            NetGetClass netGetClass = new NetGetClass(student, classVector);
+            if (netGetClass.getResultCode().equals("1")) {
+                setSize(600, 800);
+                setLocationRelativeTo(null);
+                classList = new JList<>(classVector);
+                classList.setFont(setProFont);
+                JScrollPane classPane = new JScrollPane(classList);
+                classPane.setBounds(30, 530, 380, 200);
+                add(classPane);
+                confirmQuitBtn = new JButton("确定退出");
+                confirmQuitBtn.setFont(setAvatarFont);
+                confirmQuitBtn.setBounds(430, 570, 110, 65);
+                confirmQuitBtn.addActionListener(this);
+                confirmQuitBtn.setFocusable(false);
+                confirmQuitBtn.setFocusPainted(false);
+                add(confirmQuitBtn);
+            } else {
+                JLabel classLabel = new JLabel("当前还未加入任何班级");
+                classLabel.setFont(setProFont);
+                classLabel.setBounds(50, 530, 200, 100);
+                add(classLabel);
+                setSize(600, 700);
+                setLocationRelativeTo(null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         setVisible(true);
@@ -146,7 +194,9 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         if (e.getSource().equals(confirmNameBtn)) {
             try {
                 String newName = setNameField.getText();
-                if (newName.length() > 25)
+                if (newName.length() == 0)
+                    JOptionPane.showMessageDialog(null, "输入不能为空");
+                else if (newName.length() > 25)
                     JOptionPane.showMessageDialog(null, "名称过长");
                 else if (!newName.equals(student.getName())) {
                     NetSetName netSetName = new NetSetName(student, newName);
@@ -158,6 +208,46 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                 }
             } catch (IOException ioException) {
                 ioException.printStackTrace();
+            }
+        }
+        if (e.getSource().equals(confirmClassBtn)) {
+            try {
+                String classNum = setClassField.getText();
+                if (classNum.length() == 0)
+                    JOptionPane.showMessageDialog(null, "输入不能为空");
+                else if (classNum.length() > 25)
+                    JOptionPane.showMessageDialog(null, "输入过长");
+                else {
+                    NetSetClass netSetClass = new NetSetClass(student, classNum);
+                    switch (netSetClass.getResultCode()) {
+                        case "1":
+                            JOptionPane.showMessageDialog(null, "加入成功");
+                            break;
+                        case "0":
+                            JOptionPane.showMessageDialog(null, "已经加入该班级！");
+                            break;
+                        case "-1":
+                            JOptionPane.showMessageDialog(null, "班级不存在，请重新输入");
+                            break;
+                    }
+                }
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        if (e.getSource().equals(confirmQuitBtn)) {
+            List<Teacher> teacherList = classList.getSelectedValuesList();
+            if (teacherList.size() != 0) {
+                if (JOptionPane.showConfirmDialog(null, "确定要退出班级吗", "", JOptionPane.YES_NO_OPTION) == 0) {
+                    Vector<Teacher> teacherVector = new Vector<>(teacherList);
+                    try {
+                        NetQuitClass netQuitClass = new NetQuitClass(student, teacherVector);
+                        if (netQuitClass.getResultCode().equals("1"))
+                            JOptionPane.showMessageDialog(null,"退出班级成功");
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -214,6 +304,78 @@ public class SetProfileDialog extends JDialog implements ActionListener {
             dos.writeUTF(newName);
             dos.flush();
             opw.println(JSON.toJSONString(student));
+            resultCode = dis.readUTF();
+            socket.close();
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
+    }
+
+    private static class NetSetClass {
+        private final String resultCode;
+
+        public NetSetClass(Student student, String classNum) throws IOException {
+            Socket socket = new Socket(HOST, PORT);
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            dos.writeUTF(Command.S_SET_CLASS);
+            dos.flush();
+            dos.writeUTF(classNum);
+            dos.flush();
+            opw.println(JSON.toJSONString(student));
+            resultCode = dis.readUTF();
+            socket.close();
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
+    }
+
+    private static class NetGetClass {
+        String resultCode;
+
+        public NetGetClass(Student student, Vector<Teacher> teacherVector) throws IOException {
+            Socket socket = new Socket(HOST, PORT);
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            dos.writeUTF(Command.S_GET_CLASS);
+            dos.flush();
+            opw.println(JSON.toJSONString(student));
+            resultCode = dis.readUTF();
+            if (resultCode.equals("0")) {
+                socket.close();
+            } else if (resultCode.equals("1")) {
+                while (true) {
+                    Teacher teacher = JSON.parseObject(obr.readLine(), Teacher.class);
+                    if (teacher.getAccount().equals(""))
+                        break;
+                    teacherVector.add(teacher);
+                }
+            }
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
+    }
+
+    private static class NetQuitClass {
+        private final String resultCode;
+        public NetQuitClass(Student student, Vector<Teacher> teacherVector) throws IOException {
+            Socket socket = new Socket(HOST, PORT);
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            dos.writeUTF(Command.S_QUIT_CLASS);
+            dos.flush();
+            opw.println(JSON.toJSONString(student));
+            opw.println(JSON.toJSONString(teacherVector));
             resultCode = dis.readUTF();
             socket.close();
         }
