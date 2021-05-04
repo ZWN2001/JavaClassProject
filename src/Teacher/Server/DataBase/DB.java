@@ -32,77 +32,89 @@ public class DB {
             ServerMain.closeServer();
         }
         if (!hasInited){//初始化数据库
-            try {
-                Statement statement = connection.createStatement();
-////                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "questions" + " default charset utf8 COLLATE utf8_general_ci;");
-                statement.executeUpdate("USE questions;");
-////                statement.executeUpdate("DROP TABLE IF EXISTS choice;");
-////                statement.executeUpdate("DROP TABLE IF EXISTS judge;");
-                statement.executeUpdate("DROP TABLE IF EXISTS multiChoice;");
-////                statement.executeUpdate("DROP TABLE IF EXISTS subjective;");
+//            try {
+//                Statement statement = connection.createStatement();
+//                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "questions" + " default charset utf8 COLLATE utf8_general_ci;");
+//                statement.executeUpdate("USE questions;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS choice;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS judge;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS multiChoice;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS subjective;");
+//
+//                statement.executeUpdate("CREATE TABLE choice\n" +
+//                        "(\n" +
+//                        "    id         int auto_increment,\n " +
+//                        "    stem       char(255) not null,\n" +
+//                        "    optA       char(255) not null,\n" +
+//                        "    optB       char(255) not null,\n" +
+//                        "    optC       char(255) not null,\n" +
+//                        "    optD       char(255) not null,\n" +
+//                        "    mark       int       not null,\n" +
+//                        "    difficulty int       not null,\n" +
+//                        "    answer     char(8)   not null,\n" +
+//                        "\t constraint choice_pk\n" +
+//                        "    primary key (id)"+
+//                        ");");
 ////
-////                statement.executeUpdate("CREATE TABLE choice\n" +
-////                        "(\n" +
-////                        "    id         int not null,\n " +
-////                        "    stem       char(255) not null,\n" +
-////                        "    optA       char(255) not null,\n" +
-////                        "    optB       char(255) not null,\n" +
-////                        "    optC       char(255) not null,\n" +
-////                        "    optD       char(255) not null,\n" +
-////                        "    mark       int       not null,\n" +
-////                        "    difficulty int       not null,\n" +
-////                        "    answer     char(8)      not null\n" +
-////                        ");");
-////                statement.executeUpdate("CREATE TABLE judge\n" +
-////                        "(\n" +
-////                        "\t id int not null,\n" +
-////                        "\t stem char(255) not null,\n" +
-////                        "\t mark int not null,\n" +
-////                        "\t difficulty int not null,\n" +
-////                        "\t answer char(8) not null,\n" +
-////                        "\t constraint table_name_pk\n" +
-////                        "\t primary key (id));");
-                statement.executeUpdate("CREATE TABLE multiChoice\n" +
-                        "(\n" +
-                        "    id         int not null,\n " +
-                        "    stem       char(255) not null,\n" +
-                        "    optA       char(255) not null,\n" +
-                        "    optB       char(255) not null,\n" +
-                        "    optC       char(255) not null,\n" +
-                        "    optD       char(255) not null,\n" +
-                        "    mark       int       not null,\n" +
-                        "    difficulty int       not null,\n" +
-                        "    answer     char(50)  not null \n );");
-////                statement.executeUpdate("CREATE TABLE subjective\n" +
-////                        "(\n" +
-////                        "\t id int not null,\n" +
-////                        "\t stem char(255) not null,\n" +
-////                        "\t mark int not null,\n" +
-////                        "\t difficulty int not null,\n" +
-////                        "\t answer char(255) not null,\n" +
-////                        "\t constraint table_name_pk\n" +
-////                        "\t primary key (id));");
-                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "papers" + " default charset utf8 COLLATE utf8_general_ci;");
-                statement.executeUpdate("USE papers;");
-                statement.executeUpdate("DROP TABLE IF EXISTS paper;");
-                statement.executeUpdate("CREATE TABLE paper\n" +
-                        "(\n" +
-                        "\tid int not null,\n" +
-                        "\ttitle char(255) not null,\n" +
-                        "\tmark int not null,\n" +
-                        "\townerID int not null,\n" +
-                        "\towner char(255) not null,\n" +
-                        "\ttime char(255) not null,\n" +
-                        "\tquestions char(255) not null\n" +
-                        ");");
-
-                hasInited=true;
-                System.out.println("初始化数据库成功");
-            }catch (Exception e){
-                System.out.println("初始化数据库失败");
-                e.printStackTrace();
-                ServerMain.closeServer();
-            }
+//                statement.executeUpdate("CREATE TABLE judge\n" +
+//                        "(\n" +
+//                        "\t id int  auto_increment,\n" +
+//                        "\t stem char(255) not null,\n" +
+//                        "\t mark int not null,\n" +
+//                        "\t difficulty int not null,\n" +
+//                        "\t answer char(8) not null,\n" +
+//                        "\t constraint judge_pk\n" +
+//                        "\t primary key (id)" +
+//                        ");");
+//
+//                statement.executeUpdate("CREATE TABLE multiChoice\n" +
+//                        "(\n" +
+//                        "    id         int  auto_increment,\n " +
+//                        "    stem       char(255) not null,\n" +
+//                        "    optA       char(255) not null,\n" +
+//                        "    optB       char(255) not null,\n" +
+//                        "    optC       char(255) not null,\n" +
+//                        "    optD       char(255) not null,\n" +
+//                        "    mark       int       not null,\n" +
+//                        "    difficulty int       not null,\n" +
+//                        "    answer     char(50)  not null,\n " +
+//                        "\t constraint multiChoice_pk\n" +
+//                        "    primary key (id)"+
+//                        ");");
+//
+//                statement.executeUpdate("CREATE TABLE subjective\n" +
+//                        "(\n" +
+//                        "\t id int  auto_increment,\n" +
+//                        "\t stem char(255) not null,\n" +
+//                        "\t mark int not null,\n" +
+//                        "\t difficulty int not null,\n" +
+//                        "\t answer char(255) not null,\n" +
+//                        "\t constraint subjective_pk\n" +
+//                        "\t primary key (id));");
+//
+//                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "papers" + " default charset utf8 COLLATE utf8_general_ci;");
+//                statement.executeUpdate("USE papers;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS paper;");
+//                statement.executeUpdate("CREATE TABLE paper\n" +
+//                        "(\n" +
+//                        "\tid int auto_increment,\n" +
+//                        "\ttitle char(255) not null,\n" +
+//                        "\tmark int not null,\n" +
+//                        "\townerID int not null,\n" +
+//                        "\towner char(255) not null,\n" +
+//                        "\ttime char(255) not null,\n" +
+//                        "\tquestions char(255) not null,\n" +
+//                        "\t constraint paper_pk\n" +
+//                        "  primary key (id)"+
+//                        ");");
+//
+//                hasInited=true;
+//                System.out.println("初始化数据库成功");
+//            }catch (Exception e){
+//                System.out.println("初始化数据库失败");
+//                e.printStackTrace();
+//                ServerMain.closeServer();
+//            }
         }
         instance = this;
     }

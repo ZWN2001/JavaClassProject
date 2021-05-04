@@ -2,6 +2,7 @@ package Teacher.View.MyQuestions.SelectQuestion;
 
 import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_Subjective_C;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Select.QCard_Judge_Select;
+import Teacher.Util.Component.MyPanel.QuestionCards.Card_Select.QCard_Subjective_Select;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
@@ -33,7 +34,7 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
             panel.setPreferredSize(new Dimension(950,idList.length*400));
             if (idList.length>0) {
                 for (int i = 0; i < idList.length; i++) {
-                    QCard_Judge_Select panel1 = new QCard_Judge_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
+                    QCard_Subjective_Select panel1 = new QCard_Subjective_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
                     panel.add(panel1);
                     if (!AddPaperSelfPanel.statistician.getMySubjective().isEmpty()){
                         if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)(idList[i]))){
@@ -43,9 +44,11 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
                     int finalI = i;
                     panel1.isSelected.addItemListener(e -> {
                         if (panel1.isSelected.isSelected()) {
-                            if (!AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getId())) {
-                                AddPaperSelfPanel.statistician.addMySubjective(panel1.getId());
+                            if (!AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getQid())) {
+                                AddPaperSelfPanel.statistician.addMySubjective(panel1.getQid());
+                                AddPaperSelfPanel.statistician.addMySubjectiveIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
+                                AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
                                 AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
@@ -53,8 +56,11 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
                                 AddPaperSelfPanel.statisticianPanel.updateUI();
                             }
                         } else {
-                            if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getId())) {
+                            if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getQid())) {
+                               AddPaperSelfPanel.statistician.removeSubjective(panel1.getQid());
+                                AddPaperSelfPanel.statistician.removeSubjectiveIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
+                                AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
                                 AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);

@@ -43,9 +43,11 @@ public void init(){
                 int finalI = i;
                 panel1.isSelected.addItemListener(e -> {
                     if (panel1.isSelected.isSelected()) {
-                        if (!AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getId())) {
-                            AddPaperSelfPanel.statistician.addMyJudge(panel1.getId());
+                        if (!AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getQid())) {
+                            AddPaperSelfPanel.statistician.addMyJudge(panel1.getQid());
+                            AddPaperSelfPanel.statistician.addMyJudgeIDList(panel1.getId());
                             AddPaperSelfPanel.statistician.addChoseNum();
+                            AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
                             AddPaperSelfPanel.statistician.addMark(markList[finalI]);
                             AddPaperSelfPanel.container2.removeAll();
                             AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
@@ -54,9 +56,11 @@ public void init(){
                             AddPaperSelfPanel.statisticianPanel.updateUI();
                         }
                     } else {
-                        if (AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getId())) {
-                            AddPaperSelfPanel.statistician.removeJudge((Integer) panel1.getId());
+                        if (AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getQid())) {
+                            AddPaperSelfPanel.statistician.removeJudge((Integer) panel1.getQid());
+                            AddPaperSelfPanel.statistician.removeJudgeIDList(panel1.getId());
                             AddPaperSelfPanel.statistician.removeChoseNum();
+                            AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
                             AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
                             AddPaperSelfPanel.container2.removeAll();
                             AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);

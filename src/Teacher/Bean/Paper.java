@@ -15,8 +15,8 @@ public class Paper {
     String owner;
     String time;
     String examTime;//考试时长
-    int [] questions;
-    public Paper(int id,String title,int mark,String time,String examTime,String owner,String ownerID,int[] questions){
+    String questions;
+    public Paper(int id,String title,int mark,String time,String examTime,String owner,String ownerID,String questions){
         this.id=id;
         this.title=title;
         this.mark=mark;
@@ -66,13 +66,13 @@ public class Paper {
     public String getExamTime() {
         return examTime;
     }
-    public void setEexamTime(String endTime) {
+    public void setExamTime(String endTime) {
         this.examTime = examTime;
     }
-    public int[] getQuestions() {
+    public String getQuestions() {
         return questions;
     }
-    public void setQuestions(int[] questions) {
+    public void setQuestions(String questions) {
         this.questions = questions;
     }
 }

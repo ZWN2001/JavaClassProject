@@ -16,7 +16,7 @@ public class SubmitQuestion_MultiChoice_S {
     DB database = DB.instance;
 
     Question_MultiChoice question_multiChoice;
-    private static int id=0;
+//    private static int id=0;
     String stem;
     int mark;
     String optionA;
@@ -42,9 +42,9 @@ public class SubmitQuestion_MultiChoice_S {
         try {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO questions.multiChoice VALUES ('" + id + "','" + stem + "','" + optionA + "','" +
+            database.update("INSERT INTO questions.multiChoice VALUES ('" + null + "','" + stem + "','" + optionA + "','" +
                     optionB+ "','" + optionC+ "','" + optionD + "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-            id++;
+//            id++;
             // socket.close();
         }catch (Exception e){
             dos.writeUTF("-1");

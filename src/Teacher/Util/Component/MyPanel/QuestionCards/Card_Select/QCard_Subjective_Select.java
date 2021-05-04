@@ -40,4 +40,10 @@ public class QCard_Subjective_Select extends JPanel {
     public int getId(){
         return qCard_subjective_check.getId();
     }
+    public int getQid() {
+        return qid;
+    }
+    public int getDifficulty() {
+        return difficulty;
+    }
 }

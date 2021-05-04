@@ -46,6 +46,11 @@ public class QCard_Choice_Check extends JPanel {
     public int getId(){
         return id;
     }
+
+    public int getQid() {
+        return qid;
+    }
+
     public void removeBtn(){
         QCard_Choice_Check.this.checkTitle.remove(checkTitle.change);
         QCard_Choice_Check.this.checkTitle.remove(checkTitle.delete);

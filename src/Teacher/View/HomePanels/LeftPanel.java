@@ -150,25 +150,36 @@ public class LeftPanel extends JPanel {
         return buttonsPanel;
     }
     private  static JPanel bottomPanel(){
-        JPanel bottonPanel = new JPanel();
-        bottonPanel.setBackground(MyColor.LIGHT_BLUE_100);
-        bottonPanel.setLayout(new BorderLayout());
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(MyColor.LIGHT_BLUE_100);
+        bottomPanel.setLayout(new GridBagLayout());
 
-        Icon settingsIcon=new ImageIcon("src/Teacher/Util/Images/HomeImage/settings.png");
-        Icon exitIcon=new ImageIcon("src/Teacher/Util/Images/HomeImage/exit.png");
-        Icon helpIcon=new ImageIcon("src/Teacher/Util/Images/HomeImage/help.png");
-        Icon settingsIcon_L=new ImageIcon("src/Teacher/Util/Images/HomeImage/settings_L.png");
-        Icon exitIcon_L=new ImageIcon("src/Teacher/Util/Images/HomeImage/exit_L.png");
-        Icon helpIcon_L=new ImageIcon("src/Teacher/Util/Images/HomeImage/help_L.png");
+        JLabel label=new JLabel("版本号：v1.0.0");
+        label.setFont(MyFont.Font_16);
+        JLabel label1=new JLabel("Developed by 赵炜宁");
+        label1.setFont(MyFont.Font_16);
+        bottomPanel.add(label,new GBC(0,0).setInsets(0,0,10,0).setFill(GridBagConstraints.HORIZONTAL).setAnchor(GridBagConstraints.CENTER).setWeightx(1));
+        bottomPanel.add(label1,new GBC(0,1).setInsets(0,0,10,0).setFill(GridBagConstraints.HORIZONTAL).setAnchor(GridBagConstraints.CENTER).setWeightx(1));
+//        Icon exitIcon=new ImageIcon("src/Teacher/Util/Images/HomeImage/exit.png");
+//        Icon exitIcon_init=new ImageIcon("src/Teacher/Util/Images/HomeImage/exit_init.png");
+//        Icon exitIcon_pressed=new ImageIcon("src/Teacher/Util/Images/HomeImage/exit_init.png");
+//        TransparentButton exit = new TransparentButton(exitIcon_init,exitIcon,exitIcon_pressed);
+//       exit.addMouseListener(new MouseAdapter() {
+//           @Override
+//           public void mouseClicked(MouseEvent e) {
+//               super.mouseClicked(e);
+////               int n = JOptionPane.showConfirmDialog(null, "你会了吗?", "标题",JOptionPane.YES_NO_OPTION); //返回值为0或1
+////               if (n==0){
+////                   System.exit(0);
+////               }
+//               JDialog dialog=new JDialog((Dialog) null,"tuichu",true);
+//               dialog.setSize(30,40);
+//               dialog.setVisible(true);
+//           }
+//       });
+//        bottomPanel.add(exit,BorderLayout.CENTER);
 
-        TransparentButton settings = new TransparentButton(settingsIcon,settingsIcon_L);
-        TransparentButton exit = new TransparentButton(exitIcon,exitIcon_L);
-        TransparentButton help = new TransparentButton(helpIcon,helpIcon_L);
-        bottonPanel.add(settings,BorderLayout.WEST);
-        bottonPanel.add(exit,BorderLayout.CENTER);
-        bottonPanel.add(help,BorderLayout.EAST);
-
-        return bottonPanel;
+        return bottomPanel;
     }
 }
 

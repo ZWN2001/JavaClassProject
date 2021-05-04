@@ -16,7 +16,7 @@ public class SubmitQuestion_Judge_S {
     DB database = DB.instance;
 
     Question_Judge question_judge;
-    private static int id=0;
+//    private static int id=0;
     String stem;
     int mark;
     String answer;
@@ -34,8 +34,8 @@ public class SubmitQuestion_Judge_S {
         try {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO questions.judge VALUES ('" + id + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-            id++;
+            database.update("INSERT INTO questions.judge VALUES ('" + null + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
+//            id++;
             // socket.close();
         }catch (Exception e){
             dos.writeUTF("-1");

@@ -39,4 +39,10 @@ public class QCard_Judge_Select extends JPanel {
     public int getId(){
         return qCard_judge_check.getId();
     }
+    public int getQid(){
+        return qid;
+    }
+    public int getDifficulty() {
+        return difficulty;
+    }
 }

@@ -48,19 +48,24 @@ public class SelectQuestionPanel_MultiChoice extends JScrollPane {
                     int finalI = i;
                     panel1.isSelected.addItemListener(e -> {
                         if (panel1.isSelected.isSelected()) {
-                            if (!AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getId())) {
-                                AddPaperSelfPanel.statistician.addMyMultiChoice(panel1.getId());
+                            if (!AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getQid())) {
+                                AddPaperSelfPanel.statistician.addMyMultiChoice(panel1.getQid());
+                                AddPaperSelfPanel.statistician.addMyMultiChoiceIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
-                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
+                                AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
+                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);
+                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
                                 AddPaperSelfPanel.statisticianPanel.repaint();
                                 AddPaperSelfPanel.statisticianPanel.updateUI();
                             }
                         } else {
-                            if (AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getId())) {
-                                AddPaperSelfPanel.statistician.removeMultiChoice((Integer) panel1.getId());
+                            if (AddPaperSelfPanel.statistician.getMyMultiChoice().contains((Integer)panel1.getQid())) {
+                                AddPaperSelfPanel.statistician.removeMultiChoice((Integer) panel1.getQid());
+                                AddPaperSelfPanel.statistician.removeMultiChoiceIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
+                                AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
                                 AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
                                 AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);

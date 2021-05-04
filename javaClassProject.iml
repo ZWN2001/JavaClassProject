@@ -22,7 +22,9 @@
           <root url="jar://$MODULE_DIR$/beautyeye_lnf.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/beautyeye_lnf.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">

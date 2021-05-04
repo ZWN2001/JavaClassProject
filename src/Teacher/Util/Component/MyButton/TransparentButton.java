@@ -16,19 +16,21 @@ public class TransparentButton extends JButton implements MouseListener {
 
     Font myFont= MyFont.Font_16;
     private final Icon smallIcon;
-    private final Icon largeIcon;
+    private final Icon enteredIcon;
+    private final Icon pressedIcon;
     //IconButton,大小会发生变化
-    public TransparentButton(Icon smallIcon,Icon largeIcon) {
+    public TransparentButton(Icon smallIcon,Icon enteredIcon,Icon pressedIcon) {
         this.smallIcon=smallIcon;
-        this.largeIcon=largeIcon;
+        this.enteredIcon=enteredIcon;
+        this.pressedIcon=pressedIcon;
         init(smallIcon);
     }
 
     //icon+文字
-    public TransparentButton(Icon smallIcon,Icon largeIcon,String text) {
+    public TransparentButton(Icon smallIcon, Icon enteredIcon, String text, Icon pressedIcon) {
         this.smallIcon=smallIcon;
-        this.largeIcon=largeIcon;
-
+        this.enteredIcon=enteredIcon;
+        this.pressedIcon = pressedIcon;
         setHorizontalAlignment(SwingConstants.LEFT);
         setText(text);
         setFont(myFont);
@@ -47,14 +49,14 @@ public class TransparentButton extends JButton implements MouseListener {
     public void mouseClicked(MouseEvent e) { }
 
     @Override
-    public void mousePressed(MouseEvent e) { }
+    public void mousePressed(MouseEvent e) {setIcon(pressedIcon); }
 
     @Override
-    public void mouseReleased(MouseEvent e) { }
+    public void mouseReleased(MouseEvent e) { setIcon(enteredIcon);}
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        setIcon(largeIcon);
+        setIcon(enteredIcon);
     }
 
     @Override

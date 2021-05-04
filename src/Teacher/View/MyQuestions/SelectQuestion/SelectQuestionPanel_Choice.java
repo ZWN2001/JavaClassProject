@@ -48,9 +48,11 @@ public class SelectQuestionPanel_Choice extends JScrollPane{
                     int finalI = i;
                     panel1.isSelected.addItemListener(e -> {
                         if (panel1.isSelected.isSelected()) {
-                            if (!AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getId())) {
-                                AddPaperSelfPanel.statistician.addMyChoice(panel1.getId());
+                            if (!AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getQid())) {
+                                AddPaperSelfPanel.statistician.addMyChoice(panel1.getQid());
+                                AddPaperSelfPanel.statistician.addMyChoiceIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
+                                AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
                                 AddPaperSelfPanel.statistician.addMark(markList[finalI]);
                                 AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
@@ -60,9 +62,11 @@ public class SelectQuestionPanel_Choice extends JScrollPane{
                             }
                         }
                         else {
-                            if (AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getId())) {
-                                AddPaperSelfPanel.statistician.removeChoice((Integer) panel1.getId());
+                            if (AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getQid())) {
+                                AddPaperSelfPanel.statistician.removeChoice((Integer) panel1.getQid());
+                                AddPaperSelfPanel.statistician.removeChoiceIDList(panel1.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
+                                AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
                                 AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
                                 AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);

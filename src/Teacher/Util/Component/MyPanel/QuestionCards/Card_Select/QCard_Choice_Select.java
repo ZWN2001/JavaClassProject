@@ -40,4 +40,12 @@ public class QCard_Choice_Select extends JPanel {
     public int getId(){
         return qCard_choice_check.getId();
     }
+
+    public int getQid() {
+        return qCard_choice_check.getQid();
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
 }

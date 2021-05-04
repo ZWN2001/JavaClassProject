@@ -10,9 +10,10 @@ public class PaperPreviewPanel extends JPanel {
     int examTime;
     int difficulty;
 
-    public PaperPreviewPanel(){
-        PaperPreview_Title mainTitle=new PaperPreview_Title("test",2,2,2);
+    public PaperPreviewPanel(String paperName,int mark,int examTime,int difficulty,String QuestionString){
+        PaperPreview_Title mainTitle=new PaperPreview_Title(paperName,mark,examTime,difficulty);
         setLayout(new VFlowLayout());
         add(mainTitle);
+
     }
 }

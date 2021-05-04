@@ -16,7 +16,7 @@ public class SubmitQuestion_Subjective_S {
     DB database = DB.instance;
 
     Question_Subjective question_subjective;
-    private static int id=0;
+//    private static int id=0;
     String stem;
     int mark;
     String answer;
@@ -34,8 +34,8 @@ public class SubmitQuestion_Subjective_S {
         try {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO questions.subjective VALUES ('" + id + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-            id++;
+          database.update("INSERT INTO questions.subjective VALUES ('" + null + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
+//            id++;
             // socket.close();
         }catch (Exception e){
             dos.writeUTF("-1");
