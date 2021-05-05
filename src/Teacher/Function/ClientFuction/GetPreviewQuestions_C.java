@@ -1,5 +1,9 @@
 package Teacher.Function.ClientFuction;
 
+import Teacher.Bean.Question.Question_Choice;
+import Teacher.Bean.Question.Question_Judge;
+import Teacher.Bean.Question.Question_MultiChoice;
+import Teacher.Bean.Question.Question_Subjective;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -9,7 +13,10 @@ import static Teacher.Server.ServerMain.Address;
 import static Teacher.Server.ServerMain.PORT;
 
 public class GetPreviewQuestions_C {
-    int [] choices,multiChoices,judges,subjective;
+    Question_Choice[] choices;
+    Question_MultiChoice[] multiChoices;
+    Question_Judge[] judges;
+    Question_Subjective[] subjective;
     String command="GET_QUESTION_PREVIEW";
     private DataInputStream dis;//输入
     private DataOutputStream dos;//输出
@@ -25,10 +32,23 @@ public class GetPreviewQuestions_C {
         dos.flush();
 
         out.println(questionString);
-        choices= JSON.parseObject(in.readLine(),int[].class);
-        multiChoices=JSON.parseObject(in.readLine(),int[].class);
-        judges=JSON.parseObject(in.readLine(),int[].class);
-        subjective=JSON.parseObject(in.readLine(),int[].class);
+        choices= JSON.parseObject(in.readLine(),Question_Choice[].class);
+        multiChoices=JSON.parseObject(in.readLine(),Question_MultiChoice[].class);
+        judges=JSON.parseObject(in.readLine(),Question_Judge[].class);
+        subjective=JSON.parseObject(in.readLine(),Question_Subjective[].class);
         socket.close();
+    }
+
+    public Question_Choice[] getChoices() {
+        return choices;
+    }
+    public Question_MultiChoice[] getMultiChoices() {
+        return multiChoices;
+    }
+    public Question_Judge[] getJudges() {
+        return judges;
+    }
+    public Question_Subjective[] getSubjective() {
+        return subjective;
     }
 }

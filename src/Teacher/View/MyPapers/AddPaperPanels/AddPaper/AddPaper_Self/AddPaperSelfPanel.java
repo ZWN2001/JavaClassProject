@@ -1,4 +1,4 @@
-package Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self;
+package Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self;
 
 import Teacher.Bean.Statistician_SelfAdd;
 import Teacher.Util.AdapterAndHelper.GBC;
@@ -18,9 +18,11 @@ public class AddPaperSelfPanel extends JPanel {
         container2.setLayout(new BorderLayout());
         container.add(new AddPaper_Self_CheckQuestion());
         container2.add(statisticianPanel);
-        setLayout(new GridBagLayout());
-        add(container,new GBC(0,0).setFill(GridBagConstraints.BOTH).setWeight(1,0.7));
-        add(container2,new GBC(0,1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
+        setLayout(new GridBagLayout());
+        add(container,new GBC(0,0).setFill(GridBagConstraints.BOTH).setWeight(1,0.95));
+        add(container2,new GBC(0,1).setFill(GridBagConstraints.BOTH).setWeight(1,0.05));
+        repaint();
+        updateUI();
     }
 }

@@ -23,6 +23,14 @@ public class MyTextArea_Colorful extends JPanel {
         init(row, col, title);
         textArea.setText(text);
     }
+    public  MyTextArea_Colorful(int row,int col,String title,String text,boolean able){
+        this.row=row;
+        this.col=col;
+        this.title=title;
+        init(row, col, title);
+        textArea.setText(text);
+        textArea.setEnabled(able);
+    }
     public void init(int row,int col,String title){
         setLayout(new VFlowLayout(true,true));
 

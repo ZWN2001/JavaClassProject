@@ -49,9 +49,7 @@ public class SubmitQuestion_Choice_S {
             dos.flush();
             database.update("INSERT INTO questions.choice VALUES ('" + 0 + "','" + stem + "','" + optionA + "','" +
                     optionB+ "','" + optionC+ "','" + optionD + "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-//        id++;
 
-       // socket.close();
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

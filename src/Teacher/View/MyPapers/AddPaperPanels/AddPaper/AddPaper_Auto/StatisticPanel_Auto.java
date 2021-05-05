@@ -1,4 +1,4 @@
-package Teacher.View.MyPapers.AddPaperPanels.AddPaper_Auto;
+package Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Auto;
 
 import Teacher.Bean.Statistician_AutoAdd;
 import Teacher.Util.AdapterAndHelper.GBC;
@@ -8,11 +8,13 @@ import Teacher.Util.MyFont;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class StatisticPanel_Auto extends JPanel {
-
+    String paperName1,examTime1;
     public StatisticPanel_Auto(Statistician_AutoAdd statistician){
         setLayout(new GridBagLayout());
         JLabel titleLabel= new JLabel("已选"+statistician.getAllChoseNum()+"题");
@@ -20,12 +22,14 @@ public class StatisticPanel_Auto extends JPanel {
         JLabel averageDifficulty_Label=new JLabel("该份试卷总体难度系数:"+statistician.getAverageDifficulty());
         averageDifficulty_Label.setFont(MyFont.Font_14);
 
+        paperName1=statistician.getPaperName();
+        examTime1=statistician.getExamTime();
         JLabel paperNameLabel=new JLabel("试卷名称：");
         paperNameLabel.setFont(MyFont.Font_14);
-        MyTextArea_Normal paperName=new MyTextArea_Normal(1,10);
+        MyTextArea_Normal paperName=new MyTextArea_Normal(1,10,"",paperName1,false);
         JLabel examTimeLabel=new JLabel("答题时间：");
         examTimeLabel.setFont(MyFont.Font_14);
-        MyTextArea_Normal examTime=new MyTextArea_Normal(1,20);
+        MyTextArea_Normal examTime=new MyTextArea_Normal(1,20,"",examTime1,true);
         JLabel titleLabel4=new JLabel("分钟");
         titleLabel4.setFont(MyFont.Font_14);
         BackgroundButton submitBtn=new BackgroundButton(" 前往预览 ");
@@ -43,7 +47,24 @@ public class StatisticPanel_Auto extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                 //获取自动生成的预览
+                if (AddPaperAutoPanel.ok()){
 
+                }
+            }
+        });
+        paperName.textArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                statistician.setPaperName(paperName.textArea.getText());
+            }
+        });
+        examTime.textArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                statistician.setExamTime(examTime.textArea.getText());
             }
         });
     }

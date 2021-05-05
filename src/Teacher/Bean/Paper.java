@@ -1,4 +1,7 @@
 package Teacher.Bean;
+
+import java.awt.*;
+
 /**
  * @ClassName: paper
  * @Description: 实体化试卷类
@@ -11,12 +14,21 @@ public class Paper {
     int id;
     String title;
     int mark;
-    String ownerID;
+    int ownerID;
     String owner;
     String time;
-    String examTime;//考试时长
+    int examTime;//考试时长
     String questions;
-    public Paper(int id,String title,int mark,String time,String examTime,String owner,String ownerID,String questions){
+    public Paper(String title,int mark,String time,int examTime,String owner,int ownerID,String questions){
+        this.title=title;
+        this.mark=mark;
+        this.time=time;
+        this.examTime=examTime;
+        this.owner=owner;
+        this.ownerID=ownerID;
+        this.questions=questions;
+    }
+    public Paper(int id,String title,int mark,String time,int examTime,String owner,int ownerID,String questions){
         this.id=id;
         this.title=title;
         this.mark=mark;
@@ -25,6 +37,7 @@ public class Paper {
         this.owner=owner;
         this.ownerID=ownerID;
         this.questions=questions;
+
     }
 
     public int getId() {
@@ -45,10 +58,10 @@ public class Paper {
     public void setMark(int mark) {
         this.mark = mark;
     }
-    public String getOwnerID() {
+    public int getOwnerID() {
         return ownerID;
     }
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
     public String getOwner() {
@@ -63,10 +76,10 @@ public class Paper {
     public void setTime(String time) {
         this.time = time;
     }
-    public String getExamTime() {
+    public int getExamTime() {
         return examTime;
     }
-    public void setExamTime(String endTime) {
+    public void setExamTime(int examTime) {
         this.examTime = examTime;
     }
     public String getQuestions() {

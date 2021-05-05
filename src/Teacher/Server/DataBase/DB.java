@@ -32,8 +32,8 @@ public class DB {
             ServerMain.closeServer();
         }
         if (!hasInited){//初始化数据库
-//            try {
-//                Statement statement = connection.createStatement();
+            try {
+                Statement statement = connection.createStatement();
 //                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "questions" + " default charset utf8 COLLATE utf8_general_ci;");
 //                statement.executeUpdate("USE questions;");
 //                statement.executeUpdate("DROP TABLE IF EXISTS choice;");
@@ -92,29 +92,30 @@ public class DB {
 //                        "\t constraint subjective_pk\n" +
 //                        "\t primary key (id));");
 //
-//                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "papers" + " default charset utf8 COLLATE utf8_general_ci;");
-//                statement.executeUpdate("USE papers;");
-//                statement.executeUpdate("DROP TABLE IF EXISTS paper;");
-//                statement.executeUpdate("CREATE TABLE paper\n" +
-//                        "(\n" +
-//                        "\tid int auto_increment,\n" +
-//                        "\ttitle char(255) not null,\n" +
-//                        "\tmark int not null,\n" +
-//                        "\townerID int not null,\n" +
-//                        "\towner char(255) not null,\n" +
-//                        "\ttime char(255) not null,\n" +
-//                        "\tquestions char(255) not null,\n" +
-//                        "\t constraint paper_pk\n" +
-//                        "  primary key (id)"+
-//                        ");");
-//
-//                hasInited=true;
-//                System.out.println("初始化数据库成功");
-//            }catch (Exception e){
-//                System.out.println("初始化数据库失败");
-//                e.printStackTrace();
-//                ServerMain.closeServer();
-//            }
+                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "papers" + " default charset utf8 COLLATE utf8_general_ci;");
+                statement.executeUpdate("USE papers;");
+                statement.executeUpdate("DROP TABLE IF EXISTS paper;");
+                statement.executeUpdate("CREATE TABLE paper\n" +
+                        "(\n" +
+                        "\tid int auto_increment,\n" +
+                        "\ttitle char(255) not null,\n" +
+                        "\tmark int not null,\n" +
+                        "\townerID int not null,\n" +
+                        "\towner char(255) not null,\n" +
+                        "\ttime char(255) not null,\n" +
+                        "\texamTime int not null,\n" +
+                        "\tquestions text not null,\n" +
+                        "\t constraint paper_pk\n" +
+                        "  primary key (id)"+
+                        ");");
+
+                hasInited=true;
+                System.out.println("初始化数据库成功");
+            }catch (Exception e){
+                System.out.println("初始化数据库失败");
+                e.printStackTrace();
+                ServerMain.closeServer();
+            }
         }
         instance = this;
     }

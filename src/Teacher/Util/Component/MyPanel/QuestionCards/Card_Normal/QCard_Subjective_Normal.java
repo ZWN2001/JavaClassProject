@@ -17,12 +17,12 @@ public class QCard_Subjective_Normal extends JPanel {
     String stem;
     int mark;
 
-    public QCard_Subjective_Normal(String stem){
+    public QCard_Subjective_Normal(int id,int qid,String stem,int mark){
         this.id=id;
         this.qid=qid;
         this.stem=stem;
         this.mark=mark;
-        setLayout(new VFlowLayout());
+        setLayout(new VFlowLayout(true,true));
         examTitle=new QuestionCard_ExamTitle(qid, mark);
         stemArea=new QuestionCard_Stem(stem);
         answerArea=new QCard_AnswerArea_Subjective();

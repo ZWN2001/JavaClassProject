@@ -4,9 +4,9 @@ import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_Judge_C;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Select.QCard_Judge_Select;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaperSelfPanel;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.AddPaper_Self_CheckQuestion;
-import Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self.StatisticianPanel_Self;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.AddPaperSelfPanel;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.AddPaper_Self_CheckQuestion;
+import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.StatisticianPanel_Self;
 
 import javax.swing.*;
 import java.awt.*;

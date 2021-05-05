@@ -23,9 +23,13 @@ public class SubmitPaper_C {
         dos.writeUTF(COMMAND);
         dos.flush();
 
-        String json = JSON.toJSONString(paper);//使用JSON序列化对象传输过去
+        String json = JSON.toJSONString(paper);
         out.println(json);
         resultCode = Integer.parseInt(dis.readUTF());
         socket.close();
+    }
+
+    public int getResultCode() {
+        return resultCode;
     }
 }

@@ -19,8 +19,8 @@ public class PaperPreview_Title extends JPanel {
         difficultyLabel.setFont(MyFont.Font_16);
 
         add(paperNameLabel,new GBC(0,0,3,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,10,0));
-        add(markLabel,new GBC(0,1,1,1).setInsets(0,0,10,0));
-        add(examTimeLabel,new GBC(0,2,1,1));
-        add(difficultyLabel,new GBC(0,3,1,1));
+        add(markLabel,new GBC(0,1,1,1).setInsets(0,0,0,40));
+        add(examTimeLabel,new GBC(1,1,1,1).setInsets(0,40,0,40));
+        add(difficultyLabel,new GBC(2,1,1,1).setInsets(0,40,0,0));
     }
 }

@@ -1,4 +1,4 @@
-package Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self;
+package Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self;
 import Teacher.View.MyQuestions.SelectQuestion.SelectQuestionPanel_Choice;
 import Teacher.View.MyQuestions.SelectQuestion.SelectQuestionPanel_Judge;
 import Teacher.View.MyQuestions.SelectQuestion.SelectQuestionPanel_MultiChoice;

@@ -18,8 +18,8 @@ public class QuestionCard_ExamTitle extends JPanel {
         JLabel markLabel=new JLabel("分值:"+mark);
         markLabel.setFont(MyFont.Font_16);
 
-        add(qidLabel,new GBC(0,0).setInsets(0,0,0,20));
-        add(markLabel,new GBC(1,0).setInsets(0,0,0,20));
+        add(qidLabel,new GBC(0,0).setInsets(3,20,3,20).setAnchor(GridBagConstraints.WEST));
+        add(markLabel,new GBC(1,0).setInsets(3,0,3,20).setFill(GridBagConstraints.HORIZONTAL).setWeightx(1));
 
         setBackground(Color.WHITE);
     }

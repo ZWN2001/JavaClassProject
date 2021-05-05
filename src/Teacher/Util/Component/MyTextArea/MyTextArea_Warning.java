@@ -11,7 +11,7 @@ public class MyTextArea_Warning extends JPanel{
     int row=0,col=0;
     String title=" ";
     String warningText=" ";
-    JTextArea textArea;
+    public JTextArea textArea;
     public  MyTextArea_Warning(int row,int col,String title,String warningText){
         this.row=row;
         this.col=col;

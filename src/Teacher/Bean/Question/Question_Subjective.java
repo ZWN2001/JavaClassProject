@@ -1,8 +1,7 @@
 package Teacher.Bean.Question;
 
 public class Question_Subjective extends Question{
-    int qid = 0;
-    int kind = 2;
+    int id=0;
     String stem;
     int mark = 0;
     int difficulty=0;
@@ -14,7 +13,17 @@ public class Question_Subjective extends Question{
         this.mark = mark;
         this.difficulty=difficulty;
         this.answer=answer;
-//        this.myAnswer=myAnswer;
+    }
+    public Question_Subjective(int id,String stem, int mark, int difficulty,String answer) {
+        this.id=id;
+        this.stem = stem;
+        this.mark = mark;
+        this.difficulty=difficulty;
+        this.answer=answer;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setMark(int mark) {

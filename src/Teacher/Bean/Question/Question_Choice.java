@@ -2,6 +2,7 @@ package Teacher.Bean.Question;
 
 public class Question_Choice extends Question{
     int kind=0;
+    int id=0;
     int qid=0;
     String stem=" ";
     int mark=0;
@@ -22,6 +23,21 @@ public class Question_Choice extends Question{
         this.optionC=optionC;
         this.optionD=optionD;
         this.answer=answer;
+    }
+    public Question_Choice(int id,String stem, int mark, int difficulty, String optionA, String optionB, String optionC, String optionD,  String answer){
+        this.id=id;
+        this.stem=stem;
+        this.mark=mark;
+        this.difficulty=difficulty;
+        this.optionA=optionA;
+        this.optionB=optionB;
+        this.optionC=optionC;
+        this.optionD=optionD;
+        this.answer=answer;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setStem(String stem) {

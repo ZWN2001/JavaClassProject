@@ -10,11 +10,9 @@ import java.sql.SQLException;
 
 public class GetQuestionBank_Choice_S {
     Socket socket;
-
     DB database = DB.instance;
     PrintWriter out;
     BufferedReader in;
-
     ResultSet resultSet;
 
     public GetQuestionBank_Choice_S(Socket s) throws IOException, SQLException {

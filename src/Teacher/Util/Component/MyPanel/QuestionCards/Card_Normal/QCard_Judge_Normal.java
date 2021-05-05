@@ -22,7 +22,7 @@ public class QCard_Judge_Normal extends JPanel {
         this.qid=qid;
         this.stem=stem;
         this.mark=mark;
-        setLayout(new VFlowLayout());
+        setLayout(new VFlowLayout(true,true));
         examTitle=new QuestionCard_ExamTitle(qid, mark);
         stemArea=new QuestionCard_Stem(stem);
         answerArea=new QCard_AnswerArea_Judge();

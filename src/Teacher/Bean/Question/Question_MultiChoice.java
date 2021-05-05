@@ -2,6 +2,7 @@ package Teacher.Bean.Question;
 
 public class Question_MultiChoice extends Question{
     int kind=0;
+    int id;
     int qid=0;
     String stem=" ";
     int mark=0;
@@ -9,7 +10,6 @@ public class Question_MultiChoice extends Question{
     String optionB="null";
     String optionC="null";
     String optionD="null";
-    //    String myOption="E";
     String answer="A";
     int difficulty=0;
 
@@ -21,9 +21,22 @@ public class Question_MultiChoice extends Question{
         this.optionB=optionB;
         this.optionC=optionC;
         this.optionD=optionD;
-//        this.myOption=myOption;
         this.answer=answer;
+    }
+    public Question_MultiChoice(int id,String stem, int mark, int difficulty, String optionA, String optionB, String optionC, String optionD,  String answer){
+        this.id=id;
+        this.stem=stem;
+        this.mark=mark;
+        this.difficulty=difficulty;
+        this.optionA=optionA;
+        this.optionB=optionB;
+        this.optionC=optionC;
+        this.optionD=optionD;
+        this.answer=answer;
+    }
 
+    public int getId() {
+        return id;
     }
 
     public void setStem(String stem) {
@@ -41,9 +54,6 @@ public class Question_MultiChoice extends Question{
     public void setOptionD(String optionD) {
         this.optionD = optionD;
     }
-    //    public void setMyOption(String myOption) {
-//        this.myOption = myOption;
-//    }
     public void setMark(int mark) { this.mark = mark; }
     public void setAnswer(String answer) {
         this.answer = answer;

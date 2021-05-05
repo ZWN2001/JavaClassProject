@@ -10,7 +10,8 @@ import java.awt.*;
 import java.io.IOException;
 
 public class CheckQuestionPanel_Choice extends JScrollPane {
-
+    int i;
+    QCard_Choice_Check qCard_choice_check;
     public CheckQuestionPanel_Choice(){
             JPanel panel=new JPanel(new VFlowLayout());
             try {
@@ -26,9 +27,9 @@ public class CheckQuestionPanel_Choice extends JScrollPane {
                 String[] answerList = getQuestionBank_choice_c.getAnswerList();
                panel.setPreferredSize(new Dimension(950,350*idList.length));
                 if (idList.length>0) {
-                    for (int i = 0; i < idList.length; i++) {
-                        QCard_Choice_Check panel1 = new QCard_Choice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
-                        panel.add(panel1);
+                    for ( i = 0; i < idList.length; i++) {
+                        qCard_choice_check = new QCard_Choice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
+                        panel.add(qCard_choice_check);
                     }
                 }else {
                     panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));

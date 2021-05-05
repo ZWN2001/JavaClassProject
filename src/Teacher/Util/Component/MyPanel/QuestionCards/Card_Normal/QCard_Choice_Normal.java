@@ -30,7 +30,7 @@ public class QCard_Choice_Normal extends JPanel {
         this.optionC=optionC;
         this.optionD=optionD;
         this.mark=mark;
-        setLayout(new VFlowLayout());
+        setLayout(new VFlowLayout(true,true));
         examTitle=new QuestionCard_ExamTitle(qid, mark);
         stemArea=new QuestionCard_Stem(stem);
         answerArea=new QCard_AnswerArea_Choice(optionA, optionB, optionC, optionD);

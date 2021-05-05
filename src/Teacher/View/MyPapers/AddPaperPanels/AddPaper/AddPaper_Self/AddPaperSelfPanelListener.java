@@ -1,4 +1,4 @@
-package Teacher.View.MyPapers.AddPaperPanels.AddPaper_Self;
+package Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self;
 /**
  * @ClassName:
  * @Description: 泪目，用于监听出题状态

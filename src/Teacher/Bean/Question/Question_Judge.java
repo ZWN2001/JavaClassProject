@@ -2,18 +2,28 @@ package Teacher.Bean.Question;
 
 public class Question_Judge extends Question{
     int kind = 1;
+    int id=0;
     int qid = 0;
     String stem="null";
     int mark = 0;
-//    int myJudge = 2;
     String answer;
     int difficulty=0;
     public Question_Judge(String stem, int mark, int difficulty, String answer) {
         this.stem = stem;
         this.mark = mark;
         this.difficulty=difficulty;
-       // this.myJudge=myJudge;
         this.answer=answer;
+    }
+    public Question_Judge(int id,String stem, int mark, int difficulty, String answer) {
+        this.id=id;
+        this.stem = stem;
+        this.mark = mark;
+        this.difficulty=difficulty;
+        this.answer=answer;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setStem(String stem) {

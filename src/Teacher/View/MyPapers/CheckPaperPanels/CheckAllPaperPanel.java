@@ -1,5 +1,8 @@
 package Teacher.View.MyPapers.CheckPaperPanels;
 
+import Teacher.Bean.Paper;
+import Teacher.Function.ClientFuction.Paper.GetAllPaper_C;
+import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,15 +12,12 @@ import javax.swing.border.EmptyBorder;
 import static Teacher.Util.MyFont.Font_16;
 
 public class CheckAllPaperPanel extends JScrollPane {
-    int id;
-    String title;
-    int mark;
-    String owner;
-    String ownerID;
-    String time;
+    Paper[] paper;
+    int i;
+    SelectPaperCard selectPaperCard;
     public CheckAllPaperPanel(){
         JPanel panel=new JPanel(new VFlowLayout());
-        JLabel title=new JLabel("  我的试卷库");
+        JLabel title=new JLabel("我的试卷库");
         title.setHorizontalAlignment(0);
         title.setFont(Font_16);
 
@@ -27,10 +27,20 @@ public class CheckAllPaperPanel extends JScrollPane {
         title.setBorder(new CompoundBorder(border, margin));
         panel.add(title);
 
-//        for (int i=0;i<20;i++){
-//            SelectPaperCard selectPaperCard=new SelectPaperCard();
-//            panel.add(selectPaperCard);
-//        }
+        try{
+            GetAllPaper_C getPaper=new GetAllPaper_C();
+            paper=getPaper.getPapers();
+            if (paper.length>0){
+                for (i=0;i<paper.length;i++){
+                    selectPaperCard=new SelectPaperCard(paper[i].getId(),i+1,paper[i].getTitle(),paper[i].getMark(),paper[i].getTime(),paper[i].getOwner(),paper[i].getOwnerID());
+                }
+            }else {
+                panel.add(new MyTextArea_Warning(1,10,"提示","暂无试卷"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));
+        }
         getViewport().add(panel);
     }
 }

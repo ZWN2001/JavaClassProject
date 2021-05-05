@@ -1,11 +1,15 @@
 package Teacher.Server;
 
 
+import Teacher.Server.Action.GetPreviewQuestions_S;
 import Teacher.Server.Action.GetQuestionBankSituation_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Choice_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Judge_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_MultiChoice_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Subjective_S;
+import Teacher.Server.Action.Paper_S.GetAPaper_S;
+import Teacher.Server.Action.Paper_S.GetAllPaper_S;
+import Teacher.Server.Action.Paper_S.SubmitPaper_S;
 import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_Choice_S;
 import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_Judge_S;
 import Teacher.Server.Action.SubmitQuestion_S.SubmitQuestion_MultiChoice_S;
@@ -61,11 +65,22 @@ public class ThreadHandle_Teacher extends Thread {
                 case "GET_QUESTION_BANK_SITUATION":
                     new GetQuestionBankSituation_S(socket);
                     break;
+                case "GET_QUESTION_PREVIEW":
+                    new GetPreviewQuestions_S(socket);
+                    break;
+                case "SUBMIT_PAPER":
+                    new SubmitPaper_S(socket);
+                    break;
+                case "GET_PAPERS":
+                    new GetAllPaper_S(socket);
+                    break;
+                case "GET_A_PAPER":
+                    new GetAPaper_S(socket);
+                    break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");
                     break;
             }
-          //  socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

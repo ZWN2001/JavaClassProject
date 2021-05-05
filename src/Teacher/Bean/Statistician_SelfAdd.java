@@ -15,6 +15,8 @@ public class Statistician_SelfAdd {
     private   int choseNum=0;
     private  int allMark=0;
     private int difficulty=0;
+    private String paperName="";
+    private String examTime="";
     private  ArrayList<Integer> myChoice=new ArrayList<>();
     private  ArrayList<Integer>myMultiChoice=new ArrayList<>();
     private  ArrayList<Integer>myJudge=new ArrayList<>();
@@ -44,12 +46,25 @@ public class Statistician_SelfAdd {
         this.allMark -= mark;
     }
 
+    public String getPaperName() {
+        return paperName;
+    }
+    public void setPaperName(String paperName) {
+        this.paperName = paperName;
+    }
+    public String getExamTime() {
+        return examTime;
+    }
+    public void setExamTime(String examTime) {
+        this.examTime = examTime;
+    }
+
     public void difficulty_add(int difficulty1){
         difficulty+=difficulty1;
         difficulty/=choseNum;
     }
     public void difficulty_reduce(int difficulty1){
-        if (Integer.parseInt(myChoice.toString())>0){
+        if (myChoice.size()>0){
             difficulty-=difficulty1;
             difficulty/=choseNum;
         }else {
