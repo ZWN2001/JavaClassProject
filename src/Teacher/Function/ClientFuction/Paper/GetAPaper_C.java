@@ -16,7 +16,7 @@ public class GetAPaper_C {
     private DataOutputStream dos;//输出
     private BufferedReader in;
     private PrintWriter out;
-    private Paper paper;
+    private final Paper paper;
 
     public GetAPaper_C(int id) throws IOException {
         this.socket = new Socket(Address, PORT);

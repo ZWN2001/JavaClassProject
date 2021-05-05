@@ -25,7 +25,7 @@ public class SubmitPaper_S {
         try {
             dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO papers.paper VALUES ('" + 0 + "','" + paper.getTitle() + "','" + paper.getMark() + "','" +
+            database.update("INSERT INTO papers.paper VALUES ('" + 0 + "','" + paper.getTitle() + "','" + paper.getMark() + "','" + paper.getDifficulty() + "','"+
                     paper.getOwnerID()+ "','" + paper.getOwner()+ "','" + paper.getTime() + "','" + paper.getExamTime()+ "','" + paper.getQuestions()+ "')");
 
         }catch (Exception e){

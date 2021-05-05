@@ -45,31 +45,79 @@ public class PaperPreviewPanel extends JScrollPane {
     QCard_Subjective_Normal qCard_subjective_normal;
     public static Container tipContainer=new Container();
     Paper paper;
-    public PaperPreviewPanel(String paperName,int mark,int examTime,int difficulty,String questionString){
+    BackgroundButton submitBtn;
+    JPanel buttonPanel;
+    BackgroundButton backBtn;
+    public PaperPreviewPanel(String paperName,int mark,int examTime,int difficulty,String questionString,boolean isPreview){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
         String time=simpleDateFormat.format(System.currentTimeMillis());
-        paper=new Paper(paperName,mark,time,examTime,"admin",123,questionString);
-        JPanel panel=new JPanel(new VFlowLayout(true,true));
+        paper=new Paper(paperName,mark,difficulty,time,examTime,"admin",123,questionString);
+        JPanel rootPanel=new JPanel(new VFlowLayout(true,true));
+        JPanel panel=new JPanel(new VFlowLayout());
+
         try {
              getPreviewQuestions = new GetPreviewQuestions_C(questionString);
         }catch (IOException e){
             e.printStackTrace();
         }
+
         choices=getPreviewQuestions.getChoices();
         multiChoices=getPreviewQuestions.getMultiChoices();
         judges=getPreviewQuestions.getJudges();
         subjectives=getPreviewQuestions.getSubjective();
 
-        JLabel previewTitle=new JLabel("试卷预览");
-        previewTitle.setFont(MyFont.Font_20);
-        BackgroundButton backBtn=new BackgroundButton("  返回  ");
-        BackgroundButton submitBtn=new BackgroundButton("  确认添加到题库  ");
-        tipContainer.setLayout(new BorderLayout());
-        JPanel buttonPanel=new JPanel(new GridBagLayout());
-        buttonPanel.add(previewTitle,new GBC(0,0).setInsets(10,0,0,0));
-        buttonPanel.add(backBtn,new GBC(1,0).setInsets(10,80,10,0).setAnchor(GridBagConstraints.WEST));
-        buttonPanel.add(submitBtn,new GBC(2,0,2,1).setInsets(10,20,10,0));
-        buttonPanel.add(tipContainer,new GBC(3,0).setInsets(10,40,10,0));
+        buttonPanel=new JPanel(new GridBagLayout());
+        if (isPreview){
+            JLabel previewTitle=new JLabel("试卷预览");
+            previewTitle.setFont(MyFont.Font_20);
+            backBtn=new BackgroundButton("  返回  ");
+            submitBtn=new BackgroundButton("  确认添加到题库  ");
+            tipContainer.setLayout(new BorderLayout());
+            buttonPanel.add(previewTitle,new GBC(0,0).setInsets(10,0,0,0));
+            buttonPanel.add(backBtn,new GBC(1,0).setInsets(10,80,0,0).setAnchor(GridBagConstraints.WEST));
+            buttonPanel.add(submitBtn,new GBC(2,0,2,1).setInsets(0,20,0,0));
+            buttonPanel.add(tipContainer,new GBC(3,0).setInsets(10,40,0,0));
+
+            submitBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    try {
+                        SubmitPaper_C submitPaper=new SubmitPaper_C(paper);
+                        if (submitPaper.getResultCode()==1){
+                            StatisticianPanel_Self.tipContainer.add(new MyTextArea_Colorful(1,4,"","添加成功",false));
+                            HomeFrame.content.removeAll();
+                            AddPaperSelfPanel.statistician=new Statistician_SelfAdd();
+                            AddPaperSelfPanel.statistician.setPaperName("");
+                            AddPaperSelfPanel.statistician.setExamTime("");
+                            AddPaperAutoPanel.statistician=new Statistician_AutoAdd();
+                            AddPaperAutoPanel.statistician.setPaperName("");
+                            AddPaperAutoPanel.statistician.setExamTime("");
+                            AddPaperSelfPanel.statisticianPanel.repaint();
+                            AddPaperSelfPanel.statisticianPanel.updateUI();
+                            HomeFrame.content.add(new MyTabbedPane_AddPaper(),0);
+                            AddPaperSelfPanel.container2.removeAll();
+                            AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
+                            AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
+                            AddPaperSelfPanel.statisticianPanel.repaint();
+                            AddPaperSelfPanel.statisticianPanel.updateUI();
+                            HomeFrame.content.repaint();
+                            HomeFrame.content.updateUI();
+                        }else {
+                            tipContainer.add(new MyTextArea_Colorful(1,4,"失败","添加失败",false));
+                            repaint();
+                            updateUI();
+                        }
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
+        }else {
+            backBtn=new BackgroundButton("  返回  ");
+            buttonPanel.add(backBtn,new GBC(0,0).setInsets(10,20,0,0).setAnchor(GridBagConstraints.WEST).setWeightx(1));
+        }
         panel.add(buttonPanel);
         PaperPreview_Title mainTitle=new PaperPreview_Title(paperName,mark,examTime,difficulty);
         panel.add(mainTitle);
@@ -110,7 +158,8 @@ public class PaperPreviewPanel extends JScrollPane {
                 panel.add(qCard_subjective_normal);
             }
         }
-        getViewport().add(panel);
+        rootPanel.add(panel);
+        getViewport().add(rootPanel);
 
         backBtn.addMouseListener(new MouseAdapter() {
             @Override
@@ -121,28 +170,6 @@ public class PaperPreviewPanel extends JScrollPane {
                 HomeFrame.content.updateUI();
             }
         });
-        submitBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                try {
-                    SubmitPaper_C submitPaper=new SubmitPaper_C(paper);
-                    if (submitPaper.getResultCode()==1){
-                        StatisticianPanel_Self.tipContainer.add(new MyTextArea_Colorful(1,4,"","添加成功",false));
-                        HomeFrame.content.removeAll();
-                        AddPaperSelfPanel.statistician=new Statistician_SelfAdd();
-                        AddPaperAutoPanel.statistician=new Statistician_AutoAdd();
-                        HomeFrame.content.add(new MyTabbedPane_AddPaper());
-                        HomeFrame.content.repaint();
-                        HomeFrame.content.updateUI();
-                    }else {
-                        tipContainer.add(new MyTextArea_Colorful(1,4,"失败","添加失败",false));
-                    }
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
 
-            }
-        });
     }
 }

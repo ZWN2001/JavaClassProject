@@ -15,7 +15,8 @@ public class GetAllPaper_S {
     PrintWriter out;
     BufferedReader in;
     ResultSet resultSet;
-
+    Paper [] papers;
+int i=0;
     public GetAllPaper_S(Socket socket) throws IOException, SQLException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -23,19 +24,17 @@ public class GetAllPaper_S {
         resultSet = database.query("SELECT * FROM papers.paper ORDER BY id");
         resultSet.last();
 
-        Paper [] papers=new Paper[resultSet.getRow()];
+        int n=resultSet.getRow();
+         papers=new Paper[n];
 
         resultSet.beforeFirst();
         for (int i = 0; resultSet.next(); i++) {
-            papers[i].setId(resultSet.getInt("id"));
-            papers[i].setTitle(resultSet.getString("title"));
-            papers[i].setMark(resultSet.getInt("mark"));
-            papers[i].setOwnerID(resultSet.getInt("ownerID"));
-            papers[i].setOwner(resultSet.getString("owner"));
-            papers[i].setTime(resultSet.getString("time"));
-            papers[i].setExamTime(resultSet.getInt("examTime"));
-            papers[i].setQuestions(resultSet.getString("questions"));
+            papers[i]=new Paper(resultSet.getInt("id"),resultSet.getString("title"),resultSet.getInt("mark"),
+                    resultSet.getInt("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
+                    resultSet.getString("owner"),resultSet.getInt("ownerID"), resultSet.getString("questions"));
+
         }
         out.println(JSON.toJSONString(papers));
+        System.out.println(JSON.toJSONString(papers));
     }
 }

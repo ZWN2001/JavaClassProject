@@ -18,8 +18,9 @@ public class Paper {
     String owner;
     String time;
     int examTime;//考试时长
-    String questions;
-    public Paper(String title,int mark,String time,int examTime,String owner,int ownerID,String questions){
+    String questions;//JSONString
+    int difficulty;
+    public Paper(String title,int mark,int difficulty,String time,int examTime,String owner,int ownerID,String questions){
         this.title=title;
         this.mark=mark;
         this.time=time;
@@ -27,8 +28,9 @@ public class Paper {
         this.owner=owner;
         this.ownerID=ownerID;
         this.questions=questions;
+        this.difficulty=difficulty;
     }
-    public Paper(int id,String title,int mark,String time,int examTime,String owner,int ownerID,String questions){
+    public Paper(int id,String title,int mark,int difficulty,String time,int examTime,String owner,int ownerID,String questions){
         this.id=id;
         this.title=title;
         this.mark=mark;
@@ -37,7 +39,7 @@ public class Paper {
         this.owner=owner;
         this.ownerID=ownerID;
         this.questions=questions;
-
+        this.difficulty=difficulty;
     }
 
     public int getId() {
@@ -87,5 +89,11 @@ public class Paper {
     }
     public void setQuestions(String questions) {
         this.questions = questions;
+    }
+    public int getDifficulty() {
+        return difficulty;
+    }
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
     }
 }

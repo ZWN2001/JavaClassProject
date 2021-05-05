@@ -45,9 +45,12 @@ public class LeftPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 LeftPanelVisible.setLeftPanelVisible(HomeFrame.leftPanel,HomeFrame.showUnVisibleBtn);
-                HomeFrame.content.validate();
-                Home.homeFrame.repaint();
+                HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
+                EventQueue.invokeLater(() ->{
+                    HomeFrame.content.repaint();
+                });
+                Home.homeFrame.repaint();
             }
         });
     }

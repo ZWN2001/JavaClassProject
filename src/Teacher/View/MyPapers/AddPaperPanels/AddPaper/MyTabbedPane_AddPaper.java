@@ -2,6 +2,7 @@ package Teacher.View.MyPapers.AddPaperPanels.AddPaper;
 
 import Teacher.Util.AdapterAndHelper.GBC;
 
+import Teacher.Util.Layout.VFlowLayout;
 import Teacher.Util.MyFont;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Auto.AddPaperAutoPanel;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.AddPaperSelfPanel;

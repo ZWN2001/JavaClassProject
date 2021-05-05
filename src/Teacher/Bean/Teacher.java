@@ -1,6 +1,10 @@
 package Teacher.Bean;
 
 public class Teacher {
+    public Teacher(String account, String name) {
+        this.account = account;
+        this.name = name;
+    }
 
     String account;
     String name;

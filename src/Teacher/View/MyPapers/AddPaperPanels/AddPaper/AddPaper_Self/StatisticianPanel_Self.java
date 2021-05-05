@@ -82,14 +82,14 @@ public class StatisticianPanel_Self extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);//这里使用弹压栈策略
-            if (paperName.getText()!=""&&examTime.getText()!=""&&Integer.parseInt(examTime.getText())>0) {
+            if (!paperName.getText().equals("") && !examTime.getText().equals("") &&Integer.parseInt(examTime.getText())>0) {
                 tipContainer.removeAll();
                 String[] questionString = new String[4];
                 questionString[0] = JSON.toJSONString(statistician.getMyChoiceIDList());
                 questionString[1] = JSON.toJSONString(statistician.getMyMultiChoiceIDList());
                 questionString[2] = JSON.toJSONString(statistician.getMyJudgeIDList());
                 questionString[3] = JSON.toJSONString(statistician.getMySubjectiveIDList());
-                HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(), statistician.getAllMark(), Integer.parseInt(examTime.getText()), statistician.getDifficulty(), JSON.toJSONString(questionString)), 0);
+                HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(), statistician.getAllMark(), Integer.parseInt(examTime.getText()), statistician.getDifficulty(), JSON.toJSONString(questionString),true), 0);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }else {

@@ -14,7 +14,7 @@ public class QCard_AnswerArea_Choice extends JPanel {
         this.optionB=optionB;
         this.optionC=optionC;
         this.optionD=optionD;
-        setLayout(new VFlowLayout());
+        setLayout(new VFlowLayout(true,true));
         ButtonGroup optionsGroup=new ButtonGroup();
         JRadioButton optA=new JRadioButton("A:"+optionA);
         JRadioButton optB=new JRadioButton("B:"+optionB);

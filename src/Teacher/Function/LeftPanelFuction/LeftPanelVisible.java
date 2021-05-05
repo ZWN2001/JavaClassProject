@@ -18,8 +18,10 @@ public class LeftPanelVisible {
         System.out.println("LeftPanelVisibleChanged,leftPanel.LeftPanelFlag:"+leftPanel.LeftPanelFlag);
         if (leftPanel.LeftPanelFlag) {
             leftPanel.repaint();
+            leftPanel.updateUI();
         }else {
             showUnVisibleBtn.repaint();
+            showUnVisibleBtn.updateUI();
         }
     }
 }

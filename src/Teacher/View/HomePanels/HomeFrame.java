@@ -35,8 +35,8 @@ public class HomeFrame extends JFrame {
         DefaultContentPanel defaultContentPanel=new DefaultContentPanel();
         content.add(defaultContentPanel);
         add(showUnVisibleBtn,new GBC(0,1).setWeighty(0).setFill(GridBagConstraints.VERTICAL));
-        add(leftPanel, new GBC(0, 1, 0.04, 1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
-        add(content, new GBC(1, 1, 0.96, 1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
+        add(leftPanel, new GBC(0, 1, 0.01, 1).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.BOTH));
+        add(content, new GBC(1, 1, 0.99, 1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
     }
 }
 //class WindowClose extends WindowAdapter {

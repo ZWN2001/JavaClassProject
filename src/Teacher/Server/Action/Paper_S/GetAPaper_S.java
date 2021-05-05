@@ -25,14 +25,13 @@ public class GetAPaper_S {
         id=Integer.parseInt(in.readLine());
 
         resultSet = database.query("SELECT * FROM papers.paper WHERE id ="+id);
-        paper.setId(resultSet.getInt("id"));
-        paper.setTitle(resultSet.getString("title"));
-        paper.setMark(resultSet.getInt("mark"));
-        paper.setOwnerID(resultSet.getInt("ownerID"));
-        paper.setOwner(resultSet.getString("owner"));
-        paper.setTime(resultSet.getString("time"));
-        paper.setExamTime(resultSet.getInt("examTime"));
-        paper.setQuestions(resultSet.getString("questions"));
+        resultSet.beforeFirst();
+        if (resultSet.next()) {
+            paper=new Paper(resultSet.getInt("id"),resultSet.getString("title"),resultSet.getInt("mark"),
+                    resultSet.getInt("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
+                    resultSet.getString("owner"),resultSet.getInt("ownerID"), resultSet.getString("questions"));
+
+        }
         out.println(JSON.toJSONString(paper));
     }
 }
