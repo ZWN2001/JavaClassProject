@@ -15,11 +15,12 @@ public class GetQuestionBank_Judge_C {
     private DataOutputStream dos;//输出
     private BufferedReader in;
     private PrintWriter out;
-    private int[] idList ;
-    private String[] stemList;
-    private int[] markList;
-    private int[]difficultyList;
-    private String[] answerList;
+
+    private final int[] idList ;
+    private final String[] stemList;
+    private final int[] markList;
+    private final int[]difficultyList;
+    private final String[] answerList;
 
     public GetQuestionBank_Judge_C() throws IOException {
         this.socket = new Socket(Address, PORT);

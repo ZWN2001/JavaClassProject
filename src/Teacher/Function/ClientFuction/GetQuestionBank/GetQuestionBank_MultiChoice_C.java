@@ -17,15 +17,15 @@ public class GetQuestionBank_MultiChoice_C {
     private PrintWriter out;
     //    private String Path;
 //    private String json;
-    private int[] idList ;
-    private String[] stemList;
-    private String[] optionA_List;
-    private String[] optionB_List;
-    private String[] optionC_List;
-    private String[] optionD_List;
-    private int[] markList;
-    private int[]difficultyList;
-    private String[] answerList;
+    private final int[] idList ;
+    private final String[] stemList;
+    private final String[] optionA_List;
+    private final String[] optionB_List;
+    private final String[] optionC_List;
+    private final String[] optionD_List;
+    private final int[] markList;
+    private final int[]difficultyList;
+    private final String[] answerList;
 
     public GetQuestionBank_MultiChoice_C() throws IOException {
         this.socket = new Socket(Address, PORT);

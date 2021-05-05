@@ -15,11 +15,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class BackgroundButton extends JButton implements MouseListener {
-    Color focusedColor=MyColor.focusedColor;
-    Color unFocusedColor= MyColor.unFocusedColor;
-    Color clickedColor=MyColor.clickedColor;
-    Font myFont= MyFont.Font_16;
-    String text=" ";
+    private Color focusedColor=MyColor.focusedColor;
+    private Color unFocusedColor= MyColor.unFocusedColor;
+    private Color clickedColor=MyColor.clickedColor;
+    private final Font myFont= MyFont.Font_16;
 
     //文字按钮
     public  BackgroundButton(String text){
@@ -52,7 +51,6 @@ public class BackgroundButton extends JButton implements MouseListener {
         this.clickedColor=color;
     }
     public void setMyText(String text){
-        this.text=text;
     }
     @Override
     public void mouseClicked(MouseEvent e) { }

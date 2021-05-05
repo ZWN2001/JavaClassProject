@@ -1,13 +1,11 @@
 package Teacher.Bean.Question;
 
 public class Question_Judge extends Question{
-    int kind = 1;
-    int id=0;
-    int qid = 0;
-    String stem="null";
-    int mark = 0;
-    String answer;
-    int difficulty=0;
+    private int id=0;
+    private String stem="null";
+    private int mark = 0;
+    private final String answer;
+    private int difficulty=0;
     public Question_Judge(String stem, int mark, int difficulty, String answer) {
         this.stem = stem;
         this.mark = mark;
@@ -25,7 +23,6 @@ public class Question_Judge extends Question{
     public int getId() {
         return id;
     }
-
     public void setStem(String stem) {
         this.stem = stem;
     }
@@ -40,12 +37,6 @@ public class Question_Judge extends Question{
     }
     public String toString() {
         return stem;
-    }
-    public int getQid() {
-        return qid;
-    }
-    public int getKind() {
-        return kind;
     }
     public int getDifficulty() {
         return difficulty;

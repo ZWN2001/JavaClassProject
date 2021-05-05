@@ -1,10 +1,11 @@
 package Teacher.Bean;
 
 public class Statistician_AutoAdd {
-    int allChoseNum=0;
-    double averageDifficulty=0;
+    private int allChoseNum=0;
+    private double averageDifficulty=0;
     private String paperName="";
     private String examTime="";
+
     public int getAllChoseNum() {
         return allChoseNum;
     }

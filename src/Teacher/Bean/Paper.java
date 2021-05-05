@@ -11,15 +11,15 @@ import java.awt.*;
  *
  */
 public class Paper {
-    int id;
-    String title;
-    int mark;
-    int ownerID;
-    String owner;
-    String time;
-    int examTime;//考试时长
-    String questions;//JSONString
-    int difficulty;
+    private int id;
+    private String title;
+    private int mark;
+    private int ownerID;
+    private String owner;
+    private String time;
+    private int examTime;//考试时长
+    private String questions;//JSONString
+    private int difficulty;
     public Paper(String title,int mark,int difficulty,String time,int examTime,String owner,int ownerID,String questions){
         this.title=title;
         this.mark=mark;

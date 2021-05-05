@@ -2,10 +2,10 @@ package Teacher.Bean;
 
 public class Class {
 
-    int id;
-    String teacher;
-    int teacherID;
-    String subject;
+    private int id;
+    private String teacher;
+    private int teacherID;
+    private String subject;
 
     public int getId() {
         return id;

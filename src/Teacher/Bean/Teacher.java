@@ -1,16 +1,18 @@
 package Teacher.Bean;
 
 public class Teacher {
-    public Teacher(String account, String name) {
-        this.account = account;
+
+    private final String ID;
+    private final String name;
+    private  String subject;
+
+    public Teacher(String ID, String name) {
+        this.ID = ID;
         this.name = name;
     }
 
-    String account;
-    String name;
-    String subject;
-    public String getAccount() {
-        return account;
+    public String getID() {
+        return ID;
     }
 
     public String getName() {
@@ -22,7 +24,7 @@ public class Teacher {
     }
     
     public String toString(){
-        return name+"("+account+")";
+        return name+"("+ID+")";
     }
 
 }

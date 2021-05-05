@@ -1,18 +1,15 @@
 package Teacher.Bean.Question;
 
 public class Question_Choice extends Question{
-    int kind=0;
-    int id=0;
-    int qid=0;
-    String stem=" ";
-    int mark=0;
-    String optionA="null";
-    String optionB="null";
-    String optionC="null";
-    String optionD="null";
-//    String myOption="E";
-    String answer="A";
-    int difficulty=0;
+    private  int id=0;
+    private String stem=" ";
+    private int mark=0;
+    private String optionA="null";
+    private String optionB="null";
+    private String optionC="null";
+    private String optionD="null";
+    private String answer="A";
+    private int difficulty=0;
 
     public Question_Choice(String stem, int mark, int difficulty, String optionA, String optionB, String optionC, String optionD,  String answer){
         this.stem=stem;
@@ -67,8 +64,6 @@ public class Question_Choice extends Question{
     public int getMark() {
         return mark;
     }
-    public int getQid() { return qid; }
-    public int getKind() { return kind; }
     public String getOptionA() {
         return optionA;
     }

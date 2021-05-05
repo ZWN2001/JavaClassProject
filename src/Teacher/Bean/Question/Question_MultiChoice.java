@@ -1,17 +1,15 @@
 package Teacher.Bean.Question;
 
 public class Question_MultiChoice extends Question{
-    int kind=0;
-    int id;
-    int qid=0;
-    String stem=" ";
-    int mark=0;
-    String optionA="null";
-    String optionB="null";
-    String optionC="null";
-    String optionD="null";
-    String answer="A";
-    int difficulty=0;
+    private int id;
+    private String stem=" ";
+    private int mark=0;
+    private String optionA="null";
+    private String optionB="null";
+    private String optionC="null";
+    private String optionD="null";
+    private String answer="A";
+    private int difficulty=0;
 
     public Question_MultiChoice(String stem, int mark, int difficulty, String optionA, String optionB, String optionC, String optionD,  String answer){
         this.stem=stem;
@@ -38,7 +36,6 @@ public class Question_MultiChoice extends Question{
     public int getId() {
         return id;
     }
-
     public void setStem(String stem) {
         this.stem = stem;
     }
@@ -66,9 +63,6 @@ public class Question_MultiChoice extends Question{
     public int getMark() {
         return mark;
     }
-    public int getQid() { return qid; }
-    public int getKind() { return kind; }
-
     public String getOptionA() {
         return optionA;
     }
@@ -81,10 +75,6 @@ public class Question_MultiChoice extends Question{
     public String getOptionD() {
         return optionD;
     }
-
-    //    public String getMyOption() {
-//        return myOption;
-//    }
     public String getStem() {
         return stem;
     }
