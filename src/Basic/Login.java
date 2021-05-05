@@ -1,7 +1,6 @@
 package Basic;
 
 import Student.Bean.Student;
-import Student.Frame.Main;
 import Student.Frame.MainFrame;
 import Student.Server.Server;
 import com.alibaba.fastjson.JSON;
@@ -65,16 +64,16 @@ class LoginFrame extends JFrame {
             } else {
                 Student student = new Student(accountText.getText(), String.valueOf(passwordText.getPassword()));
                 try {
-                    TempLogin tempLogin = new TempLogin(student);
-                    if (tempLogin.getResultCode().equals("1")) {
-                        student.setName(tempLogin.getName());
-                        EventQueue.invokeLater(() -> new MainFrame(student, tempLogin.img));
+                    NetStudentLogin netLogin = new NetStudentLogin(student);
+                    if (netLogin.getResultCode().equals("1")) {
+                        student.setName(netLogin.getName());
+                        EventQueue.invokeLater(() -> new MainFrame(student, netLogin.img));
                         this.dispose();
                     }
-                    if (tempLogin.getResultCode().equals("0")) {
+                    if (netLogin.getResultCode().equals("0")) {
                         JOptionPane.showMessageDialog(null, "账号不存在", "登录失败", JOptionPane.ERROR_MESSAGE);
                     }
-                    if (tempLogin.getResultCode().equals("-1")) {
+                    if (netLogin.getResultCode().equals("-1")) {
                         JOptionPane.showMessageDialog(null, "密码错误", "登录失败", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (IOException ioException) {
@@ -88,7 +87,7 @@ class LoginFrame extends JFrame {
         teacherLoginBtn.setFont(myFont);
         JButton registerBtn = new JButton("注册");
         registerBtn.setFont(myFont);
-        registerBtn.addActionListener(e -> new TempRegister(this));
+        registerBtn.addActionListener(e -> new RegisterFrame(this));
         JLabel accountLabel = new JLabel("账号: ");
         accountLabel.setFont(myFont);
         accountText.setPreferredSize(new Dimension(30, 25));
@@ -147,7 +146,7 @@ class LoginFrame extends JFrame {
 //
     }
 
-    private static class TempLogin {
+    private static class NetStudentLogin {
         Socket socket = new Socket("LAPTOP-V7DQD3F1", Server.PORT);
         PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -157,7 +156,7 @@ class LoginFrame extends JFrame {
         ImageIcon img;
         String path;
 
-        public TempLogin(Student student) throws IOException {
+        public NetStudentLogin(Student student) throws IOException {
             dos.writeUTF(Command.S_LOGIN);
             dos.flush();
             opw.println(JSON.toJSONString(student));

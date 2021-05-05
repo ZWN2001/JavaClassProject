@@ -10,15 +10,14 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Arrays;
 
-public class TempRegister extends JFrame {
+public class RegisterFrame extends JFrame {
 
-    public TempRegister(JFrame parentFrame) {
+    public RegisterFrame(JFrame parentFrame) {
         parentFrame.setVisible(false);
         setSize(600, 400);
         setResizable(false);
         setLocationRelativeTo(null);
-        JPanel panel = new JPanel(new GridLayout(5, 2));
-        add(panel);
+        JPanel studentPanel = new JPanel(new GridLayout(5, 2));
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -26,6 +25,12 @@ public class TempRegister extends JFrame {
                 parentFrame.setVisible(true);
             }
         });
+
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("学生注册",studentPanel);
+        tabbedPane.addTab("教师注册",new JPanel());
+        add(tabbedPane);
 
         JLabel accountLabel = new JLabel("输入账号");
         JLabel nameLabel = new JLabel("输入姓名");
@@ -48,7 +53,7 @@ public class TempRegister extends JFrame {
             else {
                 Student student = new Student(nameText.getText(), accountText.getText(), String.valueOf(passwordField.getPassword()));
                 try {
-                    NetRegister netRegister = new NetRegister(student);
+                    NetStudentRegister netRegister = new NetStudentRegister(student);
                     if (netRegister.getResultCode().equals("1")) {
                         JOptionPane.showMessageDialog(null, "注册成功！");
                         parentFrame.setVisible(true);
@@ -67,24 +72,24 @@ public class TempRegister extends JFrame {
             parentFrame.setVisible(true);
         });
 
-        panel.add(accountLabel);
-        panel.add(accountText);
-        panel.add(nameLabel);
-        panel.add(nameText);
-        panel.add(pwLabel);
-        panel.add(passwordField);
-        panel.add(conPwLabel);
-        panel.add(conPwField);
-        panel.add(confirm);
-        panel.add(cancel);
+        studentPanel.add(accountLabel);
+        studentPanel.add(accountText);
+        studentPanel.add(nameLabel);
+        studentPanel.add(nameText);
+        studentPanel.add(pwLabel);
+        studentPanel.add(passwordField);
+        studentPanel.add(conPwLabel);
+        studentPanel.add(conPwField);
+        studentPanel.add(confirm);
+        studentPanel.add(cancel);
 
         setVisible(true);
     }
 
-    private static class NetRegister {
+    private static class NetStudentRegister {
         private final String resultCode;
 
-        public NetRegister(Student student) throws Exception {
+        public NetStudentRegister(Student student) throws Exception {
             Socket socket = new Socket(Login.HOST, Login.PORT);
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));

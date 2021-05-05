@@ -22,6 +22,7 @@ public class TestTimerLabel extends JLabel {
                     hour--;
                     if(hour < 0){
                         JOptionPane.showMessageDialog(null,"考试结束，已自动提交");
+                        paperPanel.getUploadPaperDialog().dispose();
                         paperPanel.getMainFrame().examEnd(paperPanel);
                         cancel();
                     }

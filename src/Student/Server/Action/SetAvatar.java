@@ -28,7 +28,6 @@ public class SetAvatar {
         if (resultSet.next()) {
             dos.writeUTF("1");
             dos.flush();
-            System.out.println("已发送返回值1");
             getFile(Server.PATH);
             database.update("UPDATE exam.student SET `image` = '" + Server.PATH + "/" + student.getAccount() + suffix + "' WHERE `account` = " + student.getAccount());
         } else {
@@ -40,16 +39,12 @@ public class SetAvatar {
     public void getFile(String path) throws IOException {//接收文件的方法，直接用即可,参数为存放路径
         FileOutputStream fos;
         // 文件名
-        System.out.println("0");
         suffix = dis.readUTF();
-        System.out.println("接收到文件的后缀" + suffix);
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
         }
-        System.out.println("0");
         File file = new File(directory.getAbsolutePath() + File.separatorChar + student.getAccount() + suffix);
-        System.out.println("0");
         this.path = file.getAbsolutePath().replace('\\', '/');
         System.out.println(this.path);
         fos = new FileOutputStream(file);
@@ -60,6 +55,5 @@ public class SetAvatar {
             fos.write(bytes, 0, length);
             fos.flush();
         }
-        System.out.println("======== 文件接收成功========");
     }
 }
