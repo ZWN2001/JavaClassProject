@@ -49,6 +49,7 @@ public class DbConnection {
         statement2.executeUpdate(sql);
     }
 
+
     public void close() throws SQLException {
         if (conn != null)
             conn.close();

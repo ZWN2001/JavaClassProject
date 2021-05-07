@@ -1,6 +1,8 @@
 package Student.Server;
 
 import Student.Server.Action.*;
+import Teacher.Server.Action.GetPreviewQuestions_S;
+
 import static Basic.Command.*;
 
 import java.io.DataInputStream;
@@ -27,8 +29,14 @@ public class ThreadHandle extends Thread {
                 case CLOSER_SERVER:
                     Server.closeServer();
                     break;
+                case GET_QUESTION_PREVIEW:
+                    new GetPreviewQuestions_S(socket);
+                    break;
                 case S_GET_CLASS:
                     new GetClass(socket);
+                    break;
+                case S_GET_EXAM:
+                    new GetExam(socket);
                     break;
                 case S_LOGIN:
                     new Login(socket);
@@ -53,6 +61,9 @@ public class ThreadHandle extends Thread {
                     break;
                 case S_SET_PASSWORD:
                     new SetPassword(socket);
+                    break;
+                case UPLOAD_ANSWER:
+                    new UploadAnswer(socket);
                     break;
                 default:
                     System.out.println("未知命令，socket关闭");

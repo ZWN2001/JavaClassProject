@@ -7,12 +7,13 @@ import Teacher.Util.AdapterAndHelper.GBC;
 import java.awt.*;
 
 public class MultiChoicePanel extends QuestionPanel{
+    private final MyCheckBox cbA,cbB,cbC,cbD;
     public MultiChoicePanel(Question_MultiChoice question, int num) {
         super(question, num);
-        MyCheckBox cbA = new MyCheckBox("A. "+question.getOptionA());
-        MyCheckBox cbB = new MyCheckBox("B. "+question.getOptionB());
-        MyCheckBox cbC = new MyCheckBox("C. "+question.getOptionC());
-        MyCheckBox cbD = new MyCheckBox("D. "+question.getOptionD());
+        cbA = new MyCheckBox("A. "+question.getOptionA());
+        cbB = new MyCheckBox("B. "+question.getOptionB());
+        cbC = new MyCheckBox("C. "+question.getOptionC());
+        cbD = new MyCheckBox("D. "+question.getOptionD());
 
         cbA.setFont(font);
         cbB.setFont(font);
@@ -28,5 +29,19 @@ public class MultiChoicePanel extends QuestionPanel{
         add(cbB,new GBC(0,3,10,1).setAnchor(GridBagConstraints.WEST));
         add(cbC,new GBC(0,4,10,1).setAnchor(GridBagConstraints.WEST));
         add(cbD,new GBC(0,5,10,1).setAnchor(GridBagConstraints.WEST));
+    }
+
+    @Override
+    public String getAnswer() {
+        String answer = "";
+        if (cbA.getButton().isSelected())
+            answer=answer.concat("A");
+        if (cbB.getButton().isSelected())
+            answer=answer.concat("B");
+        if (cbC.getButton().isSelected())
+            answer=answer.concat("C");
+        if (cbD.getButton().isSelected())
+            answer=answer.concat("D");
+        return answer;
     }
 }

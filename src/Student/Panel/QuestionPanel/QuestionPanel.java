@@ -21,6 +21,7 @@ public abstract class QuestionPanel extends JPanel {
         stemArea.setFont(font);
         add(numLabel,new GBC(0,0,1,1).setAnchor(GridBagConstraints.WEST));
         add(stemArea,new GBC(1,0,1,2).setAnchor(GridBagConstraints.WEST));
-
     }
+
+    public abstract String getAnswer();
 }

@@ -8,13 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ChoicePanel extends QuestionPanel{
+    private final MyRadioButton rbA,rbB,rbC,rbD;
     public ChoicePanel(Question_Choice question,int num){
         super(question,num);
 
-        MyRadioButton rbA = new MyRadioButton("A. "+question.getOptionA());
-        MyRadioButton rbB = new MyRadioButton("B. "+question.getOptionB());
-        MyRadioButton rbC = new MyRadioButton("C. "+question.getOptionC());
-        MyRadioButton rbD = new MyRadioButton("D. "+question.getOptionD());
+        rbA = new MyRadioButton("A. "+question.getOptionA());
+        rbB = new MyRadioButton("B. "+question.getOptionB());
+        rbC = new MyRadioButton("C. "+question.getOptionC());
+        rbD = new MyRadioButton("D. "+question.getOptionD());
         ButtonGroup group = new ButtonGroup();
 
         rbA.setFont(font);
@@ -34,5 +35,18 @@ public class ChoicePanel extends QuestionPanel{
         add(rbB,new GBC(0,3,10,1).setAnchor(GridBagConstraints.WEST));
         add(rbC,new GBC(0,4,10,1).setAnchor(GridBagConstraints.WEST));
         add(rbD,new GBC(0,5,10,1).setAnchor(GridBagConstraints.WEST));
+    }
+
+    @Override
+    public String getAnswer() {
+        if (rbA.getButton().isSelected())
+            return "A";
+        else if(rbB.getButton().isSelected())
+            return "B";
+        else if (rbC.getButton().isSelected())
+            return "C";
+        else if (rbD.getButton().isSelected())
+            return "D";
+        else return "";
     }
 }

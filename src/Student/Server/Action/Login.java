@@ -15,7 +15,7 @@ public class Login {
         //返回值：0为账号不存在，-1为密码错误，1为登录成功
             BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            Student student = JSON.parseObject(obr.readLine(), Student.class);//json->Student
+            Student student = JSON.parseObject(obr.readLine(), Student.class);
 
             String account = student.getAccount();
             String password = student.getPassword();
@@ -48,14 +48,12 @@ public class Login {
             dos.writeUTF(file.getName());
             dos.flush();
             // 开始传输文件
-            System.out.println("======== 开始传输文件 ========");
             byte[] bytes = new byte[1024];
             int length;
             while ((length = fis.read(bytes, 0, bytes.length)) != -1) {
                 dos.write(bytes, 0, length);
                 dos.flush();
             }
-            System.out.println("======== 文件传输成功 ========");
         } else System.out.println("文件不存在");
     }
 }

@@ -11,13 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SetClass {
-    DataInputStream dis;
-    DataOutputStream dos;
-
     //返回值：1为加入成功，0为已经加入，-1为不存在该班级
     public SetClass(Socket socket) throws IOException, SQLException {
-        dis = new DataInputStream(socket.getInputStream());
-        dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+        DataInputStream dis = new DataInputStream(socket.getInputStream());
+        DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String classNum = dis.readUTF();
         Student student = JSON.parseObject(obr.readLine(), Student.class);

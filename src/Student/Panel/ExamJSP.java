@@ -19,7 +19,7 @@ public class ExamJSP extends JScrollPane {
     }
 
     public void refresh(){
-
+        examPanel.refresh();
     }
 
     public void setVisible(boolean visible) {

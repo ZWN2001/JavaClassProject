@@ -3,6 +3,7 @@ package Student.Function.MyDialog;
 import Basic.Command;
 import Student.Bean.Student;
 import Student.Function.PictureFileFilter;
+import Student.Panel.SettingPanel;
 import Teacher.Bean.Teacher;
 import com.alibaba.fastjson.JSON;
 
@@ -28,12 +29,13 @@ public class SetProfileDialog extends JDialog implements ActionListener {
     JLabel avatar;
     JTextField setNameField, setClassField;
     JList<Teacher> classList;
+    SettingPanel settingPanel;
 
     Student student;
 
     String suffix;
 
-    public SetProfileDialog(Student student, ImageIcon imageIcon) {
+    public SetProfileDialog(Student student, ImageIcon imageIcon, SettingPanel settingPanel) {
         super();
         setLayout(null);
         setTitle("修改个人资料");
@@ -43,6 +45,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
 
         this.imageIcon = imageIcon;
         this.student = student;
+        this.settingPanel=settingPanel;
 
         Font setProFont = new Font("微软雅黑", Font.PLAIN, 20);
         Font setAvatarFont = new Font("宋体", Font.BOLD, 19);
@@ -167,7 +170,6 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                 int lastIndexOf = newAvatar.getName().lastIndexOf(".");
                 //获取文件的后缀名
                 suffix = newAvatar.getName().substring(lastIndexOf).toLowerCase(Locale.ROOT);
-                System.out.println(suffix);
                 if ((suffix.equals(".gif")) || (suffix.equals(".jpg")) || suffix.equals(".jpeg") || suffix.equals(".png")) {
                     uploadBtn.setText("重新上传");
                     ImageIcon tempImage = new ImageIcon(newAvatar.getAbsolutePath());
@@ -183,8 +185,10 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         if (e.getSource().equals(confirmAvatarBtn)) {
             try {
                 NetSetAvatar netSetAvatar = new NetSetAvatar(student);
-                if (netSetAvatar.getResultCode().equals("1"))
+                if (netSetAvatar.getResultCode().equals("1")){
                     JOptionPane.showMessageDialog(null, "修改成功");
+                    settingPanel.setImageIcon(new ImageIcon(newAvatar.getAbsolutePath()));
+                }
                 else
                     JOptionPane.showMessageDialog(null, "修改失败");
             } catch (Exception exception) {
@@ -243,7 +247,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                     try {
                         NetQuitClass netQuitClass = new NetQuitClass(student, teacherVector);
                         if (netQuitClass.getResultCode().equals("1"))
-                            JOptionPane.showMessageDialog(null,"退出班级成功");
+                            JOptionPane.showMessageDialog(null, "退出班级成功");
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
@@ -367,6 +371,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
 
     private static class NetQuitClass {
         private final String resultCode;
+
         public NetQuitClass(Student student, Vector<Teacher> teacherVector) throws IOException {
             Socket socket = new Socket(HOST, PORT);
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));

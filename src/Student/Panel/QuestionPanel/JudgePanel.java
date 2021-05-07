@@ -6,10 +6,11 @@ import Teacher.Util.AdapterAndHelper.GBC;
 import javax.swing.*;
 
 public class JudgePanel extends QuestionPanel{
+    private final JRadioButton yes,no;
     public JudgePanel(Question_Judge question,int num){
         super(question,num);
-        JRadioButton yes= new JRadioButton("T");
-        JRadioButton no = new JRadioButton("F");
+        yes= new JRadioButton("T");
+        no = new JRadioButton("F");
         yes.setBackground(this.getBackground());
         no.setBackground(this.getBackground());
         yes.setFocusPainted(false);
@@ -21,5 +22,14 @@ public class JudgePanel extends QuestionPanel{
         group.add(no);
         add(yes,new GBC(0,2,1,1));
         add(no,new GBC(0,3,1,1));
+    }
+
+    @Override
+    public String getAnswer() {
+        if (yes.isSelected())
+            return "T";
+        else if (no.isSelected())
+            return "F";
+        else return "";
     }
 }

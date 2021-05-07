@@ -50,6 +50,7 @@ public class MainFrame extends JFrame {
 
     public void examEnd(PaperPanel paperPanel) {
         leftPanel.examEnd();
+        paperPanel.uploadAnswer();
         paperPanel.setVisible(false);
     }
 
