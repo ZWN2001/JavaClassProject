@@ -22,12 +22,12 @@ public class QuitClass {
         DbConnection database = Server.getDatabase();
         Student student = JSON.parseObject(obr.readLine(), Student.class);
         Vector<Teacher> teacherVector = JSON.parseObject(obr.readLine(), new TypeReference<>() {});
-        for (Teacher teacher : teacherVector) {
-            Statement statement = database.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM exam.index WHERE `student` = '" + student.getAccount() + "' AND `teacher` = '" + teacher.getAccount() + "'");
-            if (resultSet.next())
-                statement.executeUpdate("DELETE FROM exam.index WHERE `student` = '"+student.getAccount()+"' AND `teacher` = '"+teacher.getAccount()+"'");
-        }
+//        for (Teacher teacher : teacherVector) {
+//            Statement statement = database.getConnection().createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM exam.index WHERE `student` = '" + student.getAccount() + "' AND `teacher` = '" + teacher.getAccount() + "'");
+//            if (resultSet.next())
+//                statement.executeUpdate("DELETE FROM exam.index WHERE `student` = '"+student.getAccount()+"' AND `teacher` = '"+teacher.getAccount()+"'");
+//        }
         dos.writeUTF("1");
         dos.flush();
     }

@@ -18,9 +18,10 @@ import java.awt.*;
  */
 public class AddPaper_Self_CheckQuestion extends JPanel {
     public static AddPaperSelfPanelListener listener=new AddPaperSelfPanelListener();
+    public JTabbedPane pane;
     public AddPaper_Self_CheckQuestion(){
         setLayout(new BorderLayout());
-        JTabbedPane pane=new JTabbedPane();
+         pane=new JTabbedPane();
         pane.addTab("单选题",new SelectQuestionPanel_Choice(listener.getScrollBarLocation()));
         pane.addTab("多选题",new SelectQuestionPanel_MultiChoice(listener.getScrollBarLocation()));
         pane.addTab("判断题",new SelectQuestionPanel_Judge(listener.getScrollBarLocation()));

@@ -10,6 +10,7 @@ import Teacher.Util.MyColor;
 import Teacher.Util.MyFont;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.MyTabbedPane_AddPaper;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
+import Teacher.View.MyQuestions.CheckQuestionSituation.CheckQuestionSituationPanel;
 import Teacher.View.MyQuestions.CheckQuestions.MyTabbedPane_Question;
 import Teacher.View.MyQuestions.AddQuestion.AddQuestionPane;
 
@@ -86,6 +87,14 @@ public class LeftPanel extends JPanel {
                 super.mouseClicked(e);
                 AddQuestionPane addQuestionPane=new AddQuestionPane();
                 PanelIntent.intent(addQuestionPane,maintainQuestionsBtn);
+            }
+        });
+        maintainQuestionsBtn.childButton.get(2).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                CheckQuestionSituationPanel checkQuestionSituationPanel=new CheckQuestionSituationPanel();
+                PanelIntent.intent(checkQuestionSituationPanel,maintainQuestionsBtn);
             }
         });
 

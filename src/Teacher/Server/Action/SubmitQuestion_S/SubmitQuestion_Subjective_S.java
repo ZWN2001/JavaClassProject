@@ -35,8 +35,7 @@ public class SubmitQuestion_Subjective_S {
             dos.writeUTF("1");
             dos.flush();
           database.update("INSERT INTO questions.subjective VALUES ('" + null + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-//            id++;
-            // socket.close();
+
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

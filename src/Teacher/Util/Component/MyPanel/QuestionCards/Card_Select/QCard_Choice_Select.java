@@ -31,21 +31,25 @@ public class QCard_Choice_Select extends JPanel {
         this.difficulty=difficulty;
         this.answer=answer;
         setLayout(new VFlowLayout());
-        add(isSelected);
+        //add(isSelected);
     qCard_choice_check=new QCard_Choice_Check(id, qid, stem, optionA, optionB, optionC, optionD, mark, difficulty, answer);
     qCard_choice_check.removeBtn();
     qCard_choice_check.checkTitle.add(isSelected,new GBC(5,0));
     add(qCard_choice_check);
     }
     public int getId(){
-        return qCard_choice_check.getId();
+        return id;
     }
 
     public int getQid() {
-        return qCard_choice_check.getQid();
+        return qid;
     }
 
     public int getDifficulty() {
         return difficulty;
+    }
+
+    public int getMark() {
+        return mark;
     }
 }

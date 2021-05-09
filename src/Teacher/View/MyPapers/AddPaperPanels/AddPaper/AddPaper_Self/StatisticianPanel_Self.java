@@ -6,6 +6,7 @@ import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.MyFont;
+import Teacher.View.HomePanels.Home;
 import Teacher.View.HomePanels.HomeFrame;
 import Teacher.View.MyPapers.AddPaperPanels.PaperPreview.PaperPreviewPanel;
 import com.alibaba.fastjson.JSON;
@@ -16,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import static Teacher.Util.AdapterAndHelper.MultiAnswerUtil.getChoseQuestionFromString;
 
@@ -23,8 +25,11 @@ import static Teacher.Util.AdapterAndHelper.MultiAnswerUtil.getChoseQuestionFrom
 public class StatisticianPanel_Self extends JPanel {
     String paperName1,examTime1;
     public static Container tipContainer=new Container();
+    Statistician_SelfAdd statistician;
     public StatisticianPanel_Self(Statistician_SelfAdd statistician){
+        this.statistician=statistician;
         setLayout(new GridBagLayout());
+        tipContainer.setLayout(new BorderLayout());
 
         JLabel titleLabel2= new JLabel("已选"+statistician.getChoseNum()+"题，共计"+statistician.getAllMark()+"分，平均难度为"+statistician.getDifficulty()+",其中:");
         titleLabel2.setFont(MyFont.Font_14);
@@ -48,9 +53,9 @@ public class StatisticianPanel_Self extends JPanel {
         JLabel titleLabel4=new JLabel("分钟");
         titleLabel4.setFont(MyFont.Font_14);
         BackgroundButton submitBtn=new BackgroundButton(" 前往预览 ");
-
-        add(titleLabel2,new GBC(0,0,2,1).setInsets(3,8,2,40).setAnchor(GridBagConstraints.WEST));
-        add(tipContainer,new GBC(1,0,2,2).setAnchor(GridBagConstraints.EAST));
+//
+        add(titleLabel2,new GBC(0,0,2,1).setInsets(10,8,10,20).setAnchor(GridBagConstraints.WEST));
+        add(tipContainer,new GBC(6,5,1,1).setAnchor(GridBagConstraints.EAST));
         add(choiceSituation,new GBC(0,1,2,1).setAnchor(GridBagConstraints.WEST).setInsets(3,10,2,2).setWeightx(1));
         add(judgeSituation,new GBC(0,3,2,1).setAnchor(GridBagConstraints.WEST).setInsets(3,10,2,2).setWeightx(1));
         add(multiChoiceSituation,new GBC(0,2,2,1).setAnchor(GridBagConstraints.WEST).setInsets(3,10,2,2).setWeightx(1));
@@ -89,13 +94,18 @@ public class StatisticianPanel_Self extends JPanel {
                 questionString[1] = JSON.toJSONString(statistician.getMyMultiChoiceIDList());
                 questionString[2] = JSON.toJSONString(statistician.getMyJudgeIDList());
                 questionString[3] = JSON.toJSONString(statistician.getMySubjectiveIDList());
-                HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(), statistician.getAllMark(), Integer.parseInt(examTime.getText()), statistician.getDifficulty(), JSON.toJSONString(questionString),true), 0);
+                HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(),Integer.parseInt(examTime.getText()),  JSON.toJSONString(questionString),true), 0);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }else {
                 MyTextArea_Warning warning=new MyTextArea_Warning(1,6,"错误","信息不合法");
                 warning.textArea.setEnabled(false);
+                tipContainer.removeAll();
                 tipContainer.add(warning);
+                AddPaperSelfPanel.statisticianPanel.repaint();
+                AddPaperSelfPanel.statisticianPanel.updateUI();
+                repaint();
+                updateUI();
             }
         }
     });

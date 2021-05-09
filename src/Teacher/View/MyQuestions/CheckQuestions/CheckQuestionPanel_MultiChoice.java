@@ -4,10 +4,12 @@ import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_MultiChoic
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_MultiChoice_Check;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
+import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class CheckQuestionPanel_MultiChoice extends JScrollPane {
     int i;
@@ -28,7 +30,7 @@ public class CheckQuestionPanel_MultiChoice extends JScrollPane {
             panel.setPreferredSize(new Dimension(950,350*idList.length));
             if (idList.length>0) {
                 for ( i = 0; i < idList.length; i++) {
-                    qCard_multiChoice_check = new QCard_MultiChoice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
+                    qCard_multiChoice_check = new QCard_MultiChoice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], Arrays.toString(JSON.parseObject(answerList[i], String[].class)));
                     panel.add(qCard_multiChoice_check);
                 }
             }else {

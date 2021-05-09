@@ -33,21 +33,21 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
             panel.setPreferredSize(new Dimension(950,idList.length*400));
             if (idList.length>0) {
                 for (int i = 0; i < idList.length; i++) {
-                    QCard_Subjective_Select panel1 = new QCard_Subjective_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
-                    panel.add(panel1);
+                    QCard_Subjective_Select qCard_subjective_select = new QCard_Subjective_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
+                    panel.add(qCard_subjective_select);
                     if (!AddPaperSelfPanel.statistician.getMySubjective().isEmpty()){
-                        if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)(idList[i]))){
-                            panel1.isSelected.setSelected(true);
+                        if (AddPaperSelfPanel.statistician.getMySubjectiveIDList().contains((Integer)(idList[i]))){
+                            qCard_subjective_select.isSelected.setSelected(true);
                         }
                     }
                     int finalI = i;
-                    panel1.isSelected.addItemListener(e -> {
-                        if (panel1.isSelected.isSelected()) {
-                            if (!AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getQid())) {
-                                AddPaperSelfPanel.statistician.addMySubjective(panel1.getQid());
-                                AddPaperSelfPanel.statistician.addMySubjectiveIDList(panel1.getId());
+                    qCard_subjective_select.isSelected.addItemListener(e -> {
+                        if (qCard_subjective_select.isSelected.isSelected()) {
+                            if (!AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)qCard_subjective_select.getQid())) {
+                                AddPaperSelfPanel.statistician.addMySubjective(qCard_subjective_select.getQid());
+                                AddPaperSelfPanel.statistician.addMySubjectiveIDList(qCard_subjective_select.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
-                                AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
+                                AddPaperSelfPanel.statistician.difficulty_add(qCard_subjective_select.getDifficulty());
                                 AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
@@ -55,11 +55,11 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
                                 AddPaperSelfPanel.statisticianPanel.updateUI();
                             }
                         } else {
-                            if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)panel1.getQid())) {
-                               AddPaperSelfPanel.statistician.removeSubjective(panel1.getQid());
-                                AddPaperSelfPanel.statistician.removeSubjectiveIDList(panel1.getId());
+                            if (AddPaperSelfPanel.statistician.getMySubjective().contains((Integer)qCard_subjective_select.getQid())) {
+                               AddPaperSelfPanel.statistician.removeSubjective(qCard_subjective_select.getQid());
+                                AddPaperSelfPanel.statistician.removeSubjectiveIDList(qCard_subjective_select.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
-                                AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
+                                AddPaperSelfPanel.statistician.difficulty_reduce(qCard_subjective_select.getDifficulty());
                                 AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);

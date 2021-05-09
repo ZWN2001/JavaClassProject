@@ -2,6 +2,7 @@ package Teacher.View.MyQuestions.CheckQuestions;
 
 import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_Subjective_C;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_Judge_Check;
+import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_Subjective_Check;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class CheckQuestionPanel_Subjective extends JScrollPane {
     int i;
-    QCard_Judge_Check qCard_judge_check;
+    QCard_Subjective_Check qCard_subjective_check;
     public CheckQuestionPanel_Subjective(){
         JPanel panel=new JPanel(new VFlowLayout());
         try {
@@ -24,8 +25,8 @@ public class CheckQuestionPanel_Subjective extends JScrollPane {
             panel.setPreferredSize(new Dimension(950,400*idList.length));
             if (idList.length>0) {
                 for ( i = 0; i < idList.length; i++) {
-                    qCard_judge_check = new QCard_Judge_Check(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
-                    panel.add(qCard_judge_check);
+                    qCard_subjective_check = new QCard_Subjective_Check(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
+                    panel.add(qCard_subjective_check);
                 }
             }else {
                 panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));

@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PaperPreview_Title extends JPanel {
-    public PaperPreview_Title(String paperName,int mark,int examTime,int difficulty){
+    public PaperPreview_Title(String paperName,int mark,int examTime,double difficulty){
         setLayout(new GridBagLayout());
         JLabel paperNameLabel=new JLabel(paperName);
         paperNameLabel.setFont(MyFont.Font_24);

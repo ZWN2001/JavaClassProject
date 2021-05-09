@@ -30,7 +30,7 @@ int i=0;
         resultSet.beforeFirst();
         for (int i = 0; resultSet.next(); i++) {
             papers[i]=new Paper(resultSet.getInt("id"),resultSet.getString("title"),resultSet.getInt("mark"),
-                    resultSet.getInt("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
+                    resultSet.getDouble("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
                     resultSet.getString("owner"),resultSet.getInt("ownerID"), resultSet.getString("questions"));
 
         }

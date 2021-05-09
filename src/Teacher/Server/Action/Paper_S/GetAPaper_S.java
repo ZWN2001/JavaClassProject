@@ -28,7 +28,7 @@ public class GetAPaper_S {
         resultSet.beforeFirst();
         if (resultSet.next()) {
             paper=new Paper(resultSet.getInt("id"),resultSet.getString("title"),resultSet.getInt("mark"),
-                    resultSet.getInt("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
+                    resultSet.getDouble("difficulty"),resultSet.getString("time") ,resultSet.getInt("examTime"),
                     resultSet.getString("owner"),resultSet.getInt("ownerID"), resultSet.getString("questions"));
 
         }

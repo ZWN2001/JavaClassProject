@@ -55,7 +55,7 @@ public class DB {
 ////                        "\t constraint choice_pk\n" +
 ////                        "    primary key (id)"+
 ////                        ");");
-//////
+////
 ////                statement.executeUpdate("CREATE TABLE judge\n" +
 ////                        "(\n" +
 ////                        "\t id int  auto_increment,\n" +

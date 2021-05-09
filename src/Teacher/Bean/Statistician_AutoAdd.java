@@ -3,8 +3,7 @@ package Teacher.Bean;
 public class Statistician_AutoAdd {
     private int allChoseNum=0;
     private double averageDifficulty=0;
-    private String paperName="";
-    private String examTime="";
+
 
     public int getAllChoseNum() {
         return allChoseNum;
@@ -18,16 +17,12 @@ public class Statistician_AutoAdd {
     public void setAverageDifficulty(double averageDifficulty) {
         this.averageDifficulty = averageDifficulty;
     }
-    public String getPaperName() {
-        return paperName;
-    }
-    public void setPaperName(String paperName) {
-        this.paperName = paperName;
-    }
-    public String getExamTime() {
-        return examTime;
-    }
-    public void setExamTime(String examTime) {
-        this.examTime = examTime;
+
+    @Override
+    public String toString() {
+        return "Statistician_AutoAdd{" +
+                "allChoseNum=" + allChoseNum +
+                ", averageDifficulty=" + averageDifficulty +
+                '}';
     }
 }

@@ -33,21 +33,21 @@ public void init(){
         panel.setPreferredSize(new Dimension(950,idList.length*350));
         if (idList.length>0) {
             for (int i = 0; i < idList.length; i++) {
-                QCard_Judge_Select panel1 = new QCard_Judge_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
-                panel.add(panel1);
+                QCard_Judge_Select qCard_judge_select = new QCard_Judge_Select(idList[i], i + 1, stemList[i], markList[i], difficulty[i], answerList[i]);
+                panel.add(qCard_judge_select);
                     if (!AddPaperSelfPanel.statistician.getMyJudge().isEmpty()){
-                        if (AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)(idList[i]))){
-                            panel1.isSelected.setSelected(true);
+                        if (AddPaperSelfPanel.statistician.getMyJudgeIDList().contains((idList[i]))){
+                            qCard_judge_select.isSelected.setSelected(true);
                         }
                     }
                 int finalI = i;
-                panel1.isSelected.addItemListener(e -> {
-                    if (panel1.isSelected.isSelected()) {
-                        if (!AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getQid())) {
-                            AddPaperSelfPanel.statistician.addMyJudge(panel1.getQid());
-                            AddPaperSelfPanel.statistician.addMyJudgeIDList(panel1.getId());
+                qCard_judge_select.isSelected.addItemListener(e -> {
+                    if (qCard_judge_select.isSelected.isSelected()) {
+                        if (!AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)qCard_judge_select.getQid())) {
+                            AddPaperSelfPanel.statistician.addMyJudge(qCard_judge_select.getQid());
+                            AddPaperSelfPanel.statistician.addMyJudgeIDList(qCard_judge_select.getId());
                             AddPaperSelfPanel.statistician.addChoseNum();
-                            AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
+                            AddPaperSelfPanel.statistician.difficulty_add(qCard_judge_select.getDifficulty());
                             AddPaperSelfPanel.statistician.addMark(markList[finalI]);
                             AddPaperSelfPanel.container2.removeAll();
                             AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
@@ -56,11 +56,11 @@ public void init(){
                             AddPaperSelfPanel.statisticianPanel.updateUI();
                         }
                     } else {
-                        if (AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)panel1.getQid())) {
-                            AddPaperSelfPanel.statistician.removeJudge((Integer) panel1.getQid());
-                            AddPaperSelfPanel.statistician.removeJudgeIDList(panel1.getId());
+                        if (AddPaperSelfPanel.statistician.getMyJudge().contains((Integer)qCard_judge_select.getQid())) {
+                            AddPaperSelfPanel.statistician.removeJudge((Integer) qCard_judge_select.getQid());
+                            AddPaperSelfPanel.statistician.removeJudgeIDList(qCard_judge_select.getId());
                             AddPaperSelfPanel.statistician.removeChoseNum();
-                            AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
+                            AddPaperSelfPanel.statistician.difficulty_reduce(qCard_judge_select.getDifficulty());
                             AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
                             AddPaperSelfPanel.container2.removeAll();
                             AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);

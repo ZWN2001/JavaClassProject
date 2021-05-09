@@ -48,15 +48,19 @@ public class PaperPreviewPanel extends JScrollPane {
     BackgroundButton submitBtn;
     JPanel buttonPanel;
     BackgroundButton backBtn;
-    public PaperPreviewPanel(String paperName,int mark,int examTime,int difficulty,String questionString,boolean isPreview){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-        String time=simpleDateFormat.format(System.currentTimeMillis());
-        paper=new Paper(paperName,mark,difficulty,time,examTime,"admin",123,questionString);
-        JPanel rootPanel=new JPanel(new VFlowLayout(true,true));
-        JPanel panel=new JPanel(new VFlowLayout());
+    String paperName,questionString;
+    int mark, examTime;
+    double difficulty;
+    boolean isPreview;
+
+    public PaperPreviewPanel(String paperName,int examTime,String questionString, boolean isPreview) {
+        this.paperName=paperName;
+        this.examTime=examTime;
+        this.questionString=questionString;
+        this.isPreview=isPreview;
 
         try {
-             getPreviewQuestions = new GetPreviewQuestions_C(questionString);
+            getPreviewQuestions = new GetPreviewQuestions_C(questionString);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -65,6 +69,41 @@ public class PaperPreviewPanel extends JScrollPane {
         multiChoices=getPreviewQuestions.getMultiChoices();
         judges=getPreviewQuestions.getJudges();
         subjectives=getPreviewQuestions.getSubjective();
+
+        mark=getMark();
+        difficulty=getDifficulty();
+        init();
+
+    }
+
+    public PaperPreviewPanel(String paperName, int mark, int examTime, double difficulty, String questionString, boolean isPreview){
+       this.paperName=paperName;
+       this.mark=mark;
+       this.examTime=examTime;
+       this.difficulty=difficulty;
+       this.questionString=questionString;
+       this.isPreview=isPreview;
+
+        try {
+            getPreviewQuestions = new GetPreviewQuestions_C(questionString);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        choices=getPreviewQuestions.getChoices();
+        multiChoices=getPreviewQuestions.getMultiChoices();
+        judges=getPreviewQuestions.getJudges();
+        subjectives=getPreviewQuestions.getSubjective();
+
+        init();
+    }
+    public void init(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+        String time=simpleDateFormat.format(System.currentTimeMillis());
+        paper=new Paper(paperName,mark,difficulty,time,examTime,"admin",123,questionString);
+        JPanel rootPanel=new JPanel(new VFlowLayout(true,true));
+        JPanel panel=new JPanel(new VFlowLayout());
+
 
         buttonPanel=new JPanel(new GridBagLayout());
         if (isPreview){
@@ -75,7 +114,7 @@ public class PaperPreviewPanel extends JScrollPane {
             tipContainer.setLayout(new BorderLayout());
             buttonPanel.add(previewTitle,new GBC(0,0).setInsets(10,0,0,0));
             buttonPanel.add(backBtn,new GBC(1,0).setInsets(10,80,0,0).setAnchor(GridBagConstraints.WEST));
-            buttonPanel.add(submitBtn,new GBC(2,0,2,1).setInsets(0,20,0,0));
+            buttonPanel.add(submitBtn,new GBC(2,0,2,1).setInsets(10,20,0,0));
             buttonPanel.add(tipContainer,new GBC(3,0).setInsets(10,40,0,0));
 
             submitBtn.addMouseListener(new MouseAdapter() {
@@ -88,11 +127,7 @@ public class PaperPreviewPanel extends JScrollPane {
                             StatisticianPanel_Self.tipContainer.add(new MyTextArea_Colorful(1,4,"","添加成功",false));
                             HomeFrame.content.removeAll();
                             AddPaperSelfPanel.statistician=new Statistician_SelfAdd();
-                            AddPaperSelfPanel.statistician.setPaperName("");
-                            AddPaperSelfPanel.statistician.setExamTime("");
                             AddPaperAutoPanel.statistician=new Statistician_AutoAdd();
-                            AddPaperAutoPanel.statistician.setPaperName("");
-                            AddPaperAutoPanel.statistician.setExamTime("");
                             AddPaperSelfPanel.statisticianPanel.repaint();
                             AddPaperSelfPanel.statisticianPanel.updateUI();
                             HomeFrame.content.add(new MyTabbedPane_AddPaper(),0);
@@ -127,7 +162,7 @@ public class PaperPreviewPanel extends JScrollPane {
             choiceLabel.setAble(false);
             panel.add(choiceLabel);
             for (i=0;i<choices.length;i++){
-                 qCard_choice_normal = new QCard_Choice_Normal(choices[i].getId(),qid++,choices[i].getStem(),choices[i].getOptionA(),choices[i].getOptionB(),choices[i].getOptionC(),choices[i].getOptionD(),choices[i].getMark());
+                qCard_choice_normal = new QCard_Choice_Normal(choices[i].getId(),qid++,choices[i].getStem(),choices[i].getOptionA(),choices[i].getOptionB(),choices[i].getOptionC(),choices[i].getOptionD(),choices[i].getMark());
                 panel.add(qCard_choice_normal);
             }
         }
@@ -135,7 +170,7 @@ public class PaperPreviewPanel extends JScrollPane {
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  多选题:");
             choiceLabel.setAble(false);
             panel.add(choiceLabel);
-            for (i=0;i<choices.length;i++){
+            for (i=0;i<multiChoices.length;i++){
                 qCard_multiChoice_normal = new QCard_MultiChoice_Normal(multiChoices[i].getId(),qid++,multiChoices[i].getStem(),multiChoices[i].getOptionA(),multiChoices[i].getOptionB(),multiChoices[i].getOptionC(),multiChoices[i].getOptionD(),multiChoices[i].getMark());
                 panel.add(qCard_multiChoice_normal);
             }
@@ -170,6 +205,62 @@ public class PaperPreviewPanel extends JScrollPane {
                 HomeFrame.content.updateUI();
             }
         });
+    }
+    private int getMark(){
+        mark=0;
+        if (choices!=null){
+            for (i=0;i<choices.length;i++){
+                mark+=choices[i].getMark();
+            }
+        }
+        if (multiChoices!=null){
+            for (i=0;i<multiChoices.length;i++){
+                mark+=multiChoices[i].getMark();
+            }
+        }
+        if (judges!=null){
+            for (i=0;i<judges.length;i++){
+                mark+=judges[i].getMark();
+            }
+        }
+        if (subjectives!=null){
+            for (i=0;i<subjectives.length;i++){
+                mark+=subjectives[i].getMark();
+            }
+        }
 
+        return mark;
+    }
+    private double getDifficulty(){
+        difficulty=0;
+        int questionNum=0;
+        if (choices!=null){
+            for (i=0;i<choices.length;i++){
+                difficulty+=choices[i].getDifficulty();
+                questionNum++;
+            }
+        }
+        if (multiChoices!=null){
+            for (i=0;i<multiChoices.length;i++){
+                difficulty+=multiChoices[i].getDifficulty();
+                questionNum++;
+            }
+        }
+        if (judges!=null){
+            for (i=0;i<judges.length;i++){
+                difficulty+=judges[i].getDifficulty();
+                questionNum++;
+            }
+        }
+        if (subjectives!=null){
+            for (i=0;i<subjectives.length;i++){
+                difficulty+=subjectives[i].getDifficulty();
+                questionNum++;
+            }
+        }
+        if (questionNum>0){
+            difficulty=difficulty/(questionNum);
+        }
+        return difficulty;
     }
 }

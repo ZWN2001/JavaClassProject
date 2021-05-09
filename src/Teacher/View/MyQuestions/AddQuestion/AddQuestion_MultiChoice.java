@@ -9,6 +9,7 @@ import Teacher.Util.Component.MyTextArea.MyTextArea_Colorful;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.MyFont;
+import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -139,7 +140,7 @@ private Question_MultiChoice question_multiChoice;
                     updateUI();
                 }   else{
                     question_multiChoice=new Question_MultiChoice(stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
-                            ,optB.getText(),optC.getText(),optD.getText(), Arrays.toString(answer));
+                            ,optB.getText(),optC.getText(),optD.getText(), JSON.toJSONString(answer));
                     try {
                         SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_multiChoice,"SUBMIT_QUESTION_MULTICHOICE");
                            if (submitQuestion_c.getResultCode()==1) {

@@ -29,9 +29,6 @@ public class HomeFrame extends JFrame {
         int y = (height - HEIGHT) / 2;
         setLocation(x, y);
 
-//        JPanel rootPanel = new JPanel(new GridBagLayout());
-//        setContentPane(rootPanel);
-
         DefaultContentPanel defaultContentPanel=new DefaultContentPanel();
         content.add(defaultContentPanel);
         add(showUnVisibleBtn,new GBC(0,1).setWeighty(0).setFill(GridBagConstraints.VERTICAL));
@@ -39,11 +36,4 @@ public class HomeFrame extends JFrame {
         add(content, new GBC(1, 1, 0.99, 1).setAnchor(GridBagConstraints.EAST).setFill(GridBagConstraints.BOTH));
     }
 }
-//class WindowClose extends WindowAdapter {
-//    public void windowClosing(WindowEvent e) {
-//        int i = JOptionPane.showConfirmDialog(null, "是否关闭", "提示", JOptionPane.YES_NO_OPTION);
-//        if (i == 0) {
-//            System.exit(0);
-//        }
-//    }
-//}
+

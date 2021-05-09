@@ -128,14 +128,14 @@ public class SettingPanel extends JPanel implements MouseListener {
             } else if (resultCode.equals("1")) {
                 classArea.setBorder(new JScrollPane().getBorder());
                 String text = "";
-                while (true) {
-                    Teacher teacher = JSON.parseObject(obr.readLine(), Teacher.class);
-                    if (teacher.getAccount().equals(""))
-                        break;
-                    text = text.concat(teacher+"\n");
-                    classArea.setFont(new Font("宋体",Font.PLAIN,25));
-                    classArea.setText(text);
-                }
+//                while (true) {
+//                    Teacher teacher = JSON.parseObject(obr.readLine(), Teacher.class);
+//                    if (teacher.getAccount().equals(""))
+//                        break;
+//                    text = text.concat(teacher+"\n");
+//                    classArea.setFont(new Font("宋体",Font.PLAIN,25));
+//                    classArea.setText(text);
+//                }
             }
         }
     }

@@ -10,9 +10,13 @@ import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.StatisticianP
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 
 public class SelectQuestionPanel_Choice extends JScrollPane{
+
+    int i;
     public SelectQuestionPanel_Choice(){
      init();
     }
@@ -36,24 +40,24 @@ public class SelectQuestionPanel_Choice extends JScrollPane{
             String[] answerList = getQuestionBank_choice_c.getAnswerList();
             panel.setPreferredSize(new Dimension(940,idList.length*350));
             if (idList.length>0) {
-                for ( int i = 0; i < idList.length; i++) {
-                    QCard_Choice_Select panel1 = new QCard_Choice_Select(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
-                    panel.add(panel1);
-                        if (!AddPaperSelfPanel.statistician.getMyChoice().isEmpty()){
-                        if (AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)(idList[i]))){
-                            panel1.isSelected.setSelected(true);
+                for (  i = 0; i < idList.length; i++) {
+                  QCard_Choice_Select  qCard_choice_select = new QCard_Choice_Select(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
+                    panel.add(qCard_choice_select);
+                       if (!AddPaperSelfPanel.statistician.getMyChoice().isEmpty()){
+                        if (AddPaperSelfPanel.statistician.getMyChoiceIDList().contains(qCard_choice_select.getId())){
+                            System.out.println(qCard_choice_select.getId());
+                            qCard_choice_select.isSelected.setSelected(true);
                         }
-                    }
+                   }
 
-                    int finalI = i;
-                    panel1.isSelected.addItemListener(e -> {
-                        if (panel1.isSelected.isSelected()) {
-                            if (!AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getQid())) {
-                                AddPaperSelfPanel.statistician.addMyChoice(panel1.getQid());
-                                AddPaperSelfPanel.statistician.addMyChoiceIDList(panel1.getId());
+                    qCard_choice_select.isSelected.addItemListener(e -> {
+                        if (qCard_choice_select.isSelected.isSelected()) {
+                            if (!AddPaperSelfPanel.statistician.getMyChoiceIDList().contains(qCard_choice_select.getId())) {
+                                AddPaperSelfPanel.statistician.addMyChoice(qCard_choice_select.getQid());
+                                AddPaperSelfPanel.statistician.addMyChoiceIDList(qCard_choice_select.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
-                                AddPaperSelfPanel.statistician.difficulty_add(panel1.getDifficulty());
-                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);
+                                AddPaperSelfPanel.statistician.difficulty_add(qCard_choice_select.getDifficulty());
+                                AddPaperSelfPanel.statistician.addMark(qCard_choice_select.getMark());
                                 AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
@@ -62,12 +66,12 @@ public class SelectQuestionPanel_Choice extends JScrollPane{
                             }
                         }
                         else {
-                            if (AddPaperSelfPanel.statistician.getMyChoice().contains((Integer)panel1.getQid())) {
-                                AddPaperSelfPanel.statistician.removeChoice((Integer) panel1.getQid());
-                                AddPaperSelfPanel.statistician.removeChoiceIDList(panel1.getId());
+                            if (AddPaperSelfPanel.statistician.getMyChoiceIDList().contains(qCard_choice_select.getId())) {
+                                AddPaperSelfPanel.statistician.removeChoice( qCard_choice_select.getQid());
+                                AddPaperSelfPanel.statistician.removeChoiceIDList(qCard_choice_select.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
-                                AddPaperSelfPanel.statistician.difficulty_reduce(panel1.getDifficulty());
-                                AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
+                                AddPaperSelfPanel.statistician.difficulty_reduce(qCard_choice_select.getDifficulty());
+                                AddPaperSelfPanel.statistician.reduceMark(qCard_choice_select.getMark());
                                 AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);

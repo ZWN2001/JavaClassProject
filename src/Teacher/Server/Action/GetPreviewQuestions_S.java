@@ -21,6 +21,10 @@ public class GetPreviewQuestions_S {
     String[] questionString;
     int[] choiceIDList,multiChoiceIDList,judgeIDList,subjectiveIDList;
     int i;
+    Question_Choice[] choices;
+    Question_MultiChoice[] multiChoices;
+    Question_Judge[] judges;
+    Question_Subjective[] subjectives;
     public GetPreviewQuestions_S(Socket s)throws IOException, SQLException {
         socket = s;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -32,11 +36,8 @@ public class GetPreviewQuestions_S {
         judgeIDList=JSON.parseObject(questionString[2],int[].class);
         subjectiveIDList=JSON.parseObject(questionString[3],int[].class);
 
-        Question_Choice[] choices=new Question_Choice[choiceIDList.length];
-        Question_MultiChoice[]multiChoices=new Question_MultiChoice[multiChoiceIDList.length];
-        Question_Judge[]judges=new Question_Judge[judgeIDList.length];
-        Question_Subjective[]subjectives=new Question_Subjective[subjectiveIDList.length];
-        if (choiceIDList.length>0){
+        if (choiceIDList!=null){
+            choices=new Question_Choice[choiceIDList.length];
             int id=0;
             String stem="";
             int mark=0;
@@ -65,7 +66,8 @@ public class GetPreviewQuestions_S {
                 }
             }
         }
-        if (multiChoiceIDList.length>0){
+        if (multiChoiceIDList!=null){
+            multiChoices=new Question_MultiChoice[multiChoiceIDList.length];
             int id=0;
             String stem="";
             int mark=0;
@@ -93,7 +95,8 @@ public class GetPreviewQuestions_S {
                 }
             }
         }
-        if (judgeIDList.length>0){
+        if (judgeIDList!=null){
+            judges=new Question_Judge[judgeIDList.length];
             int id=0;
             String stem="null";
             int mark = 0;
@@ -113,7 +116,8 @@ public class GetPreviewQuestions_S {
                 }
             }
         }
-        if (subjectiveIDList.length>0){
+        if (subjectiveIDList!=null){
+            subjectives=new Question_Subjective[subjectiveIDList.length];
             int id=0;
             String stem="null";
             int mark = 0;

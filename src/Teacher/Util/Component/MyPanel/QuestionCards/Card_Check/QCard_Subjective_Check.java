@@ -4,8 +4,13 @@ import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_AnswerAreas.QCard_
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QCard_Titles.QuestionCard_CheckTitle;
 import Teacher.Util.Component.MyPanel.QuestionCardUtils.QuestionCard_Stem;
 import Teacher.Util.Layout.VFlowLayout;
+import Teacher.View.HomePanels.HomeFrame;
+import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_Judge;
+import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_Subjective;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class QCard_Subjective_Check extends JPanel {
     public QuestionCard_CheckTitle checkTitle;
@@ -32,12 +37,21 @@ public class QCard_Subjective_Check extends JPanel {
         add(checkTitle);
         add(stemArea);
         add(answerArea);
+        checkTitle.change.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                HomeFrame.content.removeAll();
+                HomeFrame.content.add(new AlterQuestion_Subjective(id,stem,difficulty,mark,answer));
+                HomeFrame.content.repaint();
+                HomeFrame.content.updateUI();
+            }
+        });
     }
     public int getId(){
         return id;
     }
     public void removeBtn(){
         QCard_Subjective_Check.this.checkTitle.remove(checkTitle.change);
-        QCard_Subjective_Check.this.checkTitle.remove(checkTitle.delete);
     }
 }

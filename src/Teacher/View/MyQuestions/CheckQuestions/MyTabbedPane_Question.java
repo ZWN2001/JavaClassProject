@@ -14,4 +14,14 @@ public class MyTabbedPane_Question extends JPanel {
 
         add(pane);
     }
+    public MyTabbedPane_Question(int n){
+        setLayout(new BorderLayout());
+        JTabbedPane pane=new JTabbedPane();
+        pane.addTab("单选题",new CheckQuestionPanel_Choice());
+        pane.addTab("多选题",new CheckQuestionPanel_MultiChoice());
+        pane.addTab("判断题",new CheckQuestionPanel_Judge());
+        pane.addTab("主观题",new CheckQuestionPanel_Subjective());
+        pane.setSelectedIndex(n);
+        add(pane);
+    }
 }

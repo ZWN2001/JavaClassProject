@@ -13,7 +13,6 @@ public class QuestionCard_CheckTitle extends JPanel {
     int difficulty;
     String answer;
     public BackgroundButton change;
-    public BackgroundButton delete;
     public QuestionCard_CheckTitle(int qid,int mark,int difficulty,String answer){
         setLayout(new GridBagLayout());
         this.qid=qid;
@@ -32,16 +31,12 @@ public class QuestionCard_CheckTitle extends JPanel {
          change=new BackgroundButton("修改");
         change.setUnFocusedColor(Color.WHITE);
         change.setBackground(Color.WHITE);
-         delete= new BackgroundButton("删除");
-        delete.setUnFocusedColor(Color.WHITE);
-        delete.setBackground(Color.WHITE);
 
         add(qid_Label,new GBC(0,0).setInsets(0,0,0,80));
         add(mark_Label,new GBC(1,0).setInsets(0,0,0,20));
         add(answer_Label,new GBC(2,0).setInsets(0,0,0,20));
         add(difficulty_Label,new GBC(3,0).setInsets(0,0,0,300));
         add(change,new GBC(4,0).setInsets(0,0,0,20));
-        add(delete,new GBC(5,0));
         setBackground(Color.WHITE);
     }
 
