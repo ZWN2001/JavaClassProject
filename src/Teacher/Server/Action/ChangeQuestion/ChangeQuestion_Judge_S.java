@@ -33,10 +33,10 @@ public class ChangeQuestion_Judge_S {
         difficulty=question_judge.getDifficulty();
         answer=question_judge.getAnswer();
         try {
+            database.update("UPDATE questions.judge SET stem='" + stem +  "',mark='" + mark+ "',difficulty='" +
+                    difficulty+ "',answer='" + answer+ "' WHERE id="+id);
             dos.writeUTF("1");
             dos.flush();
-            database.update("UPDATE questions.judge SET stem=" + stem +  ",mark=" + mark+ ",difficulty=" +
-                    difficulty+ ",answer=" + answer+ "WHERE id="+id);
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

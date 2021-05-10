@@ -35,7 +35,7 @@ public class AlterQuestion_MultiChoice extends JPanel{
         add(addStemLabel,new GBC(0,0,1,1).setInsets(5,40,0,0).setAnchor(GridBagConstraints.WEST));
         add(stem,new GBC(0,1,5,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
-        JLabel addOptions=new JLabel("添加选项：");
+        JLabel addOptions=new JLabel("修改选项：");
         addOptions.setFont(MyFont.Font_14);
         JLabel optA_Label=new JLabel("A:");
         JLabel optB_Label=new JLabel("B:");
@@ -73,9 +73,13 @@ public class AlterQuestion_MultiChoice extends JPanel{
 
 
         MyTextArea_Normal optA =new MyTextArea_Normal(1,90);
+        optA.textArea.setText(optAText);
         MyTextArea_Normal optB =new MyTextArea_Normal( 1,90);
+        optB.textArea.setText(optBText);
         MyTextArea_Normal optC =new MyTextArea_Normal(1,90);
+        optC.textArea.setText(optCText);
         MyTextArea_Normal optD =new MyTextArea_Normal( 1,90);
+        optD.textArea.setText(optDText);
 
         add(addOptions,new GBC(0,4,1,1).setInsets(15,40,0,0));
         add(optA_Label,new GBC(0,5,1,1).setInsets(10,20,0,0));
@@ -109,8 +113,8 @@ public class AlterQuestion_MultiChoice extends JPanel{
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
-        add(submitBtn,new GBC(4,10,1,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
-        add(deleteBtn,new GBC(7,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(submitBtn,new GBC(3,10,1,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(deleteBtn,new GBC(4,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
 
         warningArea.setLayout(new BorderLayout());
         add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
@@ -169,6 +173,8 @@ public class AlterQuestion_MultiChoice extends JPanel{
                         if (submitQuestion_c.getResultCode()==1) {
                             HomeFrame.content.removeAll();
                             HomeFrame.content.add(new MyTabbedPane_Question(1));
+                            HomeFrame.content.repaint();
+                            HomeFrame.content.updateUI();
                         } else {
                             MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","修改失败");
                             warningArea.removeAll();
@@ -194,7 +200,25 @@ public class AlterQuestion_MultiChoice extends JPanel{
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
-                        //TODO shanchu
+                        question_multiChoice=new Question_MultiChoice(id,stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
+                                ,optB.getText(),optC.getText(),optD.getText(), JSON.toJSONString(answer));
+                        try {
+                            SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_multiChoice,"DELETE_QUESTION_MULTICHOICE");
+                            if (submitQuestion_c.getResultCode()==1) {
+                                HomeFrame.content.removeAll();
+                                HomeFrame.content.add(new MyTabbedPane_Question(1));
+                                HomeFrame.content.repaint();
+                                HomeFrame.content.updateUI();
+                            } else {
+                                MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","修改失败");
+                                warningArea.removeAll();
+                                warningArea.add(warning);
+                                repaint();
+                                updateUI();
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
                     }
                 });
                 warningPanel.cancelButton.addMouseListener(new MouseAdapter() {

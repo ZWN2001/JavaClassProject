@@ -27,16 +27,17 @@ public class ChangeQuestion_Subjective_S {
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         question_subjective= JSON.parseObject(in.readLine(),Question_Subjective.class);
+        System.out.println(question_subjective);
+
         id=question_subjective.getId();
         stem=question_subjective.getStem();
         mark=question_subjective.getMark();
         difficulty=question_subjective.getDifficulty();
         answer=question_subjective.getAnswer();
         try {
+            database.update("UPDATE questions.subjective SET stem= '" + stem +  "',mark='" + mark+ "',difficulty='" + difficulty+ "',answer='" + answer+ "' WHERE id="+id);
             dos.writeUTF("1");
             dos.flush();
-            database.update("UPDATE questions.subjective SET stem= " + stem +  ",mark=" + mark+ ",difficulty=" + difficulty+ ",answer=" + answer+ "WHERE id="+id);
-
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

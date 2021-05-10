@@ -9,10 +9,12 @@ import Teacher.Util.Layout.VFlowLayout;
 import Teacher.View.HomePanels.HomeFrame;
 import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_Choice;
 import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_MultiChoice;
+import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class QCard_MultiChoice_Check extends JPanel {
     public QuestionCard_CheckTitle checkTitle;
@@ -41,7 +43,7 @@ public class QCard_MultiChoice_Check extends JPanel {
         this.mark=mark;
         this.difficulty=difficulty;
         this.answer=answer;
-        String answer1= MultiAnswerUtil.getAnswerFromString(answer);
+        String answer1= MultiAnswerUtil.getAnswerFromString(Arrays.toString(JSON.parseObject(answer, String[].class)));
         checkTitle=new QuestionCard_CheckTitle(qid,mark,difficulty,answer1);
         stemArea=new QuestionCard_Stem(stem);
         answerArea=new QCard_AnswerArea_MultiChoice(optionA,optionB,optionC,optionD);

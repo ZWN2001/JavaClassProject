@@ -1,4 +1,4 @@
-package Teacher.Server.Action.SubmitQuestion_S;
+package Teacher.Server.Action.DeleteQuestion;
 
 import Teacher.Bean.Question.Question_Judge;
 import Teacher.Server.DataBase.DB;
@@ -7,8 +7,7 @@ import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
 
-public class SubmitQuestion_Judge_S {
-
+public class DeleteQuestion_Judge_S {
     Socket socket;
     DataInputStream dis;//输入
     DataOutputStream dos;//输出
@@ -16,30 +15,31 @@ public class SubmitQuestion_Judge_S {
     DB database = DB.instance;
 
     Question_Judge question_judge;
-//    private static int id=0;
+    int id;
     String stem;
     int mark;
     String answer;
     int difficulty;
-    public SubmitQuestion_Judge_S(Socket socket) throws Exception{
+
+    public DeleteQuestion_Judge_S(Socket socket) throws Exception {
         this.socket=socket;
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream())); //
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         question_judge= JSON.parseObject(in.readLine(),Question_Judge.class);
+        id=question_judge.getId();
         stem=question_judge.getStem();
         mark=question_judge.getMark();
         difficulty=question_judge.getDifficulty();
         answer=question_judge.getAnswer();
         try {
-
-            dos.flush();
-            database.update("INSERT INTO questions.judge VALUES ('" + 0 + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
+            database.update("DELETE FROM questions.judge WHERE id="+id);
             dos.writeUTF("1");
+            dos.flush();
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();
-            System.out.println("添加判断题失败");
+            System.out.println("删除判断题失败");
             e.printStackTrace();
         }
     }

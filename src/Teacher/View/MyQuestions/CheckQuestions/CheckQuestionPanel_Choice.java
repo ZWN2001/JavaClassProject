@@ -1,6 +1,7 @@
 package Teacher.View.MyQuestions.CheckQuestions;
 
 import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_Choice_C;
+import Teacher.Util.Component.MyPanel.NullPanel;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_Choice_Check;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
@@ -32,7 +33,8 @@ public class CheckQuestionPanel_Choice extends JScrollPane {
                         panel.add(qCard_choice_check);
                     }
                 }else {
-                    panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
+                    //panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
+                    panel.add(new NullPanel());
                 }
             }catch (IOException ex){
                 panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));

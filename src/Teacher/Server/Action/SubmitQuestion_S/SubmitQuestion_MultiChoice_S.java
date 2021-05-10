@@ -40,10 +40,10 @@ public class SubmitQuestion_MultiChoice_S {
         difficulty=question_multiChoice.getDifficulty();
         answer=question_multiChoice.getAnswer();
         try {
-            dos.writeUTF("1");
             dos.flush();
-            database.update("INSERT INTO questions.multiChoice VALUES ('" + null + "','" + stem + "','" + optionA + "','" +
+            database.update("INSERT INTO questions.multiChoice VALUES ('" + 0 + "','" + stem + "','" + optionA + "','" +
                     optionB+ "','" + optionC+ "','" + optionD + "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
+            dos.writeUTF("1");
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

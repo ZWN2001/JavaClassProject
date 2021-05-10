@@ -26,7 +26,6 @@ public class ChangeQuestion_Choice_S {
     int difficulty;
 
     public ChangeQuestion_Choice_S(Socket socket) throws Exception {
-        {
             this.socket = socket;
             dis = new DataInputStream(new BufferedInputStream(socket.getInputStream())); //
             dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -42,11 +41,11 @@ public class ChangeQuestion_Choice_S {
             difficulty = question_choice.getDifficulty();
             answer = question_choice.getAnswer();
             try {
+                database.update("UPDATE questions.choice SET stem='" + stem + "',optA='" + optionA + "',optB='" +
+                        optionB + "',optC='" + optionC + "',optD='" + optionD + "',mark='" + mark +
+                        "',difficulty='" + difficulty + "',answer='" + answer + "' WHERE id="+id);
                 dos.writeUTF("1");
                 dos.flush();
-                database.update("UPDATE questions.choice SET stem=" + stem + ",optionA=" + optionA + ",optionB=" +
-                        optionB + ",optionC=" + optionC + ",optionD=" + optionD + ",mark=" + mark +
-                        ",difficulty=" + difficulty + ",answer=" + answer + "WHERE id="+id);
             } catch (Exception e) {
                 dos.writeUTF("-1");
                 dos.flush();
@@ -54,5 +53,4 @@ public class ChangeQuestion_Choice_S {
                 e.printStackTrace();
             }
         }
-    }
 }

@@ -8,6 +8,7 @@ import Teacher.Util.Component.MyButton.PopButton;
 import Teacher.Util.Component.MyPanel.HeadImagePanel;
 import Teacher.Util.MyColor;
 import Teacher.Util.MyFont;
+import Teacher.View.CheckAllMarks.CheckAllMarkPanel;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.MyTabbedPane_AddPaper;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
 import Teacher.View.MyQuestions.CheckQuestionSituation.CheckQuestionSituationPanel;
@@ -151,7 +152,17 @@ public class LeftPanel extends JPanel {
         addPaperBtn.setFont(MyFont.Font_16);
         correctQuestionBtn.setFont(MyFont.Font_16);
         paperMarkBtn.setFont(MyFont.Font_16);
-
+        paperMarkBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                CheckAllMarkPanel checkAllMarkPanel=new CheckAllMarkPanel();
+                HomeFrame.content.removeAll();
+                HomeFrame.content.add(checkAllMarkPanel);
+                HomeFrame.content.repaint();
+                HomeFrame.content.updateUI();
+            }
+        });
         buttonsPanel.add(maintainQuestionsBtn,new GBC(0,0).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
         buttonsPanel.add(myPaperBtn,new GBC(0,1).setWeightx(1).setFill(GridBagConstraints.HORIZONTAL));
         buttonsPanel.add(addPaperBtn,new GBC(0,2).setWeightx(1).setInsets(0,5,0,5).setFill(GridBagConstraints.HORIZONTAL));

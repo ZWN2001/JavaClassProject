@@ -1,4 +1,4 @@
-package Teacher.Server.Action.ChangeQuestion;
+package Teacher.Server.Action.DeleteQuestion;
 
 import Teacher.Bean.Question.Question_MultiChoice;
 import Teacher.Server.DataBase.DB;
@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
 
-public class ChangeQuestion_MultiChoice_S {
+public class DeleteQuestion_MultiChoice_S {
     Socket socket;
     DataInputStream dis;//输入
     DataOutputStream dos;//输出
@@ -25,7 +25,7 @@ public class ChangeQuestion_MultiChoice_S {
     String answer;
     int difficulty;
 
-    public ChangeQuestion_MultiChoice_S(Socket socket) throws Exception {
+    public DeleteQuestion_MultiChoice_S(Socket socket) throws Exception {
         this.socket=socket;
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream())); //
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -41,14 +41,13 @@ public class ChangeQuestion_MultiChoice_S {
         difficulty=question_multiChoice.getDifficulty();
         answer=question_multiChoice.getAnswer();
         try {
-            database.update("UPDATE questions.multiChoice SET stem='" + stem + "',optA='" + optionA + "',optB='" +
-                    optionB+ "',optC='" + optionC+ "',optD='" + optionD + "',mark='" + mark+ "',difficulty='" + difficulty+ "',answer='" + answer+ "' WHERE id="+id);
+            database.update("DELETE FROM questions.multiChoice WHERE id="+id);
             dos.writeUTF("1");
             dos.flush();
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();
-            System.out.println("修改多选题失败");
+            System.out.println("删除多选题失败");
             e.printStackTrace();
         }
     }

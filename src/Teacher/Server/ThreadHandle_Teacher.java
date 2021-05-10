@@ -5,6 +5,10 @@ import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Choice_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Judge_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_MultiChoice_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Subjective_S;
+import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_Choice_S;
+import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_Judge_S;
+import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_MultiChoice_S;
+import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_Subjective_S;
 import Teacher.Server.Action.GetPreviewQuestions_S;
 import Teacher.Server.Action.GetQuestionBankSituation_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Choice_S;
@@ -97,6 +101,18 @@ public class ThreadHandle_Teacher extends Thread {
                     break;
                 case"CHANGE_QUESTION_SUBJECTIVE":
                     new ChangeQuestion_Subjective_S(socket);
+                    break;
+                case"DELETE_QUESTION_CHOICE":
+                    new DeleteQuestion_Choice_S(socket);
+                    break;
+                case"DELETE_QUESTION_MULTICHOICE":
+                    new DeleteQuestion_MultiChoice_S(socket);
+                    break;
+                case"DELETE_QUESTION_JUDGE":
+                    new DeleteQuestion_Judge_S(socket);
+                    break;
+                case"DELETE_QUESTION_SUBJECTIVE":
+                    new DeleteQuestion_Subjective_S(socket);
                     break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");

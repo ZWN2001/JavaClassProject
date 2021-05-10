@@ -66,7 +66,7 @@ public class StatisticianPanel_Self extends JPanel {
         add(examTimeLabel,new GBC(2,5).setInsets(3,18,2,20));
         add(examTime,new GBC(3,5).setAnchor(GridBagConstraints.WEST).setFill(GridBagConstraints.HORIZONTAL).setInsets(0,0,10,0));
         add(titleLabel4,new GBC(4,5).setInsets(3,8,2,20));
-        add(submitBtn,new GBC(5,5).setInsets(3,28,2,20).setInsets(0,0,10,10));
+        add(submitBtn,new GBC(5,5).setInsets(3,28,2,20));
 
         paperName.textArea.addKeyListener(new KeyAdapter() {
             @Override

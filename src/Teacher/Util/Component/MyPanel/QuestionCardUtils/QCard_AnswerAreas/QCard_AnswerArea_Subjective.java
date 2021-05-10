@@ -11,6 +11,7 @@ public QCard_AnswerArea_Subjective(String answerText){
     this.answerText=answerText;
     setLayout(new VFlowLayout(true,true));
     MyTextArea_Normal answer=new MyTextArea_Normal(4,getWidth(),"答案样例：",answerText);
+   answer.setAble(false);
     add(answer);
 }
     public QCard_AnswerArea_Subjective(){

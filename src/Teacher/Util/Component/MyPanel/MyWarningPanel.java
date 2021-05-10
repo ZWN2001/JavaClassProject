@@ -15,7 +15,7 @@ public class MyWarningPanel extends JPanel {
         MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"warning",warningText);
         oKButton=new BackgroundButton("确定");
         cancelButton=new BackgroundButton("取消");
-        add(warning,new GBC(0,0).setFill(GridBagConstraints.HORIZONTAL));
+        add(warning,new GBC(0,0,2,1).setFill(GridBagConstraints.HORIZONTAL));
         add(oKButton,new GBC(0,1).setInsets(3,10,3,10));
         add(cancelButton,new GBC(1,1).setInsets(3,10,3,10));
     }

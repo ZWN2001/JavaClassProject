@@ -32,10 +32,11 @@ public class AlterQuestion_Subjective extends JPanel {
         stem.textArea.setText(stemText);
 
         add(addStemLabel,new GBC(0,0,1,1).setInsets(5,40,0,20).setAnchor(GridBagConstraints.WEST));
-        add(stem,new GBC(0,1,5,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
+        add(stem,new GBC(0,1,6,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
         MyTextArea_Colorful setAnswer=new MyTextArea_Colorful(8,width,"答案样例");
-        add(setAnswer,new GBC(0,5,5,4).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
+        setAnswer.setText(answer);
+        add(setAnswer,new GBC(0,5,6,4).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
         JLabel setDifficulty_Label=new JLabel("设置难度：");
         JComboBox<Integer> setDifficultyComboBox=new JComboBox<>();
@@ -57,8 +58,8 @@ public class AlterQuestion_Subjective extends JPanel {
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
-        add(submitBtn,new GBC(4,9,2,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
-        add(deleteBtn,new GBC(7,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(submitBtn,new GBC(4,9).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(deleteBtn,new GBC(5,9).setInsets(25,10,0,20).setAnchor(GridBagConstraints.WEST));
 
         warningArea.setLayout(new BorderLayout());
         add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
@@ -84,6 +85,8 @@ public class AlterQuestion_Subjective extends JPanel {
                         if (submitQuestion_c.getResultCode()==1) {
                             HomeFrame.content.removeAll();
                             HomeFrame.content.add(new MyTabbedPane_Question(3));
+                            HomeFrame.content.repaint();
+                            HomeFrame.content.updateUI();
                         } else {
                             MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","添加失败");
                             warningArea.removeAll();
@@ -109,7 +112,24 @@ public class AlterQuestion_Subjective extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
-                        //TODO shanchu
+                        question_subjective=new Question_Subjective(id,stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,setAnswer.getText() );
+                        try {
+                            SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_subjective,"DELETE_QUESTION_SUBJECTIVE");
+                            if (submitQuestion_c.getResultCode()==1) {
+                                HomeFrame.content.removeAll();
+                                HomeFrame.content.add(new MyTabbedPane_Question(3));
+                                HomeFrame.content.repaint();
+                                HomeFrame.content.updateUI();
+                            } else {
+                                MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","修改失败");
+                                warningArea.removeAll();
+                                warningArea.add(warning);
+                                repaint();
+                                updateUI();
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
                     }
                 });
                 warningPanel.cancelButton.addMouseListener(new MouseAdapter() {

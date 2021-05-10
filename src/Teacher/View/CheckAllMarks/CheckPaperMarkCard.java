@@ -1,26 +1,23 @@
-package Teacher.View.MyPapers.CheckPaperPanels;
+package Teacher.View.CheckAllMarks;
 
-import Teacher.Bean.Paper;
-import Teacher.Function.ClientFuction.Paper.GetAPaper_C;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
+import Teacher.View.CheckAllMarks.CheckEachPaperMark.CheckEachPaperMark;
 import Teacher.View.HomePanels.HomeFrame;
-import Teacher.View.MyPapers.AddPaperPanels.PaperPreview.PaperPreviewPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
-import static Teacher.Util.MyFont.*;
+import static Teacher.Util.MyFont.Font_14;
+import static Teacher.Util.MyFont.Font_20;
 
-public class SelectPaperCard extends JPanel {
+public class CheckPaperMarkCard extends JPanel {
     private final int id;
-    private GetAPaper_C getAPaper;
-    private Paper paper;
+
     BackgroundButton enterBtn;
-    public SelectPaperCard(int id,int cid,String title,int mark,String time,String owner,int ownerID){
+    public CheckPaperMarkCard(int id,int cid,String title,int mark,String time,String owner){
         this.id=id;
         setBackground(Color.WHITE);
         setLayout(new GridBagLayout());
@@ -31,7 +28,7 @@ public class SelectPaperCard extends JPanel {
         titleLabel.setFont(Font_20);
         JLabel subTitle=new JLabel("由"+owner+"老师创建于"+time);
         subTitle.setFont(Font_14);
-         enterBtn=new BackgroundButton("前往查看");
+        enterBtn=new BackgroundButton(" 前往查看分数 ");
 
         add(cid_Label,new GBC(0,0).setInsets(0,10,0,0).setAnchor(GridBagConstraints.WEST));
         add(ID,new GBC(1,0).setInsets(0,10,0,0));
@@ -42,15 +39,8 @@ public class SelectPaperCard extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    getAPaper=new GetAPaper_C(getId());
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-                paper=getAPaper.getPaper();
-                System.out.println(paper.getId());
-                PaperPreviewPanel paperPreviewPanel=new PaperPreviewPanel(paper.getTitle(),paper.getMark(),paper.getExamTime(),paper.getDifficulty(),paper.getQuestions(),false);
-                HomeFrame.content.add(paperPreviewPanel,0);
+            CheckEachPaperMark checkEachPaperMark=new CheckEachPaperMark(id);
+            HomeFrame.content.add(checkEachPaperMark,0);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }

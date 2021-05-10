@@ -1,4 +1,4 @@
-package Teacher.Server.Action.SubmitQuestion_S;
+package Teacher.Server.Action.DeleteQuestion;
 
 import Teacher.Bean.Question.Question_Subjective;
 import Teacher.Server.DataBase.DB;
@@ -7,8 +7,7 @@ import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
 
-public class SubmitQuestion_Subjective_S {
-
+public class DeleteQuestion_Subjective_S {
     Socket socket;
     DataInputStream dis;//输入
     DataOutputStream dos;//输出
@@ -16,29 +15,31 @@ public class SubmitQuestion_Subjective_S {
     DB database = DB.instance;
 
     Question_Subjective question_subjective;
-//    private static int id=0;
+    int id;
     String stem;
     int mark;
     String answer;
     int difficulty;
-    public SubmitQuestion_Subjective_S(Socket socket) throws Exception{
+    public DeleteQuestion_Subjective_S(Socket socket) throws Exception{
         this.socket=socket;
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream())); //
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         question_subjective= JSON.parseObject(in.readLine(),Question_Subjective.class);
+        System.out.println(question_subjective);
+        id=question_subjective.getId();
         stem=question_subjective.getStem();
         mark=question_subjective.getMark();
         difficulty=question_subjective.getDifficulty();
         answer=question_subjective.getAnswer();
         try {
-            dos.flush();
-          database.update("INSERT INTO questions.subjective VALUES ('" + 0 + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
+            database.update("DELETE FROM questions.subjective WHERE id="+id);
             dos.writeUTF("1");
+            dos.flush();
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();
-            System.out.println("添加主观题失败");
+            System.out.println("删除主观题失败");
             e.printStackTrace();
         }
     }

@@ -1,6 +1,7 @@
 package Teacher.View.MyQuestions.CheckQuestions;
 
 import Teacher.Function.ClientFuction.GetQuestionBank.GetQuestionBank_MultiChoice_C;
+import Teacher.Util.Component.MyPanel.NullPanel;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_MultiChoice_Check;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
@@ -30,11 +31,12 @@ public class CheckQuestionPanel_MultiChoice extends JScrollPane {
             panel.setPreferredSize(new Dimension(950,350*idList.length));
             if (idList.length>0) {
                 for ( i = 0; i < idList.length; i++) {
-                    qCard_multiChoice_check = new QCard_MultiChoice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], Arrays.toString(JSON.parseObject(answerList[i], String[].class)));
+                    qCard_multiChoice_check = new QCard_MultiChoice_Check(idList[i], i + 1, stemList[i], optionA_List[i], optionB_List[i], optionC_List[i], optionD_List[i], markList[i], difficulty[i], answerList[i]);
                     panel.add(qCard_multiChoice_check);
                 }
             }else {
-                panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
+                //panel.add(new MyTextArea_Warning(1,10,"提示","暂无数据"));
+                panel.add(new NullPanel());
             }
         }catch (IOException ex){
             panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));

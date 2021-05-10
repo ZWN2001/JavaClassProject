@@ -52,4 +52,15 @@ public class Question_Subjective extends Question{
         return stem;
     }
 
+    @Override
+    public String toString() {
+        return "Question_Subjective{" +
+                "stem='" + stem + '\'' +
+                ", id=" + id +
+                ", stem='" + stem + '\'' +
+                ", mark=" + mark +
+                ", difficulty=" + difficulty +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
 }

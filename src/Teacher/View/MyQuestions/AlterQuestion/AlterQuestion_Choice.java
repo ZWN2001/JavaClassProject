@@ -112,8 +112,8 @@ public class AlterQuestion_Choice extends JPanel  {
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
-        add(submitBtn,new GBC(5,10,2,1).setInsets(25,20,0,10).setAnchor(GridBagConstraints.CENTER));
-        add(deleteBtn,new GBC(7,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(submitBtn,new GBC(3,10).setInsets(25,20,0,0).setAnchor(GridBagConstraints.EAST));
+        add(deleteBtn,new GBC(4,10).setInsets(25,0,0,20).setAnchor(GridBagConstraints.CENTER));
         warningArea.setLayout(new BorderLayout());
         add(warningArea,new GBC(2,10,2,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
 
@@ -139,6 +139,8 @@ public class AlterQuestion_Choice extends JPanel  {
                         if (submitQuestion_c.getResultCode()==1) {
                             HomeFrame.content.removeAll();
                             HomeFrame.content.add(new MyTabbedPane_Question(0));
+                            HomeFrame.content.repaint();
+                            HomeFrame.content.updateUI();
                         } else {
                             MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","修改失败");
                             warningArea.removeAll();
@@ -165,7 +167,25 @@ public class AlterQuestion_Choice extends JPanel  {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         super.mouseClicked(e);
-                        //TODO shanchu
+                        question_choice=new Question_Choice(id,stem.getText(),Integer.parseInt(setMark.getText()),setDifficultyComboBox.getSelectedIndex()+1,optA.getText()
+                                ,optB.getText(),optC.getText(),optD.getText(),(String) setAnswerComboBox.getSelectedItem());
+                        try {
+                            SubmitQuestion_C submitQuestion_c=new SubmitQuestion_C(question_choice,"DELETE_QUESTION_CHOICE");
+                            if (submitQuestion_c.getResultCode()==1) {
+                                HomeFrame.content.removeAll();
+                                HomeFrame.content.add(new MyTabbedPane_Question(0));
+                                HomeFrame.content.repaint();
+                                HomeFrame.content.updateUI();
+                            } else {
+                                MyTextArea_Warning warning=new MyTextArea_Warning(1,8,"错误","修改失败");
+                                warningArea.removeAll();
+                                warningArea.add(warning);
+                                repaint();
+                                updateUI();
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
                     }
                 });
                 warningPanel.cancelButton.addMouseListener(new MouseAdapter() {
