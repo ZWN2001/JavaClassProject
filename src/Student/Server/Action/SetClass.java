@@ -21,7 +21,7 @@ public class SetClass {
         DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.teacher WHERE `account` = '" + classNum + "'");
         if (resultSet.next()) {
-            resultSet = database.query("SELECT * FROM exam.index WHERE `student` = '" + student.getAccount() + "' AND `teacher` = " + classNum);
+            resultSet = database.query("SELECT * FROM exam.index WHERE `student` = '" + student.getAccount() + "' AND `teacher` = '" + classNum+"'");
             if (resultSet.next()) {
                 dos.writeUTF("0");
             } else {

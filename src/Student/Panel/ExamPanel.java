@@ -5,6 +5,8 @@ import Basic.Command;
 import Student.Bean.Student;
 import Student.Frame.MainFrame;
 import Teacher.Bean.Paper;
+import Teacher.Util.AdapterAndHelper.GBC;
+import Teacher.Util.Layout.VFlowLayout;
 import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
@@ -25,7 +27,7 @@ public class ExamPanel extends JPanel {
         this.mainFrame = mainFrame;
         student = mainFrame.getStudent();
         setBackground(Color.WHITE);
-        setLayout(new GridLayout(0, 1, 10, 10));
+        setLayout(new VFlowLayout());
         setVisible(false);
     }
 
@@ -33,7 +35,6 @@ public class ExamPanel extends JPanel {
         removeAll();
         loadExPanel();
     }
-
 
     public void loadExPanel() {
         try {

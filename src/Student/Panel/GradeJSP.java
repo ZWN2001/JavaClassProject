@@ -20,7 +20,7 @@ public class GradeJSP extends JScrollPane {
     }
 
     public void refresh(){
-
+        gradePanel.refresh();
     }
 
     public void setVisible(boolean visible) {

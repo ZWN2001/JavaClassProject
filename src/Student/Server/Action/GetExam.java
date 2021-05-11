@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class GetExam {
     //-1为未加入任何班级，0为已加入班级但没有任何待完成试卷，1为读取成功
@@ -23,14 +23,14 @@ public class GetExam {
         Student student = JSON.parseObject(obr.readLine(), Student.class);
         DbConnection database = Server.getDatabase();
         String account = student.getAccount();
-        Vector<Teacher> teachers = new Vector<>();
-        Vector<Paper> papers = new Vector<>();
+        ArrayList<Teacher> teachers = new ArrayList<>();
+        ArrayList<Paper> papers = new ArrayList<>();
         ResultSet resultSet = database.query("SELECT * FROM exam.index WHERE `student` =" + account);
         if (resultSet.next()) {
             ResultSet newResultSet = database.query1("SELECT * FROM exam.index WHERE `student` =" + account);
             while (newResultSet.next()) {
                 String teacherAcc = newResultSet.getString("teacher");
-                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` =" + teacherAcc);
+                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` = '" + teacherAcc+"'");
                 if (teacherSet.next()) {
                     Teacher teacher = new Teacher(teacherSet.getString("account"), teacherSet.getString("name"));
                     teachers.add(teacher);
@@ -38,17 +38,19 @@ public class GetExam {
             } //填充teachers
             for (Teacher teacher : teachers) {
                 Statement statement = database.getConnection().createStatement();
-                ResultSet examSet = statement.executeQuery("SELECT * FROM exam.paper WHERE `owner` = " + teacher.getAccount());
-                while (examSet.next()) {
-                    papers.add(new Paper(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getInt("difficulty"),resultSet.getInt("mark"), resultSet.getString("time"), resultSet.getInt("examTime"), resultSet.getString("owner"), resultSet.getInt("ownerID"), resultSet.getString("questions")));
-                }
+                ResultSet examSet = statement.executeQuery("SELECT * FROM papers.paper WHERE `owner` = '" + teacher.getAccount()+"'");
+                while (examSet.next())
+                    papers.add(new Paper(examSet.getInt("id"),examSet.getString("title"), examSet.getInt("mark"),examSet.getInt("difficulty"), examSet.getString("time"), examSet.getInt("examTime"), examSet.getString("owner"), examSet.getInt("ownerID"), examSet.getString("questions")));
                 if (papers.size() == 0) {
                     dos.writeUTF("0");
                     dos.flush();
                 } else {
                     dos.writeUTF("1");
                     dos.flush();
-                    opw.println(JSON.toJSONString(papers));
+                    for (Paper paper : papers){
+                        opw.println(JSON.toJSONString(paper));
+                    }
+                    opw.println(JSON.toJSONString(new Paper("",1,"1","1",2)));
                 }
             }
         } else {

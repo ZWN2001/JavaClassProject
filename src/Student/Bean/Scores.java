@@ -5,12 +5,19 @@ import Teacher.Bean.Paper;
 public class Scores {
     private String student;
     private Paper paper;
+    private int objectiveScore;
+    private int subjectiveScore;
     private int score;
 
-    public Scores(String student, Paper paper, int score) {
+    public Scores(String student, Paper paper, int objectiveScore, int subjectiveScore) {
         this.student = student;
         this.paper = paper;
-        this.score = score;
+        this.objectiveScore = objectiveScore;
+        this.subjectiveScore = subjectiveScore;
+        if (subjectiveScore>0){
+            score=objectiveScore+subjectiveScore;
+        }
+        else score=objectiveScore;
     }
 
     public String getStudent() {
@@ -29,8 +36,24 @@ public class Scores {
         this.paper = paper;
     }
 
+    public int getObjectiveScore() {
+        return objectiveScore;
+    }
+
+    public void setObjectiveScore(int objectiveScore) {
+        this.objectiveScore = objectiveScore;
+    }
+
+    public int getSubjectiveScore() {
+        return subjectiveScore;
+    }
+
     public int getScore() {
         return score;
+    }
+
+    public void setSubjectiveScore(int subjectiveScore) {
+        this.subjectiveScore = subjectiveScore;
     }
 
     public void setScore(int score) {

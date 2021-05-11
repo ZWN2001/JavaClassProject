@@ -20,14 +20,15 @@ public class ExExPanel extends JPanel implements MouseListener {
     public ExExPanel(MainFrame mainFrame, Paper paper) {
         this.mainFrame = mainFrame;
         this.paper=paper;
-        Dimension size = new Dimension(1000, 270);
-        setPreferredSize(size);
+        setPreferredSize(new Dimension(1345, 270));
         setLayout(null);
         exExImage = exExIcon.getImage();
 
         JLabel exTitle = new JLabel(paper.getTitle());
-        JLabel exTime = new JLabel(String.format("%02d:%02d:%02d",paper.getExamTime()/60,paper.getExamTime()%60,0));
-        JLabel paperOwner = new JLabel(paper.getOwner()+"("+paper.getOwnerID()+")");
+        JLabel exTime = new JLabel("考试时间："+String.format("%02d:%02d:%02d",paper.getExamTime()/60,paper.getExamTime()%60,0));
+        JLabel paperOwner = new JLabel("创建人:"+paper.getOwner()+"("+paper.getOwnerID()+")");
+        JLabel paperDiff = new JLabel("试题难度:"+paper.getDifficulty());
+        JLabel paperMark = new JLabel("试题总分:"+paper.getMark());
         exStart = new JButton();
         exStart.setIcon(exStartU);
         exStart.setContentAreaFilled(false);
@@ -39,17 +40,23 @@ public class ExExPanel extends JPanel implements MouseListener {
         //exTime.setForeground(Color.WHITE);
 
         exTitle.setFont(exFont);
-        exTitle.setBounds(40, 20, 600, 100);
+        exTitle.setBounds(40, 20, 1000, 100);
         exTime.setFont(exFont);
-        exTime.setBounds(200, 130, 600, 100);
+        exTime.setBounds(100, 130, 600, 100);
         paperOwner.setFont(exFont);
-        paperOwner.setBounds(100,20,600,100);
+        paperOwner.setBounds(700,50,600,100);
+        paperDiff.setFont(exFont);
+        paperDiff.setBounds(450,50,600,100);
+        paperMark.setFont(exFont);
+        paperMark.setBounds(500,130,600,100);
         exStart.setFocusPainted(false);
         exStart.setBounds(1100, 160, 200, 75);
         add(exTitle);
         add(exTime);
         add(paperOwner);
         add(exStart);
+        add(paperDiff);
+        add(paperMark);
 
         setVisible(true);
     }

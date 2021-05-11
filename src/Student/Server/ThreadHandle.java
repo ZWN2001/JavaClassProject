@@ -38,6 +38,9 @@ public class ThreadHandle extends Thread {
                 case S_GET_EXAM:
                     new GetExam(socket);
                     break;
+                case S_GET_SCORES:
+                    new GetScores(socket);
+                    break;
                 case S_LOGIN:
                     new Login(socket);
                     break;

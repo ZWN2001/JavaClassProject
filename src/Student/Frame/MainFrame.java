@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
     private static final int WIDTH = 1600;
     private static final int HEIGHT = 900;
     private final LeftPanel leftPanel;
+    private final ExamPanel examPanel;
     private final Student student;
 
     public MainFrame(Student student,ImageIcon imageIcon) {
@@ -24,8 +25,8 @@ public class MainFrame extends JFrame {
 
         Container con = this.getContentPane();
         AvatarPanel avatarPanel = new AvatarPanel(student,imageIcon);
-        ExamPanel examPanel = new ExamPanel(this);
-        GradePanel gradePanel = new GradePanel();
+        examPanel = new ExamPanel(this);
+        GradePanel gradePanel = new GradePanel(student);
         RightPanel rightPanel = new RightPanel();
         SettingPanel settingPanel = new SettingPanel(this,imageIcon);
         ExamJSP examJSP = new ExamJSP(examPanel);
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame {
 
         leftPanel = new LeftPanel(rightPanel, examJSP, gradeJSP, settingPanel, avatarPanel);
         examPanel.loadExPanel();
+        gradePanel.loadQueryPanel();
         con.add(rightPanel);
         con.add(avatarPanel);
         con.add(leftPanel);
@@ -51,6 +53,7 @@ public class MainFrame extends JFrame {
     public void examEnd(PaperPanel paperPanel) {
         leftPanel.examEnd();
         paperPanel.uploadAnswer();
+        examPanel.refresh();
         paperPanel.setVisible(false);
     }
 

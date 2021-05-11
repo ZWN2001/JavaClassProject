@@ -11,6 +11,7 @@ public abstract class QuestionPanel extends JPanel {
     public QuestionPanel(Question question, int num){
         setLayout(new GridBagLayout());
         setBackground(Color.white);
+        setVisible(true);
         JLabel numLabel = new JLabel(num+".  ");
         numLabel.setFont(font);
         JTextArea stemArea = new JTextArea(question.getStem(),0,50);
