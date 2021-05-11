@@ -30,7 +30,7 @@ public class Paper {
         this.questions=questions;
         this.difficulty=difficulty;
     }
-        public Paper(String title, int ownerID, String owner, String time, int difficulty) {
+        public Paper(String title, int ownerID, String owner, String time, double difficulty) {
         this.title = title;
         this.ownerID = ownerID;
         this.owner = owner;
