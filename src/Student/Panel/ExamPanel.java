@@ -33,6 +33,7 @@ public class ExamPanel extends JPanel {
 
     public void refresh(){
         removeAll();
+        repaint();
         loadExPanel();
     }
 

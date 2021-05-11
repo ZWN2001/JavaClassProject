@@ -42,6 +42,7 @@ public class UploadAnswer {
 
     private int singleTypeScores(DbConnection database,String[] questions,String[] answers,String type) throws SQLException {
         int score=0;
+        System.out.println(type);
         for (int i=0;i<questions.length;i++){
             Statement statement = database.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM questions." + type + " WHERE `id` =" + questions[i]);

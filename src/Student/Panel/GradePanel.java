@@ -29,6 +29,7 @@ public class GradePanel extends JPanel {
 
     public void refresh() {
         removeAll();
+        repaint();
         loadQueryPanel();
     }
 

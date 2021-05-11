@@ -521,7 +521,7 @@ class PagesPanel extends JPanel {
     }
 
     public String[] getJudgeAnswer() {
-        String[] answers = new String[multiChoicePanels.size()];
+        String[] answers = new String[judgePanels.size()];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = judgePanels.get(i).getAnswer();
         }

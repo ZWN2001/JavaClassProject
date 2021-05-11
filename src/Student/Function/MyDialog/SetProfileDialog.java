@@ -27,12 +27,15 @@ public class SetProfileDialog extends JDialog implements ActionListener {
     File newAvatar;
     ImageIcon imageIcon;
     JLabel avatar;
+    JLabel classLabel;
     JTextField setNameField, setClassField;
     JList<Teacher> classList;
     SettingPanel settingPanel;
+    JScrollPane classPane = new JScrollPane();
 
     Student student;
-
+    Font setProFont = new Font("微软雅黑", Font.PLAIN, 20);
+    Font setAvatarFont = new Font("宋体", Font.BOLD, 19);
     String suffix;
 
     public SetProfileDialog(Student student, ImageIcon imageIcon, SettingPanel settingPanel) {
@@ -47,8 +50,8 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         this.student = student;
         this.settingPanel=settingPanel;
 
-        Font setProFont = new Font("微软雅黑", Font.PLAIN, 20);
-        Font setAvatarFont = new Font("宋体", Font.BOLD, 19);
+
+
 
         JLabel setAvatarLabel = new JLabel("修改头像");
         setAvatarLabel.setFont(setProFont);
@@ -127,17 +130,27 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         add(quitClassLabel);
 
 
+        classLabel = new JLabel("当前还未加入任何班级");
+        loadGetClass();
+
+        setVisible(true);
+    }
+
+
+    public void loadGetClass(){
         Vector<Teacher> classVector = new Vector<>();
         try {
             NetGetClass netGetClass = new NetGetClass(student, classVector);
             if (netGetClass.getResultCode().equals("1")) {
+                classLabel.setVisible(false);
                 setSize(600, 800);
                 setLocationRelativeTo(null);
                 classList = new JList<>(classVector);
                 classList.setFont(setProFont);
-                JScrollPane classPane = new JScrollPane(classList);
+                classPane = new JScrollPane(classList);
                 classPane.setBounds(30, 530, 380, 200);
                 add(classPane);
+                classPane.setVisible(true);
                 confirmQuitBtn = new JButton("确定退出");
                 confirmQuitBtn.setFont(setAvatarFont);
                 confirmQuitBtn.setBounds(430, 570, 110, 65);
@@ -146,7 +159,8 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                 confirmQuitBtn.setFocusPainted(false);
                 add(confirmQuitBtn);
             } else {
-                JLabel classLabel = new JLabel("当前还未加入任何班级");
+                classPane.setVisible(false);
+                classLabel.setVisible(true);
                 classLabel.setFont(setProFont);
                 classLabel.setBounds(50, 530, 200, 100);
                 add(classLabel);
@@ -156,11 +170,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(uploadBtn)) {
@@ -226,6 +236,7 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                     switch (netSetClass.getResultCode()) {
                         case "1":
                             JOptionPane.showMessageDialog(null, "加入成功");
+                            loadGetClass();
                             break;
                         case "0":
                             JOptionPane.showMessageDialog(null, "已经加入该班级！");
@@ -246,8 +257,10 @@ public class SetProfileDialog extends JDialog implements ActionListener {
                     Vector<Teacher> teacherVector = new Vector<>(teacherList);
                     try {
                         NetQuitClass netQuitClass = new NetQuitClass(student, teacherVector);
-                        if (netQuitClass.getResultCode().equals("1"))
+                        if (netQuitClass.getResultCode().equals("1")){
                             JOptionPane.showMessageDialog(null, "退出班级成功");
+                            loadGetClass();
+                        }
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }

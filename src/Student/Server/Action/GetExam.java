@@ -30,7 +30,7 @@ public class GetExam {
             ResultSet newResultSet = database.query1("SELECT * FROM exam.index WHERE `student` =" + account);
             while (newResultSet.next()) {
                 String teacherAcc = newResultSet.getString("teacher");
-                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` = '" + teacherAcc+"'");
+                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` = '" + teacherAcc + "'");
                 if (teacherSet.next()) {
                     Teacher teacher = new Teacher(teacherSet.getString("account"), teacherSet.getString("name"));
                     teachers.add(teacher);
@@ -38,19 +38,23 @@ public class GetExam {
             } //填充teachers
             for (Teacher teacher : teachers) {
                 Statement statement = database.getConnection().createStatement();
-                ResultSet examSet = statement.executeQuery("SELECT * FROM papers.paper WHERE `owner` = '" + teacher.getAccount()+"'");
-                while (examSet.next())
-                    papers.add(new Paper(examSet.getInt("id"),examSet.getString("title"), examSet.getInt("mark"),examSet.getInt("difficulty"), examSet.getString("time"), examSet.getInt("examTime"), examSet.getString("owner"), examSet.getInt("ownerID"), examSet.getString("questions")));
+                ResultSet examSet = statement.executeQuery("SELECT * FROM papers.paper WHERE `owner` = '" + teacher.getAccount() + "'");
+                while (examSet.next()) {
+                    Statement scoreState = database.getConnection().createStatement();
+                    ResultSet scoreSet = scoreState.executeQuery("SELECT * FROM exam.score WHERE `student` = '" + student.getAccount() + "' AND `paperid` = " + examSet.getInt("id"));
+                    if (!scoreSet.next())
+                        papers.add(new Paper(examSet.getInt("id"), examSet.getString("title"), examSet.getInt("mark"), examSet.getInt("difficulty"), examSet.getString("time"), examSet.getInt("examTime"), examSet.getString("owner"), examSet.getInt("ownerID"), examSet.getString("questions")));
+                }
                 if (papers.size() == 0) {
                     dos.writeUTF("0");
                     dos.flush();
                 } else {
                     dos.writeUTF("1");
                     dos.flush();
-                    for (Paper paper : papers){
+                    for (Paper paper : papers) {
                         opw.println(JSON.toJSONString(paper));
                     }
-                    opw.println(JSON.toJSONString(new Paper("",1,"1","1",2)));
+                    opw.println(JSON.toJSONString(new Paper("", 1, "1", "1", 2)));
                 }
             }
         } else {

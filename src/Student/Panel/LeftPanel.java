@@ -158,7 +158,7 @@ public class LeftPanel extends JPanel implements MouseListener {
                     break;
             }
         } else if (e.getSource().equals(infoBtn)) {
-            JOptionPane.showMessageDialog(null, "null");
+            JOptionPane.showMessageDialog(null, "版本号：1.0.0");
         }
     }
 

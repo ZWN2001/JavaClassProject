@@ -25,10 +25,12 @@ public class GetScores {
         ArrayList<Scores> scoresList = new ArrayList<>();
         ResultSet resultSet = database.query("SELECT * FROM exam.score WHERE `student` = " + account);
         while (resultSet.next()) {
-            String paperID = resultSet.getString("paper");
+            System.out.println("有信息");
+            String paperID = resultSet.getString("paperid");
             ResultSet paperSet = database.query1("SELECT * FROM papers.paper WHERE `id` = " + paperID);
             if (paperSet.next()) {
                 resultCode = "1";
+                System.out.println("返回值为1");
                 Paper paper = new Paper(paperSet.getString("title"), paperSet.getInt("ownerID"), paperSet.getString("owner"), paperSet.getString("time"), paperSet.getInt("difficulty"));
                 scoresList.add(new Scores(student.getAccount(), paper, resultSet.getInt("objectivescore"), resultSet.getInt("subjectivescore")));
             }
