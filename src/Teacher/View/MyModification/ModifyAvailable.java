@@ -1,6 +1,8 @@
 package Teacher.View.MyModification;
 
 import Teacher.Bean.Paper;
+import Teacher.Function.ClientFuction.Modify.GetAvailableModifyPaperID_C;
+import Teacher.Function.ClientFuction.Paper.GetAPaper_C;
 import Teacher.Function.ClientFuction.Paper.GetAllPaper_C;
 import Teacher.Util.Component.MyPanel.NullPanel;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
@@ -18,6 +20,9 @@ public class ModifyAvailable extends JScrollPane {
     private Paper[] papers;
     private int i;
     private SelectPaperToModify_Card card;
+    private int[] ID;
+    GetAvailableModifyPaperID_C getAvailableModifyPaperID;
+    GetAPaper_C getAPaper;
 
     public ModifyAvailable(){
         JPanel panel=new JPanel(new VFlowLayout());
@@ -31,14 +36,28 @@ public class ModifyAvailable extends JScrollPane {
         title.setBorder(new CompoundBorder(border, margin));
         panel.add(title);
 
+        //获取数据
+        try {
+            getAvailableModifyPaperID = new GetAvailableModifyPaperID_C();
+            ID=getAvailableModifyPaperID.getModifyID();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        papers=new Paper[ID.length];
+        for (i=0;i<ID.length;i++){
+            try {
+                getAPaper=new GetAPaper_C(ID[i]);
+                papers[i]=getAPaper.getPaper();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         try{
-            GetAllPaper_C getPaper=new GetAllPaper_C();
-            papers=getPaper.getPapers();
-            if (papers!=null){
+            if (papers!=null&&papers.length>0){
                 for (i=0; i< papers.length; i++){
                     card=new SelectPaperToModify_Card(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
                     panel.add(card);
-
                 }
             }else {
                 panel.add(new NullPanel());

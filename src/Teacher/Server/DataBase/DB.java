@@ -112,6 +112,7 @@ public class DB {
 //
                 statement.executeUpdate("CREATE DATABASE  IF NOT EXISTS `exam`;");
                 statement.executeUpdate("USE `exam`;");
+                statement.executeUpdate("DROP TABLE IF EXISTS student;");
                 statement.executeUpdate("CREATE TABLE `student`(" +
                         "`name` VARCHAR(25) NOT NULL," +
                         "`account` VARCHAR(25) NOT NULL, " +
@@ -131,13 +132,13 @@ public class DB {
                         "PRIMARY KEY(`account`))\n");
                 statement.executeUpdate("DROP TABLE IF EXISTS `answer`;\n");
                 statement.executeUpdate("CREATE TABLE `answer`(" +
-                        "`student` VARCHAR(25) NOT NULL," +
-                        "`paper` VARCHAR(25) NOT NULL," +
+                        "`studentAccount` VARCHAR(25) NOT NULL," +
+                        "`paperID` int NOT NULL," +
                         "`answer` TEXT)\n");
                 statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
                 statement.executeUpdate("CREATE TABLE `score`(" +
-                        "`studentID` VARCHAR(25) NOT NULL , " +
-                        "`paperID` VARCHAR(25) NOT NULL," +
+                        "`studentAccount` VARCHAR(25) NOT NULL , " +
+                        "`paperID` int NOT NULL," +
                         "`objectivescore` INT DEFAULT NULL," +
                         "`subjectivescore` INT DEFAULT NULL)\n");
 //                hasInited=true;
