@@ -9,6 +9,7 @@ import Teacher.Util.Component.MyPanel.HeadImagePanel;
 import Teacher.Util.MyColor;
 import Teacher.Util.MyFont;
 import Teacher.View.CheckAllMarks.CheckAllMarkPanel;
+import Teacher.View.MyModification.ModifyAvailable;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.MyTabbedPane_AddPaper;
 import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
 import Teacher.View.MyQuestions.CheckQuestionSituation.CheckQuestionSituationPanel;
@@ -140,6 +141,17 @@ public class LeftPanel extends JPanel {
         correctQuestionBtn.setFocusedColor(MyColor.LIGHT_BLUE_300);
         correctQuestionBtn.setClickedColor(MyColor.LIGHT_BLUE_400);
         correctQuestionBtn.setBackground(MyColor.LIGHT_BLUE_100);
+        correctQuestionBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                ModifyAvailable modifyAvailable=new ModifyAvailable();
+                HomeFrame.content.removeAll();
+                HomeFrame.content.add(modifyAvailable);
+                HomeFrame.content.repaint();
+                HomeFrame.content.updateUI();
+            }
+        });
 
         BackgroundButton paperMarkBtn = new BackgroundButton("查看成绩");
         paperMarkBtn.setUnFocusedColor(MyColor.LIGHT_BLUE_100);

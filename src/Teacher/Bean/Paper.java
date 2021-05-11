@@ -96,4 +96,19 @@ public class Paper {
     public void setDifficulty(double difficulty) {
         this.difficulty = difficulty;
     }
+
+    @Override
+    public String toString() {
+        return "Paper{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", mark=" + mark +
+                ", ownerID=" + ownerID +
+                ", owner='" + owner + '\'' +
+                ", time='" + time + '\'' +
+                ", examTime=" + examTime +
+                ", questions='" + questions + '\'' +
+                ", difficulty=" + difficulty +
+                '}';
+    }
 }

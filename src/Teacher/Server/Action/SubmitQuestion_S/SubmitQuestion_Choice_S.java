@@ -45,11 +45,10 @@ public class SubmitQuestion_Choice_S {
         difficulty=question_choice.getDifficulty();
         answer=question_choice.getAnswer();
         try {
-            dos.writeUTF("1");
             dos.flush();
             database.update("INSERT INTO questions.choice VALUES ('" + 0 + "','" + stem + "','" + optionA + "','" +
                     optionB+ "','" + optionC+ "','" + optionD + "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
-
+            dos.writeUTF("1");
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

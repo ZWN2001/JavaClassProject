@@ -32,8 +32,8 @@ public class DB {
             ServerMain.closeServer();
         }
         if (!hasInited){//初始化数据库
-//            try {
-//                Statement statement = connection.createStatement();
+            try {
+                Statement statement = connection.createStatement();
 ////                statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + "questions" + " default charset utf8 COLLATE utf8_general_ci;");
 ////                statement.executeUpdate("USE questions;");
 ////                statement.executeUpdate("DROP TABLE IF EXISTS choice;");
@@ -97,26 +97,56 @@ public class DB {
 //                statement.executeUpdate("DROP TABLE IF EXISTS paper;");
 //                statement.executeUpdate("CREATE TABLE paper\n" +
 //                        "(\n" +
-//                        "\tid int auto_increment,\n" +
-//                        "\ttitle char(255) not null,\n" +
-//                        "\tmark int not null,\n" +
-//                        "\tdifficulty int not null,\n" +
-//                        "\townerID int not null,\n" +
-//                        "\towner char(255) not null,\n" +
-//                        "\ttime char(255) not null,\n" +
-//                        "\texamTime int not null,\n" +
-//                        "\tquestions text not null,\n" +
+//                        "\t id int auto_increment,\n" +
+//                        "\t title char(255) not null,\n" +
+//                        "\t mark int not null,\n" +
+//                        "\t difficulty int not null,\n" +
+//                        "\t ownerID int not null,\n" +
+//                        "\t owner char(255) not null,\n" +
+//                        "\t time char(255) not null,\n" +
+//                        "\t examTime int not null,\n" +
+//                        "\t questions text not null,\n" +
 //                        "\t constraint paper_pk\n" +
 //                        "  primary key (id)"+
 //                        ");");
 //
+                statement.executeUpdate("CREATE DATABASE  IF NOT EXISTS `exam`;");
+                statement.executeUpdate("USE `exam`;");
+                statement.executeUpdate("CREATE TABLE `student`(" +
+                        "`name` VARCHAR(25) NOT NULL," +
+                        "`account` VARCHAR(25) NOT NULL, " +
+                        "`password` VARCHAR(25) NOT NULL," +
+                        "`image` VARCHAR(255) DEFAULT NULL," +
+                        "PRIMARY KEY(`account`))");
+                statement.executeUpdate("DROP TABLE IF EXISTS `index`;");
+                statement.executeUpdate("CREATE TABLE `index`(" +
+                        "`student` VARCHAR(25) NOT NULL," +
+                        "`teacher` VARCHAR(25) DEFAULT NULL)\n");
+                statement.executeUpdate("DROP TABLE IF EXISTS `teacher`;");
+                statement.executeUpdate("CREATE TABLE `teacher`(" +
+                        "`name` VARCHAR(25) NOT NULL," +
+                        "`account` VARCHAR(25) NOT NULL," +
+                        "`password` VARCHAR(25) NOT NULL," +
+                        "`image` VARCHAR(255) DEFAULT NULL," +
+                        "PRIMARY KEY(`account`))\n");
+                statement.executeUpdate("DROP TABLE IF EXISTS `answer`;\n");
+                statement.executeUpdate("CREATE TABLE `answer`(" +
+                        "`student` VARCHAR(25) NOT NULL," +
+                        "`paper` VARCHAR(25) NOT NULL," +
+                        "`answer` TEXT)\n");
+                statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
+                statement.executeUpdate("CREATE TABLE `score`(" +
+                        "`studentID` VARCHAR(25) NOT NULL , " +
+                        "`paperID` VARCHAR(25) NOT NULL," +
+                        "`objectivescore` INT DEFAULT NULL," +
+                        "`subjectivescore` INT DEFAULT NULL)\n");
 //                hasInited=true;
-//                System.out.println("初始化数据库成功");
-//            }catch (Exception e){
-//                System.out.println("初始化数据库失败");
-//                e.printStackTrace();
-//                ServerMain.closeServer();
-//            }
+                System.out.println("初始化数据库成功");
+            }catch (Exception e){
+                System.out.println("初始化数据库失败");
+                e.printStackTrace();
+                ServerMain.closeServer();
+            }
         }
         instance = this;
     }

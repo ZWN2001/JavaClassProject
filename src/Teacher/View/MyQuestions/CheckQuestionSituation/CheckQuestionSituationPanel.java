@@ -39,8 +39,8 @@ public class CheckQuestionSituationPanel extends JPanel {
         tableContainer.setLayout(new VFlowLayout());
         chartContainer.add(new PieChart("选择题",getDataSet(questionNum_each_Choice)).getChartPanel(),new GBC(0,0).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
         chartContainer.add(new PieChart("多选题",getDataSet(questionNum_each_MultiChoice)).getChartPanel(),new GBC(1,0).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
-        chartContainer.add(new PieChart("判断题",getDataSet(questionNum_each_Judge)).getChartPanel(),new GBC(0,1).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
-        chartContainer.add(new PieChart("主观题",getDataSet(questionNum_each_Subjective)).getChartPanel(),new GBC(1,1).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
+        chartContainer.add(new PieChart("判断题",getDataSet(questionNum_each_Judge)).getChartPanel(),new GBC(0,1).setInsets(8,0,4,0).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
+        chartContainer.add(new PieChart("主观题",getDataSet(questionNum_each_Subjective)).getChartPanel(),new GBC(1,1).setInsets(8,0,4,0).setFill(GridBagConstraints.BOTH).setWeight(0.5,0.5));
 
         JLabel questionDataTitle=new JLabel("题库数据");
         questionDataTitle.setFont(MyFont.Font_20);
@@ -113,13 +113,5 @@ public class CheckQuestionSituationPanel extends JPanel {
         dataset.setValue("难度：4",questionNum_each[3]);
         dataset.setValue("难度：5",questionNum_each[4]);
         return dataset;
-    }
-    private static String getQuestionDataText(int allNum,int[] each){
-        return "<html><body>"+"共有题目："+allNum+"道"+"<br>"+
-                "难度系数 1 共有题目："+each[0]+"道"+"<br>"+
-                "难度系数 2 共有题目："+each[1]+"道"+"<br>"+
-                "难度系数 3 共有题目："+each[2]+"道"+"<br>"+
-                "难度系数 4 共有题目："+each[3]+"道"+"<br>"+
-                "难度系数 5 共有题目："+each[4]+"道"+"<body></html>";
     }
 }

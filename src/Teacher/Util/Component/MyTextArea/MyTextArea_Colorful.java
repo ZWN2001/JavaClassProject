@@ -5,6 +5,8 @@ import Teacher.Util.Layout.VFlowLayout;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MyTextArea_Colorful extends JPanel {
     private JTextArea textArea;
@@ -30,6 +32,23 @@ public class MyTextArea_Colorful extends JPanel {
         init(row, col, title);
         textArea.setText(text);
         textArea.setEnabled(able);
+    }
+    public  MyTextArea_Colorful(int row,int col,String title,String text,boolean able,boolean onlyNumber){
+        this.row=row;
+        this.col=col;
+        this.title=title;
+        init(row, col, title);
+        textArea.setText(text);
+        textArea.setEnabled(able);
+        if (onlyNumber){
+            textArea.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    if(e.getKeyChar()<KeyEvent.VK_0||e.getKeyChar()>KeyEvent.VK_9) {
+                        e.consume();
+                    }
+                }
+            });
+        }
     }
     public void init(int row,int col,String title){
         setLayout(new VFlowLayout(true,true));

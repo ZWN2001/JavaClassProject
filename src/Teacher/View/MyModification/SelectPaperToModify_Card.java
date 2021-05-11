@@ -1,4 +1,4 @@
-package Teacher.View.CheckAllMarks;
+package Teacher.View.MyModification;
 
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
@@ -13,11 +13,11 @@ import java.awt.event.MouseEvent;
 import static Teacher.Util.MyFont.Font_14;
 import static Teacher.Util.MyFont.Font_20;
 
-public class CheckPaperMarkCard extends JPanel {
+public class SelectPaperToModify_Card extends JPanel {
     private final int id;
 
     BackgroundButton enterBtn;
-    public CheckPaperMarkCard(int id,int cid,String title,String time,String owner){
+    public SelectPaperToModify_Card(int id,int cid,String title,String time,String owner){
         this.id=id;
         setBackground(Color.WHITE);
         setLayout(new GridBagLayout());
@@ -28,7 +28,7 @@ public class CheckPaperMarkCard extends JPanel {
         titleLabel.setFont(Font_20);
         JLabel subTitle=new JLabel("由"+owner+"老师创建于"+time);
         subTitle.setFont(Font_14);
-        enterBtn=new BackgroundButton(" 前往查看分数 ");
+        enterBtn=new BackgroundButton(" 前往批改 ");
 
         add(cid_Label,new GBC(0,0).setInsets(0,10,0,0).setAnchor(GridBagConstraints.WEST));
         add(ID,new GBC(1,0).setInsets(0,10,0,0));
@@ -39,8 +39,9 @@ public class CheckPaperMarkCard extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-            CheckEachPaperMark checkEachPaperMark=new CheckEachPaperMark(id);
-            HomeFrame.content.add(checkEachPaperMark,0);
+                ModifyEach modifyEach=new ModifyEach(id);
+                HomeFrame.content.removeAll();
+                HomeFrame.content.add(modifyEach,0);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }

@@ -1,34 +1,27 @@
-package Teacher.View.MyPapers.CheckPaperPanels;
+package Teacher.View.MyModification;
 
 import Teacher.Bean.Paper;
-import Teacher.Function.ClientFuction.Paper.GetAPaper_C;
 import Teacher.Function.ClientFuction.Paper.GetAllPaper_C;
+import Teacher.Util.Component.MyPanel.NullPanel;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
-import Teacher.View.HomePanels.HomeFrame;
-import Teacher.View.MyPapers.AddPaperPanels.PaperPreview.PaperPreviewPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.util.Objects;
-
-import static Teacher.Util.MyFont.Font_16;
 import static Teacher.Util.MyFont.Font_20;
 
-public class CheckAllPaperPanel extends JScrollPane {
+
+public class ModifyAvailable extends JScrollPane {
     private Paper[] papers;
     private int i;
-    private SelectPaperCard selectPaperCard;
+    private SelectPaperToModify_Card card;
 
-    public CheckAllPaperPanel(){
+    public ModifyAvailable(){
         JPanel panel=new JPanel(new VFlowLayout());
-        JLabel title=new JLabel("我的试卷库");
+        JLabel title=new JLabel("待批改的试题");
         title.setHorizontalAlignment(0);
         title.setFont(Font_20);
 
@@ -43,12 +36,12 @@ public class CheckAllPaperPanel extends JScrollPane {
             papers=getPaper.getPapers();
             if (papers!=null){
                 for (i=0; i< papers.length; i++){
-                    selectPaperCard=new SelectPaperCard(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getMark(),papers[i].getTime(),papers[i].getOwner(),papers[i].getOwnerID());
-                   panel.add(selectPaperCard);
+                    card=new SelectPaperToModify_Card(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
+                    panel.add(card);
 
                 }
             }else {
-                panel.add(new MyTextArea_Warning(1,10,"提示","暂无试卷"));
+                panel.add(new NullPanel());
             }
         }catch (Exception e){
             e.printStackTrace();

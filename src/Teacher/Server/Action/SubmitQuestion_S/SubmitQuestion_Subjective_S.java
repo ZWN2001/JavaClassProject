@@ -32,9 +32,9 @@ public class SubmitQuestion_Subjective_S {
         difficulty=question_subjective.getDifficulty();
         answer=question_subjective.getAnswer();
         try {
-            dos.flush();
           database.update("INSERT INTO questions.subjective VALUES ('" + 0 + "','" + stem +  "','" + mark+ "','" + difficulty+ "','" + answer+ "')");
             dos.writeUTF("1");
+            dos.flush();
         }catch (Exception e){
             dos.writeUTF("-1");
             dos.flush();

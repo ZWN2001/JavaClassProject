@@ -36,7 +36,7 @@ public class CheckAllMarkPanel extends JScrollPane {
             papers=getPaper.getPapers();
             if (papers!=null){
                 for (i=0; i< papers.length; i++){
-                    checkPaperMarkCard=new CheckPaperMarkCard(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getMark(),papers[i].getTime(),papers[i].getOwner());
+                    checkPaperMarkCard=new CheckPaperMarkCard(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
                     panel.add(checkPaperMarkCard);
 
                 }
