@@ -5,6 +5,7 @@ public interface Command {
     String GET_QUESTION_PREVIEW = "Get Question Preview";
     String S_GET_CLASS = "Student Get Class";
     String S_GET_EXAM = "Student Get Exam";
+    String S_GET_SCORES = "Student Get Scores";
     String S_LOGIN = "Student Login";
     String S_QUIT_CLASS = "Student Quit Class";
     String S_REFRESH_AVATAR = "Student Refresh Avatar";
