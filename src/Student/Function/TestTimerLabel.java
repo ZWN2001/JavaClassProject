@@ -44,6 +44,10 @@ public class TestTimerLabel extends JLabel {
         setText((outTime));
     }
 
+    public TestTimerLabel(PaperPanel paperPanel,int min){
+        this(paperPanel,min/60,min%60,0);
+    }
+
     public TimerTask getTimeTask(){
         return timerTask;
     }

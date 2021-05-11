@@ -27,7 +27,7 @@ public class GetClass {
             ResultSet newResultSet = database.query1("SELECT * FROM exam.index WHERE `student` =" + account);
             while (newResultSet.next()) {
                 String teacherAcc = newResultSet.getString("teacher");
-                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` =" + teacherAcc);
+                ResultSet teacherSet = database.query2("SELECT * FROM exam.teacher WHERE `account` = '" + teacherAcc + "'");
                 if (teacherSet.next()) {
                     Teacher teacher = new Teacher(teacherSet.getString("account"), teacherSet.getString("name"));
                     opw.println(JSON.toJSONString(teacher));

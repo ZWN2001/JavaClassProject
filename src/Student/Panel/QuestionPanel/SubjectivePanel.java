@@ -8,12 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SubjectivePanel extends QuestionPanel{
+    JTextArea answerArea;
     public SubjectivePanel(Question_Subjective question,int num){
         super(question,num);
         JLabel label = new JLabel("请在下面答题框中作答");
         label.setFont(new Font("微软雅黑",Font.BOLD,12));
 
-        JTextArea answerArea = new JTextArea("",0,50);
+        answerArea = new JTextArea("",0,50);
         JScrollPane answerPane = new JScrollPane(answerArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         /*设置UI
         JScrollBar bar = answerPane.getVerticalScrollBar();
@@ -24,5 +25,10 @@ public class SubjectivePanel extends QuestionPanel{
         answerArea.setEditable(true);
         add(label,new GBC(1,2,10,1).setAnchor(GridBagConstraints.WEST));
         add(answerPane,new GBC(1,3,1,1).setAnchor(GridBagConstraints.WEST));
+    }
+
+    @Override
+    public String getAnswer() {
+        return answerArea.getText();
     }
 }

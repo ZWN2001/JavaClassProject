@@ -24,7 +24,7 @@ public class SettingPanel extends JPanel implements MouseListener {
     private final Student student;
     private ImageIcon imageIcon;
     private final JLabel netName;
-    private JTextArea classArea;
+    private final JTextArea classArea;
     ImageIcon setPwu = new ImageIcon("src/Student/Resource/setPwu.png");
     ImageIcon setPwd = new ImageIcon("src/Student/Resource/setPwd.png");
     ImageIcon setProU = new ImageIcon("src/Student/Resource/setProU.png");
@@ -104,7 +104,8 @@ public class SettingPanel extends JPanel implements MouseListener {
             e.printStackTrace();
         }
         JScrollPane classPane = new JScrollPane(classArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        classPane.setBounds(220,330,600,400);
+        classPane.setBounds(220,340,600,400);
+        classPane.setBorder(null);
         add(classPane);
     }
 
@@ -121,9 +122,9 @@ public class SettingPanel extends JPanel implements MouseListener {
             opw.println(JSON.toJSONString(student));
             String resultCode = dis.readUTF();
             if (resultCode.equals("0")) {
+                classArea.setBorder(null);
                 classArea.setFont(new Font("微软雅黑",Font.PLAIN,25));
                 classArea.setText("当前还未加入任何班级");
-                classArea.setBorder(null);
                 socket.close();
             } else if (resultCode.equals("1")) {
                 classArea.setBorder(new JScrollPane().getBorder());
@@ -154,7 +155,7 @@ public class SettingPanel extends JPanel implements MouseListener {
         if (e.getSource().equals(setPassword))
             new SetPasswordDialog(student);
         if (e.getSource().equals(setProfile))
-            new SetProfileDialog(student, imageIcon);
+            new SetProfileDialog(student, imageIcon,this);
         if (e.getSource().equals(logOut)) {
             if (JOptionPane.showConfirmDialog(null, "                 确定退出当前账号吗", "注销", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE) == 0) {
                 mainFrame.dispose();

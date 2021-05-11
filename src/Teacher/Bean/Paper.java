@@ -30,7 +30,14 @@ public class Paper {
         this.questions=questions;
         this.difficulty=difficulty;
     }
-    public Paper(int id,String title,int mark,double difficulty,String time,int examTime,String owner,int ownerID,String questions){
+        public Paper(String title, int ownerID, String owner, String time, int difficulty) {
+        this.title = title;
+        this.ownerID = ownerID;
+        this.owner = owner;
+        this.time = time;
+        this.difficulty = difficulty;
+    }
+    public Paper(int id,String title,int mark,int difficulty,String time,int examTime,String owner,int ownerID,String questions){
         this.id=id;
         this.title=title;
         this.mark=mark;

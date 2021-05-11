@@ -1,35 +1,50 @@
 package Student.Panel;
 
+import Student.Bean.Scores;
+import Student.Bean.Student;
+import Teacher.Bean.Paper;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class QueryPanel extends JPanel {
     Image queryImage;
 
-    public QueryPanel() {
+    public QueryPanel(Scores scores) {
         Dimension size = new Dimension(1000, 270);
         setPreferredSize(size);
         setLayout(null);
         ImageIcon queryIcon = new ImageIcon("src/Student/Resource/QueryPanel.png");
         queryImage = queryIcon.getImage();
 
-        JLabel examID = new JLabel("ID");
-        JLabel examT1 = new JLabel("测试文本1");
-        JLabel examT2 = new JLabel("测试文本2");
-        JLabel examT3 = new JLabel("测试文本3");
+        Paper paper = scores.getPaper();
+
+
+        JLabel examID = new JLabel(paper.getTitle());
+        JLabel examTime = new JLabel("考试发布时间:"+paper.getTime());
+        JLabel examOwner = new JLabel("试题创建人:"+paper.getOwner());
+        JLabel examScores1 = new JLabel("客观题得分:"+scores.getObjectiveScore());
+        JLabel examScores2 = new JLabel(scores.getSubjectiveScore()==-1?"主观题待批阅":"主观题得分："+scores.getSubjectiveScore());
+        JLabel examSumScores = new JLabel("总得分:"+scores.getScore());
         Font queryFont = new Font("微软雅黑", Font.BOLD, 30);
         examID.setFont(queryFont);
-        examT1.setFont(queryFont);
-        examT2.setFont(queryFont);
-        examT3.setFont(queryFont);
-        examID.setBounds(80, 20, 300, 100);
-        examT1.setBounds(150, 20, 300, 100);
-        examT2.setBounds(200, 120, 200, 100);
-        examT3.setBounds(900, 160, 300, 100);
+        examTime.setFont(queryFont);
+        examOwner.setFont(queryFont);
+        examScores1.setFont(queryFont);
+        examScores2.setFont(queryFont);
+        examSumScores.setFont(queryFont);
+        examID.setBounds(40, 20, 1000, 100);
+        examTime.setBounds(600, 20, 1000, 100);
+        examOwner.setBounds(80, 120, 600, 100);
+        examScores1.setBounds(900, 60, 300, 100);
+        examScores2.setBounds(900,100,300,100);
+        examSumScores.setBounds(900,160,300,100);
         add(examID);
-        add(examT1);
-        add(examT2);
-        add(examT3);
+        add(examTime);
+        add(examOwner);
+        add(examScores1);
+        add(examScores2);
+        add(examSumScores);
     }
 
     public void paintComponent(Graphics g) {
