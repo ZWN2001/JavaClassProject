@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSON;
 import java.io.*;
 import java.net.Socket;
 
-import static Teacher.Server.ServerMain.Address;
-import static Teacher.Server.ServerMain.PORT;
+import static Teacher.Server.Server.Address;
+import static Teacher.Server.Server.PORT;
 
 public class GetQuestionBank_Choice_C {
     String command="GET_QUESTION_CHOICE";

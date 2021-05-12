@@ -7,6 +7,7 @@ public interface Command {
     String S_GET_EXAM = "Student Get Exam";
     String S_GET_SCORES = "Student Get Scores";
     String S_LOGIN = "Student Login";
+    String T_LOGIN = "Teacher Login";
     String S_QUIT_CLASS = "Student Quit Class";
     String S_REFRESH_AVATAR = "Student Refresh Avatar";
     String S_REGISTER = "Student Register";

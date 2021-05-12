@@ -1,8 +1,7 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -11,12 +10,13 @@ import java.sql.ResultSet;
 
 public class RefreshAvatar{
     DataOutputStream dos;
+    DB database = DB.instance;
     public RefreshAvatar(Socket socket) throws Exception {
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         Student student = JSON.parseObject(obr.readLine(),Student.class);
         String account = student.getAccount();
-        DbConnection database = Server.getDatabase();
+        //DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.student WHERE `account` =" + account);
         if (resultSet.next()) {
             String path = resultSet.getString("image");

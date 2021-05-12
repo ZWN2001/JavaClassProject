@@ -1,7 +1,7 @@
 package Teacher.Server;
 
 
-import Teacher.Function.ClientFuction.CheckMark.CheckAvailMarks_C;
+import Student.Server.Action.*;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Choice_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Judge_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_MultiChoice_S;
@@ -35,10 +35,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ThreadHandle_Teacher extends Thread {
+import static Basic.Command.*;
+import static Basic.Command.UPLOAD_ANSWER;
+
+public class ThreadHandle extends Thread {
     Socket socket;
 
-    ThreadHandle_Teacher(Socket s) {
+    public ThreadHandle(Socket s) {
         socket = s;
         System.out.println("客户端连接：" + s.getInetAddress() + ":" + s.getPort());
     }
@@ -52,7 +55,7 @@ public class ThreadHandle_Teacher extends Thread {
             System.out.println("收到客户端指令：" + str);//客户端发送一条指令，服务端接收后由action包中类响应然后关闭连接。一线程只处理一任务。因此这里只分析第一条语句，只处理一道命令。后续的收发数据由action包中的相应类完成
             switch (str) {
                 case "CLOSE SERVER":
-                    ServerMain.closeServer();
+                    Server.closeServer();
                     break;
                 case "SUBMIT_QUESTION_CHOICE":
                     new SubmitQuestion_Choice_S(socket);
@@ -137,6 +140,54 @@ public class ThreadHandle_Teacher extends Thread {
                     break;
                 case "GET_EACH_MARK":
                     new GetEachPaperMark_S(socket);
+                    break;
+                case CLOSER_SERVER:
+                    Server.closeServer();
+                    break;
+                case GET_QUESTION_PREVIEW:
+                    new GetPreviewQuestions_S(socket);
+                    break;
+                case S_GET_CLASS:
+                    new GetClass(socket);
+                    break;
+                case S_GET_EXAM:
+                    new GetExam(socket);
+                    break;
+                case S_GET_SCORES:
+                    new GetScores(socket);
+                    break;
+                case S_LOGIN:
+                    new Login(socket);
+                    break;
+                case T_LOGIN:
+                    new Login_T(socket);
+                    break;
+                case S_QUIT_CLASS:
+                    new QuitClass(socket);
+                    break;
+                case S_REFRESH_AVATAR:
+                    new RefreshAvatar(socket);
+                    break;
+                case S_REGISTER:
+                    new SRegister(socket);
+                    break;
+                case S_SET_AVATAR:
+                    new SetAvatar(socket);
+                    break;
+                case S_SET_CLASS:
+                    new SetClass(socket);
+                    break;
+                case S_SET_NAME:
+                    new SetName(socket);
+                    break;
+                case S_SET_PASSWORD:
+                    new SetPassword(socket);
+                    break;
+                case T_REGISTER:
+                    new TRegister(socket);
+                    break;
+                case UPLOAD_ANSWER:
+                    new UploadAnswer(socket);
                     break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");

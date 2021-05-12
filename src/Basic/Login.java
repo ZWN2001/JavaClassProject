@@ -2,7 +2,9 @@ package Basic;
 
 import Student.Bean.Student;
 import Student.Frame.MainFrame;
-import Student.Server.Server;
+import Teacher.Bean.Teacher;
+import Teacher.Server.Server;
+import Teacher.View.HomePanels.Home;
 import com.alibaba.fastjson.JSON;
 
 import javax.imageio.ImageIO;
@@ -15,8 +17,8 @@ import static Basic.Login.PATH;
 
 public class Login {
     public static final String PATH = "D:/ExamAvatar/Client/";
-    public static final String HOST = "LAPTOP-V7DQD3F1";
-    public static int PORT = 2021;
+    public static final String HOST = "localhost";
+    public static int PORT = 8080;
     public static void main(String[] args) {
         try {
             //设置样式
@@ -94,6 +96,30 @@ class LoginFrame extends JFrame {
         JLabel passwordLabel = new JLabel("密码: ");
         passwordLabel.setFont(myFont);
         passwordText.setPreferredSize(new Dimension(30, 25));
+
+        teacherLoginBtn.addActionListener(e -> {
+            if (accountText.getText().equals("") || passwordText.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(null, "输入不能为空", "登录失败", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Teacher teacher = new Teacher(accountText.getText(),"",String.valueOf(passwordText.getPassword()));
+                try {
+                    NetTeacherLogin TLogin = new NetTeacherLogin(teacher);
+                    if (TLogin.getResultCode().equals("1")) {
+                        teacher.setName(TLogin.getName());
+                        EventQueue.invokeLater(() -> new Home(teacher));
+                        this.dispose();
+                    }
+                    if (TLogin.getResultCode().equals("0")) {
+                        JOptionPane.showMessageDialog(null, "账号不存在", "登录失败", JOptionPane.ERROR_MESSAGE);
+                    }
+                    if (TLogin.getResultCode().equals("-1")) {
+                        JOptionPane.showMessageDialog(null, "密码错误", "登录失败", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
 //
 //        add(accountLabel,new GBC(0, 0,1,1).setInsets(10,0,0,0));
 //        add(accountText,new GBC(1,0,4,1).setInsets(10,0,0,10));
@@ -147,7 +173,7 @@ class LoginFrame extends JFrame {
     }
 
     private static class NetStudentLogin {
-        Socket socket = new Socket("LAPTOP-V7DQD3F1", Server.PORT);
+        Socket socket = new Socket("localhost", Server.PORT);
         PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -197,6 +223,33 @@ class LoginFrame extends JFrame {
                 fos.flush();
             }
             System.out.println("======== 文件接收成功========");
+        }
+    }
+    private static class NetTeacherLogin {
+        Socket socket = new Socket("localhost", Server.PORT);
+        PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
+        DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+        DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+        String resultCode;
+        String name;
+
+        public NetTeacherLogin(Teacher teacher) throws IOException {
+            dos.writeUTF(Command.T_LOGIN);
+            dos.flush();
+            opw.println(JSON.toJSONString(teacher));
+            resultCode = dis.readUTF();
+            if (resultCode.equals("1"))
+            {
+                name = dis.readUTF();
+            }
+            System.out.println("接收到返回值"+resultCode);
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
+        public String getName() {
+            return name;
         }
     }
 

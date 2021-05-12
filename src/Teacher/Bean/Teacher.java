@@ -3,10 +3,8 @@ package Teacher.Bean;
 public class Teacher {
 
     private final String account;
-    private final String name;
+    private  String name;
     private String password;
-    private String image;
-
     public Teacher(String account, String name) {
         this.account = account;
         this.name = name;
@@ -30,9 +28,16 @@ public class Teacher {
         return name;
     }
 
-    
-    public String toString(){
-        return name+"("+ account +")";
+    public void setName(String name) {
+        this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "account='" + account + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

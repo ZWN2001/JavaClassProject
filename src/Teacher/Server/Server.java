@@ -9,10 +9,10 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.sql.SQLException;
 
-public class ServerMain {
+public class Server {
     public static final String Address = "localhost";
     public static int PORT = 8080;//端口号
-    public static final String PATH = "D:\\ExamAvatar";//服务器保存图片地址
+    public static final String PATH = "D:/ExamAvatar/server";//服务器保存图片地址
     static ServerSocket serverSocket;
     static Socket socket;
     public static DB database;
@@ -32,7 +32,7 @@ public class ServerMain {
                 System.out.println("收到服务器关闭指令！服务器已关闭");
                 break;
             }
-            new ThreadHandle_Teacher(socket).start();//将socket交给多线程，进一步处理客户端的指令
+            new ThreadHandle(socket).start();//将socket交给多线程，进一步处理客户端的指令
         }
     }
 

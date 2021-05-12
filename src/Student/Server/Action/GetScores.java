@@ -2,9 +2,8 @@ package Student.Server.Action;
 
 import Student.Bean.Scores;
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
 import Teacher.Bean.Paper;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -14,20 +13,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GetScores {
+    DB database = DB.instance;
     public GetScores(Socket socket) throws IOException, SQLException {
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         PrintWriter opw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         Student student = JSON.parseObject(obr.readLine(), Student.class);
-        DbConnection database = Server.getDatabase();
+       // DbConnection database = Server.getDatabase();
         String account = student.getAccount();
         String resultCode = "0";
         ArrayList<Scores> scoresList = new ArrayList<>();
-        ResultSet resultSet = database.query("SELECT * FROM exam.score WHERE `studentAccount` = " + account);
+        ResultSet resultSet = database.query("SELECT * FROM exam.score WHERE `student` = " + account);
         while (resultSet.next()) {
             System.out.println("有信息");
             String paperID = resultSet.getString("paperid");
-            ResultSet paperSet = database.query1("SELECT * FROM papers.paper WHERE `id` = " + paperID);
+            ResultSet paperSet = database.query("SELECT * FROM papers.paper WHERE `id` = " + paperID);
             if (paperSet.next()) {
                 resultCode = "1";
                 System.out.println("返回值为1");

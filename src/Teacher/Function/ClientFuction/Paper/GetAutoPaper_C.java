@@ -3,8 +3,8 @@ package Teacher.Function.ClientFuction.Paper;
 import java.io.*;
 import java.net.Socket;
 
-import static Teacher.Server.ServerMain.Address;
-import static Teacher.Server.ServerMain.PORT;
+import static Teacher.Server.Server.Address;
+import static Teacher.Server.Server.PORT;
 
 public class GetAutoPaper_C {
     String COMMAND="GET_AUTO_PAPER";

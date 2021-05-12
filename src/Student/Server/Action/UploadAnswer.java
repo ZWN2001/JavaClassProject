@@ -1,9 +1,8 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
 import Teacher.Bean.Paper;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -13,13 +12,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UploadAnswer {
+    DB database = DB.instance;
     public UploadAnswer(Socket socket) throws IOException, SQLException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         Student student = JSON.parseObject(obr.readLine(), Student.class);
         Paper paper =JSON.parseObject(obr.readLine(),Paper.class);
         String answer = obr.readLine();
-        DbConnection database = Server.getDatabase();
+       // DbConnection database = Server.getDatabase();
         database.update("INSERT INTO exam.answer VALUES ('" + student.getAccount() + "','" + paper.getId() + "','"+ answer + "')");
         String[] answers = JSON.parseObject(answer,String[].class);
         String[] questions = JSON.parseObject(paper.getQuestions(),String[].class);
@@ -40,7 +40,7 @@ public class UploadAnswer {
         dos.flush();
     }
 
-    private int singleTypeScores(DbConnection database,String[] questions,String[] answers,String type) throws SQLException {
+    private int singleTypeScores(DB database,String[] questions,String[] answers,String type) throws SQLException {
         int score=0;
         System.out.println(type);
         for (int i=0;i<questions.length;i++){

@@ -4,6 +4,7 @@ import Teacher.Function.ClientFuction.MyStudent.GetMyStudent_C;
 import Teacher.Util.Component.MyPanel.NullPanel;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
+import Teacher.View.HomePanels.Home;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -16,7 +17,7 @@ public class CheckMyStudent extends JScrollPane {
     public CheckMyStudent() {
         JPanel rootPanel=new JPanel(new VFlowLayout(true,false));
         try {
-            getMyStudent=new GetMyStudent_C("");//TODO
+            getMyStudent=new GetMyStudent_C(Home.teacher.getAccount());//TODO
             studentName=getMyStudent.getStudentName();
         }catch (Exception ex){
             ex.printStackTrace();

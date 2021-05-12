@@ -1,8 +1,7 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -11,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SetClass {
+    DB database = DB.instance;
     //返回值：1为加入成功，0为已经加入，-1为不存在该班级
     public SetClass(Socket socket) throws IOException, SQLException {
         DataInputStream dis = new DataInputStream(socket.getInputStream());
@@ -18,7 +18,7 @@ public class SetClass {
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String classNum = dis.readUTF();
         Student student = JSON.parseObject(obr.readLine(), Student.class);
-        DbConnection database = Server.getDatabase();
+        //DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.teacher WHERE `account` = '" + classNum + "'");
         if (resultSet.next()) {
             resultSet = database.query("SELECT * FROM exam.index WHERE `student` = '" + student.getAccount() + "' AND `teacher` = '" + classNum+"'");

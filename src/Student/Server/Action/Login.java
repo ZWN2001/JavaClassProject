@@ -1,8 +1,7 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -11,6 +10,7 @@ import java.sql.ResultSet;
 
 public class Login {
     DataOutputStream dos;
+    DB database = DB.instance;
     public Login(Socket socket) throws Exception{
         //返回值：0为账号不存在，-1为密码错误，1为登录成功
             BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -19,7 +19,7 @@ public class Login {
 
             String account = student.getAccount();
             String password = student.getPassword();
-            DbConnection database = Server.getDatabase();
+          //  DbConnection database = Server.getDatabase();
             ResultSet resultSet = database.query("SELECT * FROM exam.student WHERE `account` =" + account);
             if (resultSet.next()) {
                 if (resultSet.getString("password").equals(password)) {

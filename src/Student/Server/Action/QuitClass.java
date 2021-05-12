@@ -1,9 +1,8 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
 import Teacher.Bean.Teacher;
+import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
@@ -16,10 +15,11 @@ import java.util.Vector;
 
 public class QuitClass {
     DataOutputStream dos;
+    DB database = DB.instance;
     public QuitClass(Socket socket) throws IOException, SQLException {
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        DbConnection database = Server.getDatabase();
+        //DbConnection database = Server.getDatabase();
         Student student = JSON.parseObject(obr.readLine(), Student.class);
         Vector<Teacher> teacherVector = JSON.parseObject(obr.readLine(), new TypeReference<>() {});
         for (Teacher teacher : teacherVector) {

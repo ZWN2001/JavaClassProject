@@ -1,14 +1,13 @@
 package Teacher.Function.ClientFuction.CheckMark;
 
-import Teacher.Bean.Paper;
 import Teacher.Test.PaperMark;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
 import java.net.Socket;
 
-import static Teacher.Server.ServerMain.Address;
-import static Teacher.Server.ServerMain.PORT;
+import static Teacher.Server.Server.Address;
+import static Teacher.Server.Server.PORT;
 
 public class GetEachPaperMark_C {
     String COMMAND="GET_EACH_MARK";

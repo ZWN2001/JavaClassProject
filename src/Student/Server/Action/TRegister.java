@@ -1,9 +1,8 @@
 package Student.Server.Action;
 
-import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
 import Teacher.Bean.Teacher;
+import Teacher.Server.DataBase.DB;
+import Teacher.Server.Server;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -12,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TRegister {
+    DB database = DB.instance;
     public TRegister(Socket socket)  throws IOException, SQLException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -19,7 +19,7 @@ public class TRegister {
         String name = teacher.getName();
         String account = teacher.getAccount();
         String password = teacher.getPassword();
-        DbConnection database = Server.getDatabase();
+        //DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.teacher WHERE `account` =" + account);
         if (!resultSet.next()&&!account.equals("defaultHeadImage")) {
             dos.writeUTF("1");

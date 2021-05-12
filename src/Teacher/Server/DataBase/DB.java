@@ -2,7 +2,7 @@ package Teacher.Server.DataBase;
 
 
 
-import Teacher.Server.ServerMain;
+import Teacher.Server.Server;
 
 import java.io.IOException;
 import java.sql.*;
@@ -22,14 +22,14 @@ public class DB {
         } catch (ClassNotFoundException e) {
             System.out.println("载入数据库驱动失败");
             e.printStackTrace();
-            ServerMain.closeServer();
+            Server.closeServer();
         }
         try {//连接数据库
             connection = DriverManager.getConnection(dbURL, username, password);
         } catch (Exception e) {
             System.out.println("数据库连接失败");
             e.printStackTrace();
-            ServerMain.closeServer();
+            Server.closeServer();
         }
         if (!hasInited){//初始化数据库
             try {
@@ -110,43 +110,43 @@ public class DB {
 //                        "  primary key (id)"+
 //                        ");");
 //
-                statement.executeUpdate("CREATE DATABASE  IF NOT EXISTS `exam`;");
-                statement.executeUpdate("USE `exam`;");
-                statement.executeUpdate("DROP TABLE IF EXISTS student;");
-                statement.executeUpdate("CREATE TABLE `student`(" +
-                        "`name` VARCHAR(25) NOT NULL," +
-                        "`account` VARCHAR(25) NOT NULL, " +
-                        "`password` VARCHAR(25) NOT NULL," +
-                        "`image` VARCHAR(255) DEFAULT NULL," +
-                        "PRIMARY KEY(`account`))");
-                statement.executeUpdate("DROP TABLE IF EXISTS `index`;");
-                statement.executeUpdate("CREATE TABLE `index`(" +
-                        "`student` VARCHAR(25) NOT NULL," +
-                        "`teacher` VARCHAR(25) DEFAULT NULL)\n");
-                statement.executeUpdate("DROP TABLE IF EXISTS `teacher`;");
-                statement.executeUpdate("CREATE TABLE `teacher`(" +
-                        "`name` VARCHAR(25) NOT NULL," +
-                        "`account` VARCHAR(25) NOT NULL," +
-                        "`password` VARCHAR(25) NOT NULL," +
-                        "`image` VARCHAR(255) DEFAULT NULL," +
-                        "PRIMARY KEY(`account`))\n");
-                statement.executeUpdate("DROP TABLE IF EXISTS `answer`;\n");
-                statement.executeUpdate("CREATE TABLE `answer`(" +
-                        "`student` VARCHAR(25) NOT NULL," +
-                        "`paperid` int NOT NULL," +
-                        "`answer` TEXT)\n");
-                statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
-                statement.executeUpdate("CREATE TABLE `score`(" +
-                        "`student` VARCHAR(25) NOT NULL , " +
-                        "`paperid` int NOT NULL," +
-                        "`objectivescore` INT DEFAULT NULL," +
-                        "`subjectivescore` INT DEFAULT NULL)\n");
+//                statement.executeUpdate("CREATE DATABASE  IF NOT EXISTS `exam`;");
+//                statement.executeUpdate("USE `exam`;");
+//                statement.executeUpdate("DROP TABLE IF EXISTS student;");
+//                statement.executeUpdate("CREATE TABLE `student`(" +
+//                        "`name` VARCHAR(25) NOT NULL," +
+//                        "`account` VARCHAR(25) NOT NULL, " +
+//                        "`password` VARCHAR(25) NOT NULL," +
+//                        "`image` VARCHAR(255) DEFAULT NULL," +
+//                        "PRIMARY KEY(`account`))");
+//                statement.executeUpdate("DROP TABLE IF EXISTS `index`;");
+//                statement.executeUpdate("CREATE TABLE `index`(" +
+//                        "`student` VARCHAR(25) NOT NULL," +
+//                        "`teacher` VARCHAR(25) DEFAULT NULL)\n");
+//                statement.executeUpdate("DROP TABLE IF EXISTS `teacher`;");
+//                statement.executeUpdate("CREATE TABLE `teacher`(" +
+//                        "`name` VARCHAR(25) NOT NULL," +
+//                        "`account` VARCHAR(25) NOT NULL," +
+//                        "`password` VARCHAR(25) NOT NULL," +
+//                        "`image` VARCHAR(255) DEFAULT NULL," +
+//                        "PRIMARY KEY(`account`))\n");
+//                statement.executeUpdate("DROP TABLE IF EXISTS `answer`;\n");
+//                statement.executeUpdate("CREATE TABLE `answer`(" +
+//                        "`student` VARCHAR(25) NOT NULL," +
+//                        "`paperid` int NOT NULL," +
+//                        "`answer` TEXT)\n");
+//                statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
+//                statement.executeUpdate("CREATE TABLE `score`(" +
+//                        "`student` VARCHAR(25) NOT NULL , " +
+//                        "`paperid` int NOT NULL," +
+//                        "`objectivescore` INT DEFAULT NULL," +
+//                        "`subjectivescore` INT DEFAULT NULL)\n");
 //                hasInited=true;
                 System.out.println("初始化数据库成功");
             }catch (Exception e){
                 System.out.println("初始化数据库失败");
                 e.printStackTrace();
-                ServerMain.closeServer();
+                Server.closeServer();
             }
         }
         instance = this;

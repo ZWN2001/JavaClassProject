@@ -1,8 +1,9 @@
 package Student.Server.Action;
 
 import Student.Bean.Student;
-import Student.Server.DbConnection;
-import Student.Server.Server;
+
+import Teacher.Server.DataBase.DB;
+import Teacher.Server.Server;
 import com.alibaba.fastjson.JSON;
 
 import java.io.*;
@@ -16,14 +17,14 @@ public class SetAvatar {
     String path;
     Student student;
     String suffix;
-
+    DB database = DB.instance;
     public SetAvatar(Socket socket) throws IOException, SQLException {
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         BufferedReader obr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         student = JSON.parseObject(obr.readLine(), Student.class);
         System.out.println(student.getName());
-        DbConnection database = Server.getDatabase();
+       //DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.student WHERE `account` = " + student.getAccount());
         if (resultSet.next()) {
             dos.writeUTF("1");
