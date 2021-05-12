@@ -21,7 +21,7 @@ public class TRegister {
         String password = teacher.getPassword();
         DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.teacher WHERE `account` =" + account);
-        if (!resultSet.next()&&!name.equals("defaultHeadImage")) {
+        if (!resultSet.next()&&!account.equals("defaultHeadImage")) {
             dos.writeUTF("1");
             dos.flush();
             database.update("INSERT INTO exam.teacher VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/defaultHeadImage.png ')");

@@ -20,7 +20,7 @@ public class SRegister {
         String password = student.getPassword();
         DbConnection database = Server.getDatabase();
         ResultSet resultSet = database.query("SELECT * FROM exam.student WHERE `account` =" + account);
-        if (!resultSet.next()&&!name.equals("defaultHeadImage")) {
+        if (!resultSet.next()&&!account.equals("defaultHeadImage")) {
             dos.writeUTF("1");
             dos.flush();
             database.update("INSERT INTO exam.student VALUES ('" + name + "','" + account + "','" + password + "','" + Server.PATH + "/defaultHeadImage.png ')");
