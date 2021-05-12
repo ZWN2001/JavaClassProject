@@ -44,7 +44,7 @@ public class PaperPanel extends JPanel {
         Question_Judge[] judges = netGetPreviewQuestions.getJudges();
         Question_Subjective[] subjectives = netGetPreviewQuestions.getSubjective();
 
-        PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0) ];
+        PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0)];
         System.out.println(choices.length);
         System.out.println(multiChoices.length);
         System.out.println(judges.length);
@@ -76,6 +76,9 @@ public class PaperPanel extends JPanel {
         mainFrame.examStart(this);
     }
 
+    public void endTimer(){
+        paperRightPanel.endTimer();
+    }
 
     public UploadPaperDialog getUploadPaperDialog() {
         return paperRightPanel.getUploadPaperDialog();
@@ -223,9 +226,9 @@ public class PaperPanel extends JPanel {
                     }
                     pageQuestionsNum[page] = 10;
                     page++;
-                    remain-=10;
+                    remain -= 10;
                 } else {
-                    pageQuestions = Arrays.copyOfRange(questions,comp, questions.length);
+                    pageQuestions = Arrays.copyOfRange(questions, comp, questions.length);
                     switch (type) {
                         case "choice":
                             pagesPanels[page].addChoiceQuestions((Question_Choice[]) pageQuestions);
@@ -305,17 +308,22 @@ class PaperRightPanel extends JPanel implements MouseListener {
         setVisible(true);
     }
 
-    public void refreshPageJLabel(int visPage){
-        pageLabel.setText("当前为第"+visPage+"页，共"+page+"页");
+    public void endTimer() {
+        timerLabel.getTimeTask().cancel();
     }
 
-    public void addPageJLabel(int page){
-        this.page=page;
-        pageLabel = new JLabel("当前为第"+1+"页，共"+page+"页");
-        pageLabel.setBounds(80,400,300,100);
-        pageLabel.setFont(new Font("宋体",Font.PLAIN,15));
+    public void refreshPageJLabel(int visPage) {
+        pageLabel.setText("当前为第" + visPage + "页，共" + page + "页");
+    }
+
+    public void addPageJLabel(int page) {
+        this.page = page;
+        pageLabel = new JLabel("当前为第" + 1 + "页，共" + page + "页");
+        pageLabel.setBounds(80, 400, 300, 100);
+        pageLabel.setFont(new Font("宋体", Font.PLAIN, 15));
         add(pageLabel);
     }
+
 
     public JButton getNextPage() {
         return nextPage;
@@ -333,7 +341,7 @@ class PaperRightPanel extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         uploadDialog.setVisible(true);
         if (uploadDialog.getResult() == 1) {
-            timerLabel.getTimeTask().cancel();
+            endTimer();
             mainFrame.examEnd(paperPanel);
         }
     }
@@ -401,9 +409,9 @@ class PaperLeftPanel extends JPanel {
             page++;
         pagesPanels[page].setVisible(true);
         paperRightPanel.getPrePage().setEnabled(true);
-        if (page == pagesPanels.length-1)
+        if (page == pagesPanels.length - 1)
             paperRightPanel.getNextPage().setEnabled(false);
-        paperRightPanel.refreshPageJLabel(page+1);
+        paperRightPanel.refreshPageJLabel(page + 1);
         javax.swing.SwingUtilities.invokeLater(() -> bar.setValue(0));
     }
 
@@ -415,7 +423,7 @@ class PaperLeftPanel extends JPanel {
         paperRightPanel.getNextPage().setEnabled(true);
         if (page == 0)
             paperRightPanel.getPrePage().setEnabled(false);
-        paperRightPanel.refreshPageJLabel(page+1);
+        paperRightPanel.refreshPageJLabel(page + 1);
         javax.swing.SwingUtilities.invokeLater(() -> bar.setValue(0));
     }
 
