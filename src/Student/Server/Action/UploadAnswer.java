@@ -19,16 +19,16 @@ public class UploadAnswer {
         Student student = JSON.parseObject(obr.readLine(), Student.class);
         Paper paper = JSON.parseObject(obr.readLine(), Paper.class);
         String answer = obr.readLine();
-        DbConnection database = Server.getDatabase();
+        //DbConnection database = Server.getDatabase();
         database.update("INSERT INTO exam.answer VALUES ('" + student.getAccount() + "','" + paper.getId() + "','" + answer + "')");
         String[] answers = JSON.parseObject(answer, String[].class);
         String[] questions = JSON.parseObject(paper.getQuestions(), String[].class);
         int objectiveScores = 0;
        // DbConnection database = Server.getDatabase();
-        database.update("INSERT INTO exam.answer VALUES ('" + student.getAccount() + "','" + paper.getId() + "','"+ answer + "')");
-        String[] answers = JSON.parseObject(answer,String[].class);
-        String[] questions = JSON.parseObject(paper.getQuestions(),String[].class);
-        int objectiveScores=0;
+        //database.update("INSERT INTO exam.answer VALUES ('" + student.getAccount() + "','" + paper.getId() + "','"+ answer + "')");
+//        String[] answers = JSON.parseObject(answer,String[].class);
+//        String[] questions = JSON.parseObject(paper.getQuestions(),String[].class);
+//        int objectiveScores=0;
 
         String[] choiceAnswers = JSON.parseObject(answers[0], String[].class);
         String[] multiAnswers = JSON.parseObject(answers[1], String[].class);
@@ -48,8 +48,6 @@ public class UploadAnswer {
         dos.flush();
     }
 
-    private int singleTypeScores(DbConnection database, String[] questions, String[] answers, String type) throws SQLException {
-        int score = 0;
     private int singleTypeScores(DB database,String[] questions,String[] answers,String type) throws SQLException {
         int score=0;
         System.out.println(type);
