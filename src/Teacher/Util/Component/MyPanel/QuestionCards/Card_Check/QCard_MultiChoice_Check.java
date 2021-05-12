@@ -12,6 +12,9 @@ import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_MultiChoice;
 import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
@@ -49,6 +52,9 @@ public class QCard_MultiChoice_Check extends JPanel {
         answerArea=new QCard_AnswerArea_MultiChoice(optionA,optionB,optionC,optionD);
         this.stem=stem;
         setLayout(new VFlowLayout(true,true));
+        Border border=getBorder();
+        Border margin = new EmptyBorder(4,10,8,10);//边距设置
+        setBorder(new CompoundBorder(border, margin));//加到组件上
         add(checkTitle);
         add(stemArea);
         add(answerArea);

@@ -1,6 +1,7 @@
 package Teacher.View.MyModification;
 
 import Teacher.Function.ClientFuction.Modify.GetModifyQuestion_C;
+import Teacher.Function.ClientFuction.Modify.SubmitModifiedMarks_C;
 import Teacher.Test.AvailableQuestion;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
@@ -20,10 +21,11 @@ public class ModifyEach extends JPanel {
     public static JPanel warningPanel=new JPanel(new BorderLayout());
     public static ModifyEach_LeftPanel modifyEach_leftPanel;
     int i;
-    private String[] studentName;
+    private String[] studentID;
     private String[] answers;
     private int[] subjectiveScore;
     private GetModifyQuestion_C getModifyQuestion;
+    private SubmitModifiedMarks_C submitModifiedMarks;
     BackgroundButton lastBtn,nextBtn,exitBtn;
     public static int locate=0;
     public ModifyEach(int id){
@@ -35,7 +37,7 @@ public class ModifyEach extends JPanel {
         //get data
         try{
             getModifyQuestion=new GetModifyQuestion_C(id);
-            studentName=getModifyQuestion.getStudentName();
+            studentID=getModifyQuestion.getStudentID();
             answers=getModifyQuestion.getModifyAnswers();
             if (answers.length>0){
                 subjectiveScore=new int[answers.length];
@@ -180,8 +182,15 @@ public class ModifyEach extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                HomeFrame.content.removeAll();
-                HomeFrame.content.add(new ModifyAvailable());
+                try {
+                    submitModifiedMarks=new SubmitModifiedMarks_C(id,studentID,subjectiveScore);
+                    HomeFrame.content.removeAll();
+                    HomeFrame.content.add(new ModifyAvailable());
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                    warningPanel.removeAll();
+                    warningPanel.add(new MyTextArea_Warning(1,6,"警告","提交失败"));
+                }
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }

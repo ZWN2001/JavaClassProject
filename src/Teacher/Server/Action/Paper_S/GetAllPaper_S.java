@@ -16,7 +16,7 @@ public class GetAllPaper_S {
     BufferedReader in;
     ResultSet resultSet;
     Paper [] papers;
-int i=0;
+    int i;
     public GetAllPaper_S(Socket socket) throws IOException, SQLException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

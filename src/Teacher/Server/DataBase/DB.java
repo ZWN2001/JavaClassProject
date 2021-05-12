@@ -132,13 +132,13 @@ public class DB {
                         "PRIMARY KEY(`account`))\n");
                 statement.executeUpdate("DROP TABLE IF EXISTS `answer`;\n");
                 statement.executeUpdate("CREATE TABLE `answer`(" +
-                        "`studentAccount` VARCHAR(25) NOT NULL," +
-                        "`paperID` int NOT NULL," +
+                        "`student` VARCHAR(25) NOT NULL," +
+                        "`paperid` int NOT NULL," +
                         "`answer` TEXT)\n");
                 statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
                 statement.executeUpdate("CREATE TABLE `score`(" +
-                        "`studentAccount` VARCHAR(25) NOT NULL , " +
-                        "`paperID` int NOT NULL," +
+                        "`student` VARCHAR(25) NOT NULL , " +
+                        "`paperid` int NOT NULL," +
                         "`objectivescore` INT DEFAULT NULL," +
                         "`subjectivescore` INT DEFAULT NULL)\n");
 //                hasInited=true;

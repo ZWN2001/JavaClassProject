@@ -8,6 +8,9 @@ import Teacher.Util.Component.MyPanel.QuestionCards.Card_Check.QCard_Judge_Check
 import Teacher.Util.Layout.VFlowLayout;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 public class QCard_Judge_Select extends JPanel {
     public JCheckBox isSelected=new JCheckBox("选入试卷");
@@ -27,6 +30,9 @@ public class QCard_Judge_Select extends JPanel {
         this.difficulty=difficulty;
         this.answer=answer;
         setLayout(new VFlowLayout());
+        Border border=getBorder();
+        Border margin = new EmptyBorder(4,10,8,10);//边距设置
+        setBorder(new CompoundBorder(border, margin));//加到组件上
 
         qCard_judge_check=new QCard_Judge_Check(id, qid, stem, mark, difficulty, answer);
         qCard_judge_check.removeBtn();

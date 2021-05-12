@@ -15,6 +15,7 @@ import Teacher.View.MyPapers.CheckPaperPanels.CheckAllPaperPanel;
 import Teacher.View.MyQuestions.CheckQuestionSituation.CheckQuestionSituationPanel;
 import Teacher.View.MyQuestions.CheckQuestions.MyTabbedPane_Question;
 import Teacher.View.MyQuestions.AddQuestion.AddQuestionPane;
+import Teacher.View.MyStudent.CheckMyStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,6 +136,17 @@ public class LeftPanel extends JPanel {
         addPaperBtn.setFocusedColor(MyColor.LIGHT_BLUE_300);
         addPaperBtn.setClickedColor(MyColor.LIGHT_BLUE_400);
         addPaperBtn.setBackground(MyColor.LIGHT_BLUE_100);
+        addPaperBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                CheckMyStudent checkMyStudent=new CheckMyStudent();
+                HomeFrame.content.removeAll();
+                HomeFrame.content.add(checkMyStudent);
+                HomeFrame.content.repaint();
+                HomeFrame.content.updateUI();
+            }
+        });
 
         BackgroundButton correctQuestionBtn = new BackgroundButton("批改");
         correctQuestionBtn.setUnFocusedColor(MyColor.LIGHT_BLUE_100);

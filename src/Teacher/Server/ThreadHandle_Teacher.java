@@ -1,10 +1,13 @@
 package Teacher.Server;
 
 
+import Teacher.Function.ClientFuction.CheckMark.CheckAvailMarks_C;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Choice_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Judge_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_MultiChoice_S;
 import Teacher.Server.Action.ChangeQuestion.ChangeQuestion_Subjective_S;
+import Teacher.Server.Action.CheckMark.CheckAvailMarks_S;
+import Teacher.Server.Action.CheckMark.GetEachPaperMark_S;
 import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_Choice_S;
 import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_Judge_S;
 import Teacher.Server.Action.DeleteQuestion.DeleteQuestion_MultiChoice_S;
@@ -17,6 +20,8 @@ import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_MultiChoice_S;
 import Teacher.Server.Action.GetQuestionBank_S.GetQuestionBank_Subjective_S;
 import Teacher.Server.Action.Modify.GetAvailableModifyPaperID_S;
 import Teacher.Server.Action.Modify.GetModifyQuestion_S;
+import Teacher.Server.Action.Modify.SubmitModifiedMarks_S;
+import Teacher.Server.Action.MyStudent.GetMyStudent_S;
 import Teacher.Server.Action.Paper_S.GetAPaper_S;
 import Teacher.Server.Action.Paper_S.GetAllPaper_S;
 import Teacher.Server.Action.Paper_S.GetAutoPaper_S;
@@ -120,6 +125,18 @@ public class ThreadHandle_Teacher extends Thread {
                     break;
                 case "GET_MODIFY_QUESTIONS":
                     new GetModifyQuestion_S(socket);
+                    break;
+                case "SUBMIT_MARKS":
+                    new SubmitModifiedMarks_S(socket);
+                    break;
+                case "GET_STUDENT_NAME":
+                    new GetMyStudent_S(socket);
+                    break;
+                case "GET_ALL_MARK":
+                    new CheckAvailMarks_S(socket);
+                    break;
+                case "GET_EACH_MARK":
+                    new GetEachPaperMark_S(socket);
                     break;
                 default:
                     System.out.println("未知的教师端命令，socket直接关闭");

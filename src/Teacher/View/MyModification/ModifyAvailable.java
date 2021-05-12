@@ -20,7 +20,7 @@ public class ModifyAvailable extends JScrollPane {
     private Paper[] papers;
     private int i;
     private SelectPaperToModify_Card card;
-    private int[] ID;
+    private int[] paperID;
     GetAvailableModifyPaperID_C getAvailableModifyPaperID;
     GetAPaper_C getAPaper;
 
@@ -39,32 +39,34 @@ public class ModifyAvailable extends JScrollPane {
         //获取数据
         try {
             getAvailableModifyPaperID = new GetAvailableModifyPaperID_C();
-            ID=getAvailableModifyPaperID.getModifyID();
+            paperID=getAvailableModifyPaperID.getModifyID();
         }catch (Exception e){
             e.printStackTrace();
         }
-        papers=new Paper[ID.length];
-        for (i=0;i<ID.length;i++){
-            try {
-                getAPaper=new GetAPaper_C(ID[i]);
-                papers[i]=getAPaper.getPaper();
+        if (paperID!=null&&paperID.length>0){
+            papers=new Paper[paperID.length];
+            for (i=0;i<paperID.length;i++){
+                try {
+                    getAPaper=new GetAPaper_C(paperID[i]);
+                    papers[i]=getAPaper.getPaper();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            try{
+                if (papers!=null&&papers.length>0){
+                    for (i=0; i< papers.length; i++){
+                        card=new SelectPaperToModify_Card(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
+                        panel.add(card);
+                    }
+                }
             }catch (Exception e){
                 e.printStackTrace();
+                panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));
             }
-        }
-
-        try{
-            if (papers!=null&&papers.length>0){
-                for (i=0; i< papers.length; i++){
-                    card=new SelectPaperToModify_Card(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
-                    panel.add(card);
-                }
-            }else {
-                panel.add(new NullPanel());
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            panel.add(new MyTextArea_Warning(1,10,"错误","加载失败"));
+        } else {
+            panel.add(new NullPanel());
         }
         getViewport().add(panel);
     }

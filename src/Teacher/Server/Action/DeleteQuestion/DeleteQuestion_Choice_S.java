@@ -41,7 +41,7 @@ public class DeleteQuestion_Choice_S {
         difficulty = question_choice.getDifficulty();
         answer = question_choice.getAnswer();
         try {
-            database.update("DELETE FROM questions.choice  WHERE id="+id);
+            database.update("DELETE FROM questions.choice WHERE id="+id);
             dos.writeUTF("1");
             dos.flush();
         } catch (Exception e) {

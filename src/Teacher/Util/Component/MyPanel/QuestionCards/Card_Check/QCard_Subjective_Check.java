@@ -9,6 +9,9 @@ import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_Judge;
 import Teacher.View.MyQuestions.AlterQuestion.AlterQuestion_Subjective;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -31,6 +34,9 @@ public class QCard_Subjective_Check extends JPanel {
         this.difficulty=difficulty;
         this.answer=answer;
         setLayout(new VFlowLayout(true,true));
+        Border border=getBorder();
+        Border margin = new EmptyBorder(4,10,8,10);//边距设置
+        setBorder(new CompoundBorder(border, margin));//加到组件上
       checkTitle=new QuestionCard_CheckTitle(qid, mark, difficulty, "见下框");
       stemArea=new QuestionCard_Stem(stem);
       answerArea=new QCard_AnswerArea_Subjective(answer);

@@ -157,7 +157,7 @@ public class PaperPreviewPanel extends JScrollPane {
         PaperPreview_Title mainTitle=new PaperPreview_Title(paperName,mark,examTime,difficulty);
         panel.add(mainTitle);
 
-        if (choices.length>0){
+        if (choices!=null&&choices.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  选择题:");
             choiceLabel.setAble(false);
             panel.add(choiceLabel);
@@ -166,7 +166,7 @@ public class PaperPreviewPanel extends JScrollPane {
                 panel.add(qCard_choice_normal);
             }
         }
-        if (multiChoices.length>0){
+        if (multiChoices!=null&&multiChoices.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  多选题:");
             choiceLabel.setAble(false);
             panel.add(choiceLabel);
@@ -175,7 +175,7 @@ public class PaperPreviewPanel extends JScrollPane {
                 panel.add(qCard_multiChoice_normal);
             }
         }
-        if (judges.length>0){
+        if (judges!=null&&judges.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  判断题:");
             choiceLabel.setAble(false);
             panel.add(choiceLabel);
@@ -184,7 +184,7 @@ public class PaperPreviewPanel extends JScrollPane {
                 panel.add(qCard_judge_normal);
             }
         }
-        if (subjectives.length>0){
+        if (subjectives!=null&&subjectives.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  主观题:");
             choiceLabel.setAble(false);
             panel.add(choiceLabel);

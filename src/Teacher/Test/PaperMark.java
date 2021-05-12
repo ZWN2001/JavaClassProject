@@ -3,7 +3,6 @@ package Teacher.Test;
 
 
 public class PaperMark {
-    int paperID;
     String name;
     int obj;
     int sub;
@@ -12,17 +11,13 @@ public class PaperMark {
     public PaperMark() {
     }
 
-    public PaperMark(int paperID, String name, int obj, int sub, int all) {
-        this.paperID = paperID;
+    public PaperMark( String name, int obj, int sub, int all) {
         this.name = name;
         this.obj = obj;
         this.sub = sub;
         this.all = all;
     }
 
-    public int getPaperID() {
-        return paperID;
-    }
     public String getName() {
         return name;
     }
@@ -48,11 +43,5 @@ public class PaperMark {
         this.all = all;
     }
 
-    public static PaperMark[] getTestPaperMark(){
-        PaperMark[] paperMarks=new PaperMark[10];
-        for (int i=0;i<10;i++){
-            paperMarks[i]=new PaperMark(i+1,"a"+i,2*i,3*i,5*i);
-        }
-        return paperMarks;
-    }
+
 }
