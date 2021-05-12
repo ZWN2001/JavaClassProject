@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                if (paperPanel != null) {
+                if (paperPanel != null && paperPanel.isStarted()) {
                     if (JOptionPane.showConfirmDialog(null, "确定退出系统并要结束考试吗，已作答的题目将被自动提交", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         paperPanel.endTimer();
                         examEnd(paperPanel);
@@ -71,6 +71,7 @@ public class MainFrame extends JFrame {
     public void examEnd(PaperPanel paperPanel) {
         leftPanel.examEnd();
         paperPanel.uploadAnswer();
+        paperPanel.setStarted(false);
         examPanel.refresh();
         paperPanel.setVisible(false);
     }

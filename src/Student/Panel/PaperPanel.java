@@ -29,10 +29,12 @@ public class PaperPanel extends JPanel {
     private final PaperRightPanel paperRightPanel;
     private final PaperLeftPanel paperLeftPanel;
     private final Paper paper;
+    private boolean started;
 
     public PaperPanel(MainFrame mainFrame, Paper paper) {
         this.mainFrame = mainFrame;
         this.paper = paper;
+        started=true;
 
         setLayout(null);
         setBounds(0, 0, 1600, 860);
@@ -74,6 +76,14 @@ public class PaperPanel extends JPanel {
         add(paperRightPanel);
         setVisible(true);
         mainFrame.examStart(this);
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
     public void endTimer(){

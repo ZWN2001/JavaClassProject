@@ -28,6 +28,7 @@ public class RegisterFrame extends JFrame {
 
 
         JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setFocusable(false);
         tabbedPane.addTab("学生注册", new RegisterPanel(parentFrame, this, "s"));
         tabbedPane.addTab("教师注册", new RegisterPanel(parentFrame, this, "t"));
         add(tabbedPane);
@@ -113,7 +114,7 @@ public class RegisterFrame extends JFrame {
                             exception.printStackTrace();
                         }
                     }else if (type.equals("t")){
-                        Teacher teacher = new Teacher( accountText.getText(),nameText.getText(), String.valueOf(passwordField.getPassword()));
+                        Teacher teacher = new Teacher(accountText.getText(),nameText.getText(), String.valueOf(passwordField.getPassword()));
                         try{
                             NetTeacherRegister netRegister = new NetTeacherRegister(teacher);
                             if (netRegister.getResultCode().equals("1")) {
