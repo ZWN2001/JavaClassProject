@@ -47,11 +47,6 @@ public class PaperPanel extends JPanel {
         Question_Subjective[] subjectives = netGetPreviewQuestions.getSubjective();
 
         PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0)];
-        System.out.println(choices.length);
-        System.out.println(multiChoices.length);
-        System.out.println(judges.length);
-        System.out.println(subjectives.length);
-        System.out.println(pagesPanels.length);
         for (int i = 0; i < pagesPanels.length; i++)
             pagesPanels[i] = new PagesPanel(i);
         int[] pageQuestionsNum = new int[pagesPanels.length]; // 每页的题目个数

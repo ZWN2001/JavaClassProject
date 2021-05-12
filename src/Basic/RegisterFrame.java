@@ -2,6 +2,7 @@ package Basic;
 
 import Student.Bean.Student;
 import Teacher.Bean.Teacher;
+import Teacher.Util.AdapterAndHelper.GBC;
 import com.alibaba.fastjson.JSON;
 
 import javax.swing.*;
@@ -78,19 +79,34 @@ public class RegisterFrame extends JFrame {
 
     static class RegisterPanel extends JPanel {
         public RegisterPanel(JFrame parentFrame, JFrame registerFrame, String type) {
-            setLayout(new GridLayout(5,2));
+            setLayout(new GridBagLayout());
+
+            Font registerFont = new Font("黑体",Font.PLAIN,27);
             JLabel accountLabel = new JLabel("输入账号");
             JLabel nameLabel = new JLabel("输入姓名");
             JLabel pwLabel = new JLabel("输入密码");
             JLabel conPwLabel = new JLabel("确认密码");
+
+            accountLabel.setFont(registerFont);
+            nameLabel.setFont(registerFont);
+            pwLabel.setFont(registerFont);
+            conPwLabel.setFont(registerFont);
+
 
             JTextField accountText = new JTextField(25);
             JTextField nameText = new JTextField(25);
             JPasswordField passwordField = new JPasswordField(25);
             JPasswordField conPwField = new JPasswordField(25);
 
+            accountText.setFont(registerFont);
+            nameText.setFont(registerFont);
+            passwordField.setFont(registerFont);
+            conPwField.setFont(registerFont);
+
             JButton confirm = new JButton("确定");
+            confirm.setFont(registerFont);
             JButton cancel = new JButton("取消");
+            cancel.setFont(registerFont);
             confirm.addActionListener(e ->
             {
                 if (accountText.getText().equals("") || nameText.getText().equals("") || passwordField.getPassword().length == 0 || conPwField.getPassword().length == 0)
@@ -135,16 +151,16 @@ public class RegisterFrame extends JFrame {
                 parentFrame.setVisible(true);
             });
 
-            add(accountLabel);
-            add(accountText);
-            add(nameLabel);
-            add(nameText);
-            add(pwLabel);
-            add(passwordField);
-            add(conPwLabel);
-            add(conPwField);
-            add(confirm);
-            add(cancel);
+            add(accountLabel,new GBC(0,0,5,1).setAnchor(GridBagConstraints.WEST).setInsets(15));
+            add(accountText,new GBC(5,0,5,1).setInsets(15));
+            add(nameLabel,new GBC(0,5,5,1).setInsets(15));
+            add(nameText,new GBC(5,5,5,1).setInsets(15));
+            add(pwLabel,new GBC(0,10,5,1).setInsets(15));
+            add(passwordField,new GBC(5,10,5,1).setInsets(15));
+            add(conPwLabel,new GBC(0,15,5,1).setInsets(15));
+            add(conPwField,new GBC(5,15,5,1).setInsets(15));
+            add(confirm,new GBC(5,20).setInsets(0,10,0,10));
+            add(cancel,new GBC(6,20).setInsets(0,10,0,10));
 
             setVisible(true);
         }
