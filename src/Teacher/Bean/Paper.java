@@ -37,7 +37,7 @@ public class Paper {
         this.time = time;
         this.difficulty = difficulty;
     }
-    public Paper(int id,String title,int mark,int difficulty,String time,int examTime,String owner,int ownerID,String questions){
+    public Paper(int id,String title,int mark,double difficulty,String time,int examTime,String owner,int ownerID,String questions){
         this.id=id;
         this.title=title;
         this.mark=mark;
