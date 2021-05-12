@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
                         examEnd(paperPanel);
                         System.exit(0);
                     }
-                }
+                } else System.exit(0);
             }
         });
         setLayout(null);
