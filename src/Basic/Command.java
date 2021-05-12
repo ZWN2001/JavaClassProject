@@ -14,5 +14,6 @@ public interface Command {
     String S_SET_CLASS = "Student Set Class";
     String S_SET_NAME = "Student Set Name";
     String S_SET_PASSWORD = "Student Set Password";
+    String T_REGISTER = "Teacher Register";
     String UPLOAD_ANSWER = "Upload Answer";
 }
