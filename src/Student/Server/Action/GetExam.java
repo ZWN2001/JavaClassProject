@@ -41,7 +41,7 @@ public class GetExam {
                 ResultSet examSet = statement.executeQuery("SELECT * FROM papers.paper WHERE `owner` = '" + teacher.getAccount() + "'");
                 while (examSet.next()) {
                     Statement scoreState = database.getConnection().createStatement();
-                    ResultSet scoreSet = scoreState.executeQuery("SELECT * FROM exam.score WHERE `student` = '" + student.getAccount() + "' AND `paperid` = " + examSet.getInt("id"));
+                    ResultSet scoreSet = scoreState.executeQuery("SELECT * FROM exam.score WHERE `studentAccount` = '" + student.getAccount() + "' AND `paperid` = " + examSet.getInt("id"));
                     if (!scoreSet.next())
                         papers.add(new Paper(examSet.getInt("id"), examSet.getString("title"), examSet.getInt("mark"), examSet.getInt("difficulty"), examSet.getString("time"), examSet.getInt("examTime"), examSet.getString("owner"), examSet.getInt("ownerID"), examSet.getString("questions")));
                 }

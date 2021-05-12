@@ -46,6 +46,9 @@ public class PaperPanel extends JPanel {
 
         PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0) ];
         System.out.println(choices.length);
+        System.out.println(multiChoices.length);
+        System.out.println(judges.length);
+        System.out.println(subjectives.length);
         System.out.println(pagesPanels.length);
         for (int i = 0; i < pagesPanels.length; i++)
             pagesPanels[i] = new PagesPanel(i);
@@ -529,7 +532,7 @@ class PagesPanel extends JPanel {
     }
 
     public String[] getSubjectiveAnswer() {
-        String[] answers = new String[multiChoicePanels.size()];
+        String[] answers = new String[subjectivePanels.size()];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = subjectivePanels.get(i).getAnswer();
         }
