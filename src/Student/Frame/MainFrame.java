@@ -5,6 +5,9 @@ import Student.Panel.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class MainFrame extends JFrame {
     private static final int WIDTH = 1600;
@@ -12,23 +15,37 @@ public class MainFrame extends JFrame {
     private final LeftPanel leftPanel;
     private final ExamPanel examPanel;
     private final Student student;
+    private PaperPanel paperPanel;
 
-    public MainFrame(Student student,ImageIcon imageIcon) {
+    public MainFrame(Student student, ImageIcon imageIcon) {
         super("考试平台-学生端");
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                if (paperPanel != null && paperPanel.isStarted()) {
+                    if (JOptionPane.showConfirmDialog(null, "确定退出系统并要结束考试吗，已作答的题目将被自动提交", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        paperPanel.endTimer();
+                        examEnd(paperPanel);
+                        System.exit(0);
+                    }
+                } else System.exit(0);
+            }
+        });
         setLayout(null);
 
-        this.student=student;
+        this.student = student;
 
         Container con = this.getContentPane();
-        AvatarPanel avatarPanel = new AvatarPanel(student,imageIcon);
+        AvatarPanel avatarPanel = new AvatarPanel(student, imageIcon);
         examPanel = new ExamPanel(this);
         GradePanel gradePanel = new GradePanel(student);
         RightPanel rightPanel = new RightPanel();
-        SettingPanel settingPanel = new SettingPanel(this,imageIcon);
+        SettingPanel settingPanel = new SettingPanel(this, imageIcon);
         ExamJSP examJSP = new ExamJSP(examPanel);
         GradeJSP gradeJSP = new GradeJSP(gradePanel);
 
@@ -46,6 +63,7 @@ public class MainFrame extends JFrame {
     }
 
     public void examStart(PaperPanel paperPanel) {
+        this.paperPanel = paperPanel;
         leftPanel.falseVisible();
         add(paperPanel);
     }
@@ -53,6 +71,7 @@ public class MainFrame extends JFrame {
     public void examEnd(PaperPanel paperPanel) {
         leftPanel.examEnd();
         paperPanel.uploadAnswer();
+        paperPanel.setStarted(false);
         examPanel.refresh();
         paperPanel.setVisible(false);
     }

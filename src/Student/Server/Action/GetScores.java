@@ -23,7 +23,7 @@ public class GetScores {
         String account = student.getAccount();
         String resultCode = "0";
         ArrayList<Scores> scoresList = new ArrayList<>();
-        ResultSet resultSet = database.query("SELECT * FROM exam.score WHERE `student` = " + account);
+        ResultSet resultSet = database.query("SELECT * FROM exam.score WHERE `studentAccount` = " + account);
         while (resultSet.next()) {
             System.out.println("有信息");
             String paperID = resultSet.getString("paperid");

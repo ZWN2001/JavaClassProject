@@ -1,5 +1,7 @@
 package Teacher.Server.Action;
 
+import Student.Server.DbConnection;
+import Student.Server.Server;
 import Teacher.Bean.Question.Question_Choice;
 import Teacher.Bean.Question.Question_Judge;
 import Teacher.Bean.Question.Question_MultiChoice;
@@ -14,7 +16,8 @@ import java.sql.SQLException;
 
 public class GetPreviewQuestions_S {
     Socket socket;
-    DB database = DB.instance;
+    //DB database = DB.instance;
+    DbConnection database = Server.getDatabase();
     PrintWriter out;
     BufferedReader in;
     ResultSet resultSet;

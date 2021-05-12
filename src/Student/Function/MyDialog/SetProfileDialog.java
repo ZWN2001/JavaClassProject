@@ -368,12 +368,12 @@ public class SetProfileDialog extends JDialog implements ActionListener {
             if (resultCode.equals("0")) {
                 socket.close();
             } else if (resultCode.equals("1")) {
-//                while (true) {
-//                    Teacher teacher = JSON.parseObject(obr.readLine(), Teacher.class);
-//                    if (teacher.getAccount().equals(""))
-//                        break;
-//                    teacherVector.add(teacher);
-//                }
+                while (true) {
+                    Teacher teacher = JSON.parseObject(obr.readLine(), Teacher.class);
+                    if (teacher.getAccount().equals(""))
+                        break;
+                    teacherVector.add(teacher);
+                }
             }
         }
 

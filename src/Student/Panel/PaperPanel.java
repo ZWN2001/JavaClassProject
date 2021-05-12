@@ -29,10 +29,12 @@ public class PaperPanel extends JPanel {
     private final PaperRightPanel paperRightPanel;
     private final PaperLeftPanel paperLeftPanel;
     private final Paper paper;
+    private boolean started;
 
     public PaperPanel(MainFrame mainFrame, Paper paper) {
         this.mainFrame = mainFrame;
         this.paper = paper;
+        started=true;
 
         setLayout(null);
         setBounds(0, 0, 1600, 860);
@@ -44,9 +46,7 @@ public class PaperPanel extends JPanel {
         Question_Judge[] judges = netGetPreviewQuestions.getJudges();
         Question_Subjective[] subjectives = netGetPreviewQuestions.getSubjective();
 
-        PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0) ];
-        System.out.println(choices.length);
-        System.out.println(pagesPanels.length);
+        PagesPanel[] pagesPanels = new PagesPanel[(int) Math.ceil((choices.length + multiChoices.length + judges.length + subjectives.length) / 10.0)];
         for (int i = 0; i < pagesPanels.length; i++)
             pagesPanels[i] = new PagesPanel(i);
         int[] pageQuestionsNum = new int[pagesPanels.length]; // 每页的题目个数
@@ -73,6 +73,17 @@ public class PaperPanel extends JPanel {
         mainFrame.examStart(this);
     }
 
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void endTimer(){
+        paperRightPanel.endTimer();
+    }
 
     public UploadPaperDialog getUploadPaperDialog() {
         return paperRightPanel.getUploadPaperDialog();
@@ -220,9 +231,9 @@ public class PaperPanel extends JPanel {
                     }
                     pageQuestionsNum[page] = 10;
                     page++;
-                    remain-=10;
+                    remain -= 10;
                 } else {
-                    pageQuestions = Arrays.copyOfRange(questions,comp, questions.length);
+                    pageQuestions = Arrays.copyOfRange(questions, comp, questions.length);
                     switch (type) {
                         case "choice":
                             pagesPanels[page].addChoiceQuestions((Question_Choice[]) pageQuestions);
@@ -302,17 +313,22 @@ class PaperRightPanel extends JPanel implements MouseListener {
         setVisible(true);
     }
 
-    public void refreshPageJLabel(int visPage){
-        pageLabel.setText("当前为第"+visPage+"页，共"+page+"页");
+    public void endTimer() {
+        timerLabel.getTimeTask().cancel();
     }
 
-    public void addPageJLabel(int page){
-        this.page=page;
-        pageLabel = new JLabel("当前为第"+1+"页，共"+page+"页");
-        pageLabel.setBounds(80,400,300,100);
-        pageLabel.setFont(new Font("宋体",Font.PLAIN,15));
+    public void refreshPageJLabel(int visPage) {
+        pageLabel.setText("当前为第" + visPage + "页，共" + page + "页");
+    }
+
+    public void addPageJLabel(int page) {
+        this.page = page;
+        pageLabel = new JLabel("当前为第" + 1 + "页，共" + page + "页");
+        pageLabel.setBounds(80, 400, 300, 100);
+        pageLabel.setFont(new Font("宋体", Font.PLAIN, 15));
         add(pageLabel);
     }
+
 
     public JButton getNextPage() {
         return nextPage;
@@ -330,7 +346,7 @@ class PaperRightPanel extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         uploadDialog.setVisible(true);
         if (uploadDialog.getResult() == 1) {
-            timerLabel.getTimeTask().cancel();
+            endTimer();
             mainFrame.examEnd(paperPanel);
         }
     }
@@ -398,9 +414,9 @@ class PaperLeftPanel extends JPanel {
             page++;
         pagesPanels[page].setVisible(true);
         paperRightPanel.getPrePage().setEnabled(true);
-        if (page == pagesPanels.length-1)
+        if (page == pagesPanels.length - 1)
             paperRightPanel.getNextPage().setEnabled(false);
-        paperRightPanel.refreshPageJLabel(page+1);
+        paperRightPanel.refreshPageJLabel(page + 1);
         javax.swing.SwingUtilities.invokeLater(() -> bar.setValue(0));
     }
 
@@ -412,7 +428,7 @@ class PaperLeftPanel extends JPanel {
         paperRightPanel.getNextPage().setEnabled(true);
         if (page == 0)
             paperRightPanel.getPrePage().setEnabled(false);
-        paperRightPanel.refreshPageJLabel(page+1);
+        paperRightPanel.refreshPageJLabel(page + 1);
         javax.swing.SwingUtilities.invokeLater(() -> bar.setValue(0));
     }
 
@@ -529,7 +545,7 @@ class PagesPanel extends JPanel {
     }
 
     public String[] getSubjectiveAnswer() {
-        String[] answers = new String[multiChoicePanels.size()];
+        String[] answers = new String[subjectivePanels.size()];
         for (int i = 0; i < answers.length; i++) {
             answers[i] = subjectivePanels.get(i).getAnswer();
         }

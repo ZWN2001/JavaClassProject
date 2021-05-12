@@ -51,7 +51,7 @@ public class ThreadHandle extends Thread {
                     new RefreshAvatar(socket);
                     break;
                 case S_REGISTER:
-                    new Register(socket);
+                    new SRegister(socket);
                     break;
                 case S_SET_AVATAR:
                     new SetAvatar(socket);
@@ -64,6 +64,9 @@ public class ThreadHandle extends Thread {
                     break;
                 case S_SET_PASSWORD:
                     new SetPassword(socket);
+                    break;
+                case T_REGISTER:
+                    new TRegister(socket);
                     break;
                 case UPLOAD_ANSWER:
                     new UploadAnswer(socket);
