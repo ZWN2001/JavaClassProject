@@ -2,29 +2,37 @@ package Teacher.Bean;
 
 public class Teacher {
 
-    private final String ID;
+    private final String account;
     private final String name;
-    private  String subject;
+    private String password;
+    private String image;
 
-    public Teacher(String ID, String name) {
-        this.ID = ID;
+    public Teacher(String account, String name) {
+        this.account = account;
         this.name = name;
     }
 
-    public String getID() {
-        return ID;
+    public Teacher(String account, String name, String password) {
+        this.account = account;
+        this.name = name;
+        this.password = password;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSubject() {
-        return subject;
-    }
     
     public String toString(){
-        return name+"("+ID+")";
+        return name+"("+ account +")";
     }
 
 }
