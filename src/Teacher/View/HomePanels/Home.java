@@ -23,13 +23,6 @@ public class Home {
             homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             homeFrame.setVisible(true);
         });
-
-        t3 test = new t3();
-        try {
-            test.Tray();
-        }catch(AWTException e) {
-            e.printStackTrace();
-        }
     }
 }
 

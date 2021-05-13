@@ -19,9 +19,10 @@ public class HomeFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("考试平台-教师端");
         setLayout(new GridBagLayout());
-//        addWindowListener(new WindowClose());
 
         Toolkit kit = Toolkit.getDefaultToolkit();
+        Image image=kit.createImage("src/Teacher/Util/Images/logo.png");
+        this.setIconImage(image);
         Dimension screenSize = kit.getScreenSize();
         int width = screenSize.width;
         int height = screenSize.height;

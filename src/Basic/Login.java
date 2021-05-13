@@ -4,6 +4,7 @@ import Student.Bean.Student;
 import Student.Frame.MainFrame;
 import Teacher.Bean.Teacher;
 import Teacher.Server.Server;
+import Teacher.Util.t3;
 import Teacher.View.HomePanels.Home;
 import com.alibaba.fastjson.JSON;
 
@@ -30,6 +31,12 @@ public class Login {
             LoginFrame loginFrame = new LoginFrame();
             loginFrame.setVisible(true);
         });
+        t3 test = new t3();
+        try {
+            test.Tray();
+        }catch(AWTException e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -48,6 +55,8 @@ class LoginFrame extends JFrame {
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
+        Image image=kit.createImage("src/Teacher/Util/Images/logo.png");
+        this.setIconImage(image);
         int width = screenSize.width;
         int height = screenSize.height;
         int x = (width - WIDTH) / 2;

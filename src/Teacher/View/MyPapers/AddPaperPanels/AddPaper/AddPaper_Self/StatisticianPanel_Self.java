@@ -94,7 +94,9 @@ public class StatisticianPanel_Self extends JPanel {
                 questionString[1] = JSON.toJSONString(statistician.getMyMultiChoiceIDList());
                 questionString[2] = JSON.toJSONString(statistician.getMyJudgeIDList());
                 questionString[3] = JSON.toJSONString(statistician.getMySubjectiveIDList());
-                HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(),Integer.parseInt(examTime.getText()),  JSON.toJSONString(questionString),true), 0);
+                EventQueue.invokeLater(() -> {
+                    HomeFrame.content.add(new PaperPreviewPanel(paperName.getText(),Integer.parseInt(examTime.getText()),  JSON.toJSONString(questionString),true), 0);
+                });
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }else {

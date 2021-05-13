@@ -10,7 +10,7 @@ public class t3 extends JFrame{
     public void Tray() throws AWTException{
 
         if(SystemTray.isSupported()) {//判断系统是否支持托盘图标
-            ImageIcon icon = new ImageIcon("src/Teacher/Util/Images/logo_small.png");
+            ImageIcon icon = new ImageIcon("src/Teacher/Util/Images/logo.png");
             PopupMenu pop = new PopupMenu();//创建弹出式菜单
 
             MenuItem menu = new MenuItem("exit");//创建菜单项

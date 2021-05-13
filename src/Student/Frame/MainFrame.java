@@ -37,7 +37,9 @@ public class MainFrame extends JFrame {
             }
         });
         setLayout(null);
-
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image image=kit.createImage("src/Teacher/Util/Images/logo.png");
+        this.setIconImage(image);
         this.student = student;
 
         Container con = this.getContentPane();
