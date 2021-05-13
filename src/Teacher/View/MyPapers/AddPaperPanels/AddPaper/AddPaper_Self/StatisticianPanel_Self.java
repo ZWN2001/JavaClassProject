@@ -31,7 +31,7 @@ public class StatisticianPanel_Self extends JPanel {
         setLayout(new GridBagLayout());
         tipContainer.setLayout(new BorderLayout());
 
-        JLabel titleLabel2= new JLabel("已选"+statistician.getChoseNum()+"题，共计"+statistician.getAllMark()+"分，平均难度为"+statistician.getDifficulty()+",其中:");
+        JLabel titleLabel2= new JLabel("已选"+statistician.getChoseNum()+"题，共计"+statistician.getAllMark()+"分，其中:");
         titleLabel2.setFont(MyFont.Font_14);
         JLabel choiceSituation=new JLabel("选择题:"+(statistician.getMyChoice().isEmpty()?"无":getChoseQuestionFromString(statistician.getMyChoice().toString())));
         choiceSituation.setFont(MyFont.Font_14);

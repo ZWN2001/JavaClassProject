@@ -135,12 +135,14 @@ public class DB {
 //                        "`student` VARCHAR(25) NOT NULL," +
 //                        "`paperid` int NOT NULL," +
 //                        "`answer` TEXT)\n");
-//                statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
-//                statement.executeUpdate("CREATE TABLE `score`(" +
+//                update("DROP TABLE IF EXISTS `score`;");
+//                update("CREATE TABLE `score`(" +
 //                        "`student` VARCHAR(25) NOT NULL , " +
 //                        "`paperid` int NOT NULL," +
 //                        "`objectivescore` INT DEFAULT NULL," +
-//                        "`subjectivescore` INT DEFAULT NULL)\n");
+//                        "`subjectivescore` INT DEFAULT NULL," +
+//                        "`sumScore` INT DEFAULT 0,\n" +
+//                        "  primary key (sumScore));\n");
 //                hasInited=true;
                 System.out.println("初始化数据库成功");
             }catch (Exception e){

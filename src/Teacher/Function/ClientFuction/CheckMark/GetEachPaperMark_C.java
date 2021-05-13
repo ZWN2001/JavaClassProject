@@ -27,6 +27,8 @@ public class GetEachPaperMark_C {
         dos.writeUTF(COMMAND);
         dos.flush();
 
+        out.println(paperID);
+
         paperMarks = JSON.parseObject(in.readLine(), PaperMark[].class);
         this.socket.close();
     }

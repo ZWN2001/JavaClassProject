@@ -16,8 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ModifyEach extends JPanel {
-    public static JPanel questionPanel=new JPanel();
-    public static JPanel navigationPanel=new JPanel();
+    public  JPanel questionPanel=new JPanel();
+    public  JPanel navigationPanel=new JPanel();
     public static JPanel warningPanel=new JPanel(new BorderLayout());
     public static ModifyEach_LeftPanel modifyEach_leftPanel;
     int i;

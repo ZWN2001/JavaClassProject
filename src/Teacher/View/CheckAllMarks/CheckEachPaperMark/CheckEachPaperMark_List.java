@@ -18,7 +18,6 @@ public class CheckEachPaperMark_List extends JScrollPane{
 
     public CheckEachPaperMark_List(int paperID) {
             JPanel panel=new JPanel(new VFlowLayout());
-
             try{
                 getEachPaperMark=new GetEachPaperMark_C(paperID);
                 paperMarks=getEachPaperMark.getMarks();

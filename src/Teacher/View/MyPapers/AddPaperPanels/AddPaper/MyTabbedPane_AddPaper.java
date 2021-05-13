@@ -1,5 +1,6 @@
 package Teacher.View.MyPapers.AddPaperPanels.AddPaper;
 
+import Teacher.Bean.Statistician_SelfAdd;
 import Teacher.Util.AdapterAndHelper.GBC;
 
 import Teacher.Util.Layout.VFlowLayout;
@@ -15,7 +16,6 @@ public class MyTabbedPane_AddPaper extends JPanel {
 //    public static AddPaperSelfPanel addPaperSelfPanel;
     JComboBox<String> choose=new JComboBox<>();
     public MyTabbedPane_AddPaper(){
-
             setLayout(new GridBagLayout());
             JLabel choose_label=new JLabel("选择出卷方式：");
             choose_label.setFont(MyFont.Font_20);

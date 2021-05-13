@@ -5,6 +5,7 @@ import Teacher.Function.ClientFuction.Paper.GetAPaper_C;
 import Teacher.Function.ClientFuction.Paper.GetAllPaper_C;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Warning;
 import Teacher.Util.Layout.VFlowLayout;
+import Teacher.View.HomePanels.Home;
 import Teacher.View.HomePanels.HomeFrame;
 import Teacher.View.MyPapers.AddPaperPanels.PaperPreview.PaperPreviewPanel;
 
@@ -39,7 +40,7 @@ public class CheckAllPaperPanel extends JScrollPane {
         panel.add(title);
 
         try{
-            GetAllPaper_C getPaper=new GetAllPaper_C();
+            GetAllPaper_C getPaper=new GetAllPaper_C(Home.teacher.getAccount());
             papers=getPaper.getPapers();
             if (papers!=null){
                 for (i=0; i< papers.length; i++){

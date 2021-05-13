@@ -48,7 +48,8 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
                                 AddPaperSelfPanel.statistician.addMySubjectiveIDList(qCard_subjective_select.getId());
                                 AddPaperSelfPanel.statistician.addChoseNum();
                                 AddPaperSelfPanel.statistician.difficulty_add(qCard_subjective_select.getDifficulty());
-                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
+                                AddPaperSelfPanel.statistician.addMark(markList[finalI]);
+                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
                                 AddPaperSelfPanel.statisticianPanel.repaint();
@@ -60,7 +61,8 @@ public class SelectQuestionPanel_Subjective extends JScrollPane {
                                 AddPaperSelfPanel.statistician.removeSubjectiveIDList(qCard_subjective_select.getId());
                                 AddPaperSelfPanel.statistician.removeChoseNum();
                                 AddPaperSelfPanel.statistician.difficulty_reduce(qCard_subjective_select.getDifficulty());
-                                AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);                                AddPaperSelfPanel.container2.removeAll();
+                                AddPaperSelfPanel.statistician.reduceMark(markList[finalI]);
+                                AddPaperSelfPanel.container2.removeAll();
                                 AddPaperSelfPanel.statisticianPanel=new StatisticianPanel_Self(AddPaperSelfPanel.statistician);
                                 AddPaperSelfPanel.container2.add(AddPaperSelfPanel.statisticianPanel);
                                 AddPaperSelfPanel.statisticianPanel.repaint();

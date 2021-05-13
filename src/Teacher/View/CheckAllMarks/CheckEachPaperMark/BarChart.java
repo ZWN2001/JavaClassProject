@@ -1,6 +1,4 @@
 package Teacher.View.CheckAllMarks.CheckEachPaperMark;
-
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -18,7 +16,6 @@ import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.TextAnchor;
-
 /**
  *
  * @Title:JFreeChart实现柱状图
@@ -37,19 +34,19 @@ public class BarChart {
                 "人数", // 数值轴的显示标签
                 dataset, // 数据集
                 PlotOrientation.VERTICAL, // 图表方向：水平、垂直
-                true, // 是否显示图例
+                false, // 是否显示图例
                 true, // 是否生成工具（提示）
                 false // 是否生成URL链接
         );
         // 设置标题字体
         Font font = new Font("宋体", Font.BOLD, 18);
-
+        chart.getTitle().setFont(new Font("宋体",Font.BOLD,20));//设置标题字体
         chart.setTextAntiAlias(false);
         // 设置背景色
         chart.setBackgroundPaint(new Color(255, 255, 255));
         // 设置图例字体
-        LegendTitle legend = chart.getLegend(0);
-        legend.setItemFont(new Font("宋体", Font.BOLD, 14));
+//        LegendTitle legend = chart.getLegend(0);
+//        legend.setItemFont(new Font("宋体", Font.BOLD, 14));
         // 获得柱状图的Plot对象
         CategoryPlot plot = chart.getCategoryPlot();
         BarRenderer3D customBarRenderer = (BarRenderer3D) plot.getRenderer();

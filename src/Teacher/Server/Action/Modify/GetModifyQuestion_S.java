@@ -18,12 +18,14 @@ public class GetModifyQuestion_S {
     private int paperID;
     private String[] studentName;
     private String[] answers;
+    private String[] allAnswer;
+    private String subAnswer;
     public GetModifyQuestion_S(Socket socket) throws IOException, SQLException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         paperID=Integer.parseInt(in.readLine());
-        resultSet = database.query("SELECT student,answer FROM exam.answer WHERE paper = "+paperID);
+        resultSet = database.query("SELECT student,answer FROM exam.answer WHERE paperID = "+paperID);
         resultSet.last();
 
         int n=resultSet.getRow();
@@ -33,7 +35,16 @@ public class GetModifyQuestion_S {
         resultSet.beforeFirst();
         for ( i = 0; resultSet.next(); i++) {
             studentName[i]=resultSet.getString("student");
-            answers[i]=resultSet.getString("paper");
+            String answerString=resultSet.getString("answer");
+            System.out.println(answerString);
+
+            allAnswer=answerString.split(",");
+            //System.out.println(allAnswer.toString());
+            subAnswer=allAnswer[6];
+            //System.out.println(subAnswer);
+            subAnswer=subAnswer.substring(3,subAnswer.length()-4);
+            //System.out.println(subAnswer);
+            answers[i]=subAnswer;
         }
         out.println(JSON.toJSONString(studentName));
         out.println(JSON.toJSONString(answers));

@@ -29,7 +29,7 @@ public class GetAvailableModifyPaperID_S {
 
         resultSet.beforeFirst();
         for ( i = 0; resultSet.next(); i++) {
-            ID[i]=resultSet.getInt("paper");
+            ID[i]=resultSet.getInt("paperid");
         }
         out.println(JSON.toJSONString(ID));
     }

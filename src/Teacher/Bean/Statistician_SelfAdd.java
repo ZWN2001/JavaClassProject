@@ -1,5 +1,7 @@
 package Teacher.Bean;
 
+import Teacher.Function.MyNumberFormat;
+
 import java.util.ArrayList;
 
 /**
@@ -14,7 +16,7 @@ public class Statistician_SelfAdd {
 
     private   int choseNum=0;
     private  int allMark=0;
-    private int difficulty=0;
+    private double difficulty=0;
     private String paperName="";
     private String examTime="";
     private  ArrayList<Integer> myChoice=new ArrayList<>();
@@ -62,16 +64,18 @@ public class Statistician_SelfAdd {
     public void difficulty_add(int difficulty1){
         difficulty+=difficulty1;
         difficulty/=choseNum;
+        difficulty= MyNumberFormat.formatDouble(difficulty);
     }
-    public void difficulty_reduce(int difficulty1){
+    public void difficulty_reduce(double difficulty1){
         if (myChoice.size()>0){
             difficulty-=difficulty1;
             difficulty/=choseNum;
+            difficulty= MyNumberFormat.formatDouble(difficulty);
         }else {
             difficulty=0;
         }
     }
-    public int getDifficulty() {
+    public double getDifficulty() {
         return difficulty;
     }
 

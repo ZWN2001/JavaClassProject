@@ -18,7 +18,7 @@ public class GetAllPaper_C {
     private PrintWriter out;
 
     private Paper[] papers;
-    public GetAllPaper_C()throws IOException {
+    public GetAllPaper_C(String teacherID)throws IOException {
         this.socket = new Socket(Address, PORT);
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         dos = new DataOutputStream(new DataOutputStream(socket.getOutputStream()));
@@ -26,6 +26,7 @@ public class GetAllPaper_C {
         out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         dos.writeUTF(COMMAND);
         dos.flush();
+        out.println(teacherID);
 
         papers = JSON.parseObject(in.readLine(), Paper[].class);
         this.socket.close();

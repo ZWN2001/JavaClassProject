@@ -12,6 +12,7 @@ public class AddPaperSelfPanel extends JPanel {
     public static Container container2=new Container();
     public static AddPaper_Self_CheckQuestion addPaper_self_checkQuestion;
     public AddPaperSelfPanel( ){
+        statistician=new Statistician_SelfAdd();
       addPaper_self_checkQuestion=new AddPaper_Self_CheckQuestion();
         statisticianPanel=new StatisticianPanel_Self(statistician);
         Container container=new Container();
@@ -26,7 +27,8 @@ public class AddPaperSelfPanel extends JPanel {
         repaint();
         updateUI();
     }
-    public AddPaperSelfPanel( int n){
+    public AddPaperSelfPanel(int n){
+        statistician=new Statistician_SelfAdd();
         addPaper_self_checkQuestion=new AddPaper_Self_CheckQuestion();
         statisticianPanel=new StatisticianPanel_Self(statistician);
         addPaper_self_checkQuestion.pane.setSelectedIndex(n);

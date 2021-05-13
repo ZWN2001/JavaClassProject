@@ -26,6 +26,7 @@ public class CheckAvailMarks_S {
         resultSet.last();
         int n=resultSet.getRow();
          paperID=new String[n];
+         resultSet.beforeFirst();
          for (i=0;resultSet.next();i++){
              paperID[i]=resultSet.getString("paperid");
          }
@@ -36,13 +37,13 @@ public class CheckAvailMarks_S {
                 resultSet1 = database.query("SELECT * FROM papers.paper WHERE id= "+paperID[i]);
                 resultSet1.beforeFirst();
                 while (resultSet1.next()){
-                    papers[i]=new Paper(resultSet1.getInt("id"),resultSet1.getString("title"),resultSet1.getInt("mark"),
+                    papers[i]=new Paper(Integer.parseInt(paperID[i]),resultSet1.getString("title"),resultSet1.getInt("mark"),
                             resultSet1.getDouble("difficulty"),resultSet1.getString("time") ,resultSet1.getInt("examTime"),
                             resultSet1.getString("owner"),resultSet1.getInt("ownerID"), resultSet1.getString("questions"));
+                    System.out.println(papers[i]);
                 }
             }
         }
-
         out.println(JSON.toJSONString(papers));
         System.out.println(JSON.toJSONString(papers));
     }

@@ -15,6 +15,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import java.util.Arrays;
+
 import static Teacher.Util.MyFont.Font_16;
 
 public class CheckAllMarkPanel extends JScrollPane {
@@ -39,7 +41,7 @@ public class CheckAllMarkPanel extends JScrollPane {
         try{
             checkAvailMarks=new CheckAvailMarks_C();
             papers=checkAvailMarks.getAvailablePapers();
-            if (papers!=null&&papers.length>0){
+            if (papers!=null&&papers.length>0&& !Arrays.toString(papers).equals("[null]")){
                 for (i=0; i< papers.length; i++){
                     checkPaperMarkCard=new CheckPaperMarkCard(papers[i].getId(),i+1,papers[i].getTitle(),papers[i].getTime(),papers[i].getOwner());
                     panel.add(checkPaperMarkCard);

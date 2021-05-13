@@ -40,6 +40,7 @@ public class CheckPaperMarkCard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
             CheckEachPaperMark checkEachPaperMark=new CheckEachPaperMark(id);
+            HomeFrame.content.removeAll();
             HomeFrame.content.add(checkEachPaperMark,0);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();

@@ -41,7 +41,7 @@ public class SelectPaperToModify_Card extends JPanel {
                 super.mouseClicked(e);
                 ModifyEach modifyEach=new ModifyEach(id);
                 HomeFrame.content.removeAll();
-                HomeFrame.content.add(modifyEach,0);
+                HomeFrame.content.add(modifyEach);
                 HomeFrame.content.repaint();
                 HomeFrame.content.updateUI();
             }

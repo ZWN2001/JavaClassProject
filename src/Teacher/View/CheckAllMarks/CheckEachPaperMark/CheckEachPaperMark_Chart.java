@@ -17,7 +17,7 @@ public class CheckEachPaperMark_Chart extends JPanel {
     private int maxMark,grads;//grads,梯度
     private int divide[]=new int[4];
     private int[] num=new int[5];
-    private String[] columnKey=new String[4];
+    private String[] columnKey=new String[5];
     private int i;
     public CheckEachPaperMark_Chart(int paperID) {
         setLayout(new BorderLayout());
@@ -38,20 +38,24 @@ public class CheckEachPaperMark_Chart extends JPanel {
         columnKey[0]="0 ~ "+divide[0];
         columnKey[1]=""+(divide[0]+1)+" ~ "+divide[1];
         columnKey[2]=""+(divide[1]+1)+" ~ "+divide[2];
-        columnKey[3]=""+(divide[3]+1)+" ~ "+maxMark;
-        for (i=0;i<paperMarks.length;i++){
-            if (paperMarks[i].getAll()>=divide[3]){
-                num[4]++;
-            }else if(paperMarks[i].getAll()>=divide[2]){
-                num[3]++;
-            }else if (paperMarks[i].getAll()>=divide[1]){
-                num[2]++;
-            }else if (paperMarks[i].getAll()>=divide[0]){
-                num[1]++;
-            }else {
-                num[0]++;
+        columnKey[3]=""+(divide[2]+1)+" ~ "+divide[3];
+        columnKey[4]=""+(divide[3]+1)+" ~ "+maxMark;
+        if (paperMarks!=null){
+            for (i=0;i<paperMarks.length;i++){
+                if (paperMarks[i].getAll()>=divide[3]){
+                    num[4]++;
+                }else if(paperMarks[i].getAll()>=divide[2]){
+                    num[3]++;
+                }else if (paperMarks[i].getAll()>=divide[1]){
+                    num[2]++;
+                }else if (paperMarks[i].getAll()>=divide[0]){
+                    num[1]++;
+                }else {
+                    num[0]++;
+                }
             }
         }
+
 
         DefaultCategoryDataset dataset=new DefaultCategoryDataset();
         dataset.addValue(num[0],columnKey[0],columnKey[0]);

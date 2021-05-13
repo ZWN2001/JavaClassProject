@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.ResultSet;
 
 public class SubmitModifiedMarks_S {
     Socket socket;
@@ -16,7 +17,7 @@ public class SubmitModifiedMarks_S {
     private String[] studentID;
     private int[] subjectiveScore;
     private int paperID,i;
-
+    ResultSet resultSet;
     public SubmitModifiedMarks_S(Socket socket) throws Exception{
         this.socket = socket;
         dis = new DataInputStream(new BufferedInputStream(socket.getInputStream())); //
@@ -27,7 +28,13 @@ public class SubmitModifiedMarks_S {
         subjectiveScore=JSON.parseObject(in.readLine(),int[].class);
         try {
          for (i=0;i<subjectiveScore.length;i++){
-             database.update("UPDATE exam.score SET subjectivescore = "+subjectiveScore[i]+" WHERE paperid= "+paperID+" AND student = "+studentID[i]);
+             int sum=0;
+             resultSet=database.query("SELECT objectivescore FROM exam.score WHERE paperid= "+paperID+" AND student = "+studentID[i]);
+             while(resultSet.next()){
+                 int obj=resultSet.getInt("objectivescore");
+                  sum=subjectiveScore[i]+obj;
+             }
+             database.update("UPDATE exam.score SET subjectivescore = "+subjectiveScore[i]+",sumScore = "+sum+" WHERE paperid= "+paperID+" AND student = "+studentID[i]);
          }
             dos.writeUTF("1");
             dos.flush();

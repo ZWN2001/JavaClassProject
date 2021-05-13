@@ -9,6 +9,7 @@ import Teacher.Bean.Statistician_AutoAdd;
 import Teacher.Bean.Statistician_SelfAdd;
 import Teacher.Function.ClientFuction.GetPreviewQuestions_C;
 import Teacher.Function.ClientFuction.Paper.SubmitPaper_C;
+import Teacher.Function.MyNumberFormat;
 import Teacher.Util.AdapterAndHelper.GBC;
 import Teacher.Util.Component.MyButton.BackgroundButton;
 import Teacher.Util.Component.MyPanel.QuestionCards.Card_Normal.QCard_Choice_Normal;
@@ -19,6 +20,7 @@ import Teacher.Util.Component.MyTextArea.MyTextArea_Colorful;
 import Teacher.Util.Component.MyTextArea.MyTextArea_Normal;
 import Teacher.Util.Layout.VFlowLayout;
 import Teacher.Util.MyFont;
+import Teacher.View.HomePanels.Home;
 import Teacher.View.HomePanels.HomeFrame;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Auto.AddPaperAutoPanel;
 import Teacher.View.MyPapers.AddPaperPanels.AddPaper.AddPaper_Self.AddPaperSelfPanel;
@@ -94,13 +96,14 @@ public class PaperPreviewPanel extends JScrollPane {
         multiChoices=getPreviewQuestions.getMultiChoices();
         judges=getPreviewQuestions.getJudges();
         subjectives=getPreviewQuestions.getSubjective();
-
+        this.mark=getMark();
+        this.difficulty=getDifficulty();
         init();
     }
     public void init(){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
         String time=simpleDateFormat.format(System.currentTimeMillis());
-        paper=new Paper(paperName,mark,difficulty,time,examTime,"admin",123,questionString);
+        paper=new Paper(paperName,mark,difficulty,time,examTime, Home.teacher.getName(),Integer.parseInt(Home.teacher.getAccount()),questionString);
         JPanel rootPanel=new JPanel(new VFlowLayout(true,true));
         JPanel panel=new JPanel(new VFlowLayout());
 
@@ -160,6 +163,7 @@ public class PaperPreviewPanel extends JScrollPane {
         if (choices!=null&&choices.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  选择题:");
             choiceLabel.setAble(false);
+            choiceLabel.textArea.setFont(new Font("宋体",Font.BOLD,16));
             panel.add(choiceLabel);
             for (i=0;i<choices.length;i++){
                 qCard_choice_normal = new QCard_Choice_Normal(choices[i].getId(),qid++,choices[i].getStem(),choices[i].getOptionA(),choices[i].getOptionB(),choices[i].getOptionC(),choices[i].getOptionD(),choices[i].getMark());
@@ -169,6 +173,7 @@ public class PaperPreviewPanel extends JScrollPane {
         if (multiChoices!=null&&multiChoices.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  多选题:");
             choiceLabel.setAble(false);
+            choiceLabel.textArea.setFont(new Font("宋体",Font.BOLD,16));
             panel.add(choiceLabel);
             for (i=0;i<multiChoices.length;i++){
                 qCard_multiChoice_normal = new QCard_MultiChoice_Normal(multiChoices[i].getId(),qid++,multiChoices[i].getStem(),multiChoices[i].getOptionA(),multiChoices[i].getOptionB(),multiChoices[i].getOptionC(),multiChoices[i].getOptionD(),multiChoices[i].getMark());
@@ -178,6 +183,7 @@ public class PaperPreviewPanel extends JScrollPane {
         if (judges!=null&&judges.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  判断题:");
             choiceLabel.setAble(false);
+            choiceLabel.textArea.setFont(new Font("宋体",Font.BOLD,16));
             panel.add(choiceLabel);
             for (i=0;i<judges.length;i++){
                 qCard_judge_normal = new QCard_Judge_Normal(judges[i].getId(),qid++,judges[i].getStem(),judges[i].getMark());
@@ -187,6 +193,7 @@ public class PaperPreviewPanel extends JScrollPane {
         if (subjectives!=null&&subjectives.length>0){
             MyTextArea_Normal choiceLabel=new MyTextArea_Normal(1,4,"","  主观题:");
             choiceLabel.setAble(false);
+            choiceLabel.textArea.setFont(new Font("宋体",Font.BOLD,16));
             panel.add(choiceLabel);
             for (i=0;i<subjectives.length;i++){
                 qCard_subjective_normal = new QCard_Subjective_Normal(subjectives[i].getId(),qid++,subjectives[i].getStem(),subjectives[i].getMark());
@@ -260,6 +267,7 @@ public class PaperPreviewPanel extends JScrollPane {
         }
         if (questionNum>0){
             difficulty=difficulty/(questionNum);
+            difficulty=MyNumberFormat.formatDouble(difficulty);
         }
         return difficulty;
     }

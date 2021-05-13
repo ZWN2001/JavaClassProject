@@ -42,8 +42,8 @@ public class UploadAnswer {
                 singleTypeScores(database, judges, judgeAnswers, "judge");
 
         if (subjectives!=null&&subjectives.length > 0)
-            database.update("INSERT INTO exam.score VALUES ('" + student.getAccount() + "','" + paper.getId() + "','" + objectiveScores + "'," + " -1 )");
-        else database.update("INSERT INTO exam.score VALUES ('" + student.getAccount() + "','" + paper.getId() + "','" + objectiveScores + "'," + " 0 )");
+            database.update("INSERT INTO exam.score VALUES ('" + student.getAccount() + "','" + paper.getId() + "','" + objectiveScores + "'," + " -1 ,0)");
+        else database.update("INSERT INTO exam.score VALUES ('" + student.getAccount() + "','" + paper.getId() + "','" + objectiveScores + "'," + " 0 ,0 )");
         dos.writeUTF(objectiveScores + "");
         dos.flush();
     }

@@ -22,7 +22,9 @@ public class GetEachPaperMark_S {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-        resultSet = database.query("SELECT * FROM exam.score WHERE id= "+paperID+"ORDER BY objectivescore+subjectivescore");
+
+        paperID=in.readLine();
+        resultSet = database.query("SELECT * FROM exam.score WHERE paperid= "+paperID+" ORDER BY sumScore");
         resultSet.last();
         int n=resultSet.getRow();
         paperMarks=new PaperMark[n];
@@ -32,10 +34,10 @@ public class GetEachPaperMark_S {
                 String studentName="";
                 resultSet1=database.query("SELECT name FROM exam.student WHERE account = "+resultSet.getString("student"));
                 while (resultSet1.next()){
-                     studentName=resultSet1.getNString("name");
+                     studentName=resultSet1.getString("name");
                 }
-                int objScore=Integer.parseInt(resultSet.getNString("objectivescore"));
-                int subScore=Integer.parseInt(resultSet.getNString("subjectivescore"));
+                int objScore=Integer.parseInt(resultSet.getString("objectivescore"));
+                int subScore=Integer.parseInt(resultSet.getString("subjectivescore"));
                 paperMarks[i]=new PaperMark(studentName,objScore,subScore,objScore+subScore);
             }
         }
