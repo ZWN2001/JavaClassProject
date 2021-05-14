@@ -34,10 +34,6 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "account='" + account + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return name + "(" + account + ")";
     }
 }
