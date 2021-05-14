@@ -14,12 +14,8 @@ public class t3 extends JFrame{
             PopupMenu pop = new PopupMenu();//创建弹出式菜单
 
             MenuItem menu = new MenuItem("exit");//创建菜单项
-            menu.addActionListener(new ActionListener() {//给菜单项添加事件监听器，单击时退出系统
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.exit(0);
-                }
-            });
+            //给菜单项添加事件监听器，单击时退出系统
+            menu.addActionListener(e -> System.exit(0));
             pop.add(menu);
             TrayIcon tray = new TrayIcon(icon.getImage(),"考试平台",pop);
             tray.setImageAutoSize(true);

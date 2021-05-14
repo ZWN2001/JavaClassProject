@@ -1,4 +1,4 @@
-package Teacher.Server.Action.GetQuestionBank_S;
+package Teacher.Server.Action.GetQuestionBank;
 
 import Teacher.Server.DataBase.DB;
 import com.alibaba.fastjson.JSON;

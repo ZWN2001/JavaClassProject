@@ -1,4 +1,4 @@
-package Teacher.Server.Action.Paper_S;
+package Teacher.Server.Action.Paper;
 
 import Teacher.Bean.Paper;
 import Teacher.Server.DataBase.DB;

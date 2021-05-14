@@ -139,8 +139,8 @@ public class DB {
 //                update("CREATE TABLE `score`(" +
 //                        "`student` VARCHAR(25) NOT NULL , " +
 //                        "`paperid` int NOT NULL," +
-//                        "`objectivescore` INT DEFAULT NULL," +
-//                        "`subjectivescore` INT DEFAULT NULL," +
+//                        "`objectivescore` INT DEFAULT 0," +
+//                        "`subjectivescore` INT DEFAULT 0," +
 //                        "`sumScore` INT DEFAULT 0,\n" +
 //                        "  primary key (sumScore));\n");
 //                hasInited=true;

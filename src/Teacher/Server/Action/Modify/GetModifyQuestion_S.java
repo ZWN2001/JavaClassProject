@@ -38,11 +38,11 @@ public class GetModifyQuestion_S {
             String answerString=resultSet.getString("answer");
             System.out.println(answerString);
 
-            allAnswer=answerString.split(",");
+            allAnswer=answerString.split("]");
             //System.out.println(allAnswer.toString());
-            subAnswer=allAnswer[6];
+            subAnswer=allAnswer[3];
             //System.out.println(subAnswer);
-            subAnswer=subAnswer.substring(3,subAnswer.length()-4);
+            subAnswer=subAnswer.substring(5,subAnswer.length()-1);
             //System.out.println(subAnswer);
             answers[i]=subAnswer;
         }

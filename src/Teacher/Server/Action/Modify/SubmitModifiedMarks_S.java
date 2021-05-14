@@ -17,6 +17,7 @@ public class SubmitModifiedMarks_S {
     private String[] studentID;
     private int[] subjectiveScore;
     private int paperID,i;
+    int obj;
     ResultSet resultSet;
     public SubmitModifiedMarks_S(Socket socket) throws Exception{
         this.socket = socket;
@@ -31,10 +32,10 @@ public class SubmitModifiedMarks_S {
              int sum=0;
              resultSet=database.query("SELECT objectivescore FROM exam.score WHERE paperid= "+paperID+" AND student = "+studentID[i]);
              while(resultSet.next()){
-                 int obj=resultSet.getInt("objectivescore");
+                  obj=resultSet.getInt("objectivescore");
                   sum=subjectiveScore[i]+obj;
              }
-             database.update("UPDATE exam.score SET subjectivescore = "+subjectiveScore[i]+",sumScore = "+sum+" WHERE paperid= "+paperID+" AND student = "+studentID[i]);
+             database.update("UPDATE exam.score SET subjectivescore = "+obj+subjectiveScore[i]+",sumScore = "+sum+" WHERE paperid= "+paperID+" AND student = "+studentID[i]);
          }
             dos.writeUTF("1");
             dos.flush();

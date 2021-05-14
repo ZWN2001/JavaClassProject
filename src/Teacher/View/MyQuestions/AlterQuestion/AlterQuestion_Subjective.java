@@ -32,11 +32,11 @@ public class AlterQuestion_Subjective extends JPanel {
         stem.textArea.setText(stemText);
 
         add(addStemLabel,new GBC(0,0,1,1).setInsets(5,40,0,20).setAnchor(GridBagConstraints.WEST));
-        add(stem,new GBC(0,1,6,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
+        add(stem,new GBC(0,1,7,3).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
         MyTextArea_Colorful setAnswer=new MyTextArea_Colorful(8,width,"答案样例");
         setAnswer.setText(answer);
-        add(setAnswer,new GBC(0,5,6,4).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
+        add(setAnswer,new GBC(0,5,7,4).setInsets(15,40,0,20).setFill(GridBagConstraints.BOTH).setWeight(1,0));
 
         JLabel setDifficulty_Label=new JLabel("设置难度：");
         JComboBox<Integer> setDifficultyComboBox=new JComboBox<>();
@@ -58,11 +58,11 @@ public class AlterQuestion_Subjective extends JPanel {
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
-        add(submitBtn,new GBC(4,9).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
-        add(deleteBtn,new GBC(5,9).setInsets(25,10,0,20).setAnchor(GridBagConstraints.WEST));
+        add(submitBtn,new GBC(4,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(deleteBtn,new GBC(5,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
 
         warningArea.setLayout(new BorderLayout());
-        add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
+        add(warningArea,new GBC(6,9,1,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,10));
 
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override

@@ -65,7 +65,7 @@ public class AlterQuestion_Judge extends JPanel {
         add(submitBtn,new GBC(3,10).setInsets(25,20,0,20).setAnchor(GridBagConstraints.EAST));
         add(deleteBtn,new GBC(4,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
         warningArea.setLayout(new BorderLayout());
-        add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
+        add(warningArea,new GBC(2,10,1,1).setAnchor(GridBagConstraints.EAST).setInsets(10,0,0,0));
 
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override

@@ -113,11 +113,11 @@ public class AlterQuestion_MultiChoice extends JPanel{
         add(setDifficultyComboBox,new GBC(1,9).setInsets(25,10,0,100));
         add(setMark_Label,new GBC(2,9).setInsets(25,50,0,0).setAnchor(GridBagConstraints.EAST));
         add(setMark,new GBC(3,9).setInsets(25,0,0,20).setAnchor(GridBagConstraints.WEST));
-        add(submitBtn,new GBC(3,10,1,1).setInsets(25,20,0,20).setAnchor(GridBagConstraints.CENTER));
-        add(deleteBtn,new GBC(4,10).setInsets(25,10,0,20).setAnchor(GridBagConstraints.CENTER));
+        add(submitBtn,new GBC(3,10,1,1).setInsets(25,0,0,0).setAnchor(GridBagConstraints.CENTER));
+        add(deleteBtn,new GBC(4,10).setInsets(25,0,0,20).setAnchor(GridBagConstraints.CENTER));
 
         warningArea.setLayout(new BorderLayout());
-        add(warningArea,new GBC(0,10,6,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
+        add(warningArea,new GBC(2,10,3,1).setAnchor(GridBagConstraints.CENTER).setInsets(10,0,0,0));
 
         optA_Box.addActionListener(e -> {
             if (optA_Box.isSelected()){
